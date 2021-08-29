@@ -1,0 +1,16 @@
+.nav {
+    background-color: #ffffff;
+    height: var(--navbar-height);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 5px #00000010;
+    z-index: 999999;
+  }
+  
+  .logo{
+    width:250px;
+    height:90px;
+  }
