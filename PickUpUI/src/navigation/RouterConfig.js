@@ -4,9 +4,18 @@ import Home from "../pages/Home";
 import {test} from "../pages/Test"
 import {dish} from "../pages/Dish"
 import {orders} from '../pages/Orders'
+import {cart} from '../pages/Cart'
 import {restaurant} from '../pages/Restaurant'
 import { NotFound } from "./NotFound";
-import { ROOT, TEST, DISH, COMMENTS, ORDERS, RESTAURANT} from "./CONSTANTS";
+import { 
+  ROOT, 
+  TEST, 
+  DISH, 
+  COMMENTS, 
+  ORDERS, 
+  RESTAURANT,
+  CART
+} from "./CONSTANTS";
 
 
 export const RouterConfig = () => {
@@ -21,6 +30,7 @@ export const RouterConfig = () => {
         <Route exact path={COMMENTS}/>
         <Route exact path={RESTAURANT} component={restaurant} />
         <Route exact path={ORDERS} component={orders} />
+        <Route exact path={CART} component={cart} />
         <Route path="*">
           <NotFound />
         </Route>
