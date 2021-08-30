@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from './RestaurantStyle.js'
 import ProductList from './ProductList.js'
 import StarIcon from '@material-ui/icons/Star';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import { Link } from 'react-router-dom';
+import CommentList from './CommentList.js';
+import Button from '@material-ui/core/Button';
 
 function Restaurant() {
   const classes = useStyles();
+
+  const [activeState, setActiveState] = useState({menu:true, comments: false})
+
+  const toggleActive = (currentState) => {
+    // setActiveState({...activeState, currentState: true})
+    if (currentState === 'menu') {
+      setActiveState({menu: true, comment: false})
+    } else {
+      setActiveState({menu: false, comment: true})
+    }
+  }
 
   return (
     <>
@@ -58,19 +70,21 @@ function Restaurant() {
         </div>
       </hero>
       <div className={classes.heroMenu}>
-        {/* <h3>Menu</h3> */}
-        <Link to='/restaurant/menu'>Menu</Link>
-        <Link to='/restaurant/comments'>Comments</Link>
-
-
+        <Button onClick={() => toggleActive('menu')}>Menu</Button>
+        <Button onClick={() => toggleActive('comments')}>Comments</Button>
       </div>
-      {/* <div className={classes.menu}>
-        <ProductList />
-      </div> */}
+      {activeState.menu && 
+        <div className={classes.menu}>
+          <ProductList />
+        </div>
+      }
+      {activeState.comment && 
+      <div>
+        <CommentList />
+      </div>
+      }
     </>
 
-    
-    // <div/>
   );
 }
 
