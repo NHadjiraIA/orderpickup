@@ -79,8 +79,8 @@ function OrderListItem(props) {
             </Table>
             <Typography align="right">Total: $2937463</Typography>
             <div>
-              <Button size='medium'>Add 1 to Cart</Button>
-              <Button size='medium'>Go to Cart</Button>
+              <Button className={classes.cartButtons} size='small'>Add 1 to Cart</Button>
+              <Button className={classes.cartButtons} size='small'>Go to Cart</Button>
             </div>
           </TableContainer>
 

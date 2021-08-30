@@ -29,6 +29,18 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
+  },
+
+  cartButtons: {
+    backgroundColor: 'black',
+    color:'white',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+
+    '&:hover': {
+      backgroundColor: 'black',
+    },
   }
 }));
 
