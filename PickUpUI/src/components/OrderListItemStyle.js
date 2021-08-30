@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
   perorder: {
     backgroundColor: '#e9ebf0',
   },
+  table: {
+    minWidth: 650,
+  }
 }));
 
 export default useStyles;

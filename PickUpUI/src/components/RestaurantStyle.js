@@ -64,9 +64,11 @@ const useStyles = makeStyles((theme) => ({
     
     paddingLeft: '1em',
     paddingRight: '2em',
-    '& h3': {
+    '& button': {
       paddingLeft: '2em',
       paddingRight: '2em',
+      color: 'white', 
+
     },
   },
 

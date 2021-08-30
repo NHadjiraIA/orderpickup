@@ -30,8 +30,8 @@ function OrderListItem(props) {
   }
   
   const rows = [ 
-    createData(props.products.product1.name, props.numberOfItems, (props.totalCost/100)),
-    createData(props.products.product2.name, props.numberOfItems, (props.totalCost/100)),
+    createData(props.products[0], props.numberOfItems, (props.totalCost/100)),
+    createData(props.products[0], props.numberOfItems, (props.totalCost/100)),
   ];
 
   return (
@@ -56,12 +56,12 @@ function OrderListItem(props) {
           <AccordionDetails className={classes.perorder}>
 
           <TableContainer component={Paper}>
-            <Table className={classes.table} size="small" aria-label="a dense table">
+            <Table padding='normal' className={classes.table} size="small" aria-label="a dense table">
               <TableHead>
                 <TableRow>
-                  {/* <TableCell align="right">Name</TableCell> */}
-                  <TableCell align="right">Quantity</TableCell>
-                  <TableCell align="right">Price</TableCell>
+                  <TableCell >Name</TableCell>
+                  <TableCell >Quantity</TableCell>
+                  <TableCell >Price</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -72,7 +72,7 @@ function OrderListItem(props) {
                     </TableCell>
                     {/* <TableCell align="right">{row.name}</TableCell> */}
                     <TableCell>{row.quantity}</TableCell>
-                    <TableCell>${row.price}</TableCell>
+                    <TableCell>${row.price/100}</TableCell>
                   </TableRow>
                 ))} 
               </TableBody>

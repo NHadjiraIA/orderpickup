@@ -1,7 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
-import { FlexFlowContext } from 'twilio/lib/rest/flexApi/v1/flexFlow';
-import { emphasize } from "@material-ui/core/styles/colorManipulator";
 
 const useStyles = makeStyles((theme) => ({
   
