@@ -8,8 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import RouterConfig from '../navigation/RouterConfig'
-import { ROOT, TEST, DISH, COMMENTS, ORDERS} from "../navigation/CONSTANTS";
+import { ROOT, ORDERS, CART} from "../navigation/CONSTANTS";
 
 import useStyles from "./NavigationStyle.js";
 
@@ -90,7 +89,7 @@ export const Navigation = () => {
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 2 new items" color="inherit">
               <Badge badgeContent={2} color="secondary">
-                <ShoppingCart />
+                <a href={CART}><ShoppingCart /></a>
               </Badge>
             </IconButton>
             <div>
