@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {TEST} from '../../navigation/CONSTANTS'
+import {TEST,DISH} from '../../navigation/CONSTANTS'
 import {useHistory} from 'react-router-dom'
 
 const HomeView = props => {
@@ -8,6 +8,9 @@ const HomeView = props => {
     const goToTest = (path) => {
          history.push(path || TEST);
     }
+    const goToDish = (path) => {
+      history.push(path || DISH);
+ }
     return (
         <div>     
         <div styles="width: 100%; height: 100%; position: absolute;">
@@ -26,6 +29,10 @@ const HomeView = props => {
 
                   </div>
                  <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToTest()}>test</button> 
+             
+                </div>
+                <div>
+                <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToDish()}>List of dishs</button> 
              
                 </div>
               </div>
