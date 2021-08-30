@@ -59,35 +59,28 @@ const useStyles = makeStyles((theme) => ({
     padding: '1.5em',
 
   },
+  //for the buttons in the dialogue box
   finishingOrder: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     // position: 'fixed',
-
     '& p' :{
-      // marginBottom: '3em',
       fontSize: '35px',
     }
 
-
   },
+
   cartButton:{
-    backgroundColor: 'black',
-    color: 'white',
+    backgroundColor: 'green',
+    color: 'black',
     width: '30%',
     height: '30%',
     alignItems: 'baseline',
-    marginTop: '1em',
-
-    '& span': {
-      color: 'white !important',
-      '& :hover': {
-        color: 'black',
-      },
+    '&:hover': {
+      background: 'none',
     },
-
-
 
   },
   numberOfItem: {
