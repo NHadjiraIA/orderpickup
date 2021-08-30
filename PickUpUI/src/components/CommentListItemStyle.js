@@ -1,7 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  
+  typography: {
+    // width: '100px',
+  },
+
   commentPage: {
     padding: '10%', 
     display: 'flex',
@@ -32,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     
+  },
+  commentText: {
+    display: 'flex',
+    flexWrap: 'wrap',
   },
 
   postButton: {

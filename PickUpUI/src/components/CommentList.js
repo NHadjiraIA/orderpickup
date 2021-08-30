@@ -15,12 +15,12 @@ function Comment() {
     { 
       id: 1, 
       username: 'RandomUser1',
-      comment: "asdifaw;ejfa;lksjdfl;kasjfl;kawjef;lkajfdkl;ajwelkfjasdfawef", 
+      comment: "The API documentation of the Typography React component. Learn more about the props and the CSS customization points.", 
     },
     { 
       id: 2, 
       username: 'RandomUser2',
-      comment: "awefa;siojdf;alwj;lakjdfl;ksjdfkl;ajwe;fjasl;kdfjl;kadngakvnal;skdfl;awjfl;wjflk;jk;j", 
+      comment: "The API documentation of the Typography React component. Learn more about the props and the CSS customization points.", 
     },
   ];
 
@@ -39,10 +39,8 @@ function Comment() {
       
       <div className={classes.filters}>
         <h3>Filters</h3>
-        <h3>Ratings</h3>
-        <h3>Newest</h3>
-        <h3>Oldest</h3>
-
+        <Button>Newest to Oldest</Button>
+        <Button>Oldest to Newest</Button>
       </div>
       
       <section className={classes.postAndPostedComments}>

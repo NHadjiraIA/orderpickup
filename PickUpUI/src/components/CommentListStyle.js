@@ -15,6 +15,19 @@ const useStyles = makeStyles((theme) => ({
     height: '30%',
     backgroundColor: '#e9ebf0',
     marginRight: '1.5em',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '1em',
+
+    '& button': {
+      backgroundColor: 'black',
+      color: 'white',
+      marginBottom: '1em',
+      '&:hover': {
+        backgroundColor: 'black',
+      }
+    } 
+
   },
 
   postAndPostedComments: {
