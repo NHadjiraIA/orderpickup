@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
       flex:'1',
       justifyContent: 'space-evenly',
       alignItems: 'center'
-    }
+    },
      //questionable placement but i do need it
   },
   sectionMobile: {

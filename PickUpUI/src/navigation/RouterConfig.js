@@ -1,18 +1,34 @@
 import React from "react";
-import { Switch, BrowserRouter ,Route } from "react-router-dom";
+import { Switch, BrowserRouter ,Route, Link } from "react-router-dom";
 import Home from "../pages/Home";
-import {dish} from "../pages/Dish";
+import {test} from "../pages/Test"
+import {dish} from "../pages/Dish"
+import {orders} from '../pages/Orders'
+import {cart} from '../pages/Cart'
+import {restaurant} from '../pages/Restaurant'
 import { NotFound } from "./NotFound";
-import { ROOT, DISH} from "./CONSTANTS";
+import { 
+  ROOT, 
+  TEST, 
+  DISH, 
+  COMMENTS, 
+  ORDERS, 
+  RESTAURANT,
+  CART
+} from "./CONSTANTS";
 
 export const RouterConfig = () => {
   return (
     <div>
       <BrowserRouter>
       <Switch>
-        {/* List all public routes here */}
+        List all public routes here
         <Route exact path={ROOT} component={Home} />
         <Route exact path={DISH} component={dish}/>
+        <Route exact path={COMMENTS}/>
+        <Route exact path={RESTAURANT} component={restaurant} />
+        <Route exact path={ORDERS} component={orders} />
+        <Route exact path={CART} component={cart} />
         <Route path="*">
           <NotFound />
         </Route>
@@ -21,3 +37,5 @@ export const RouterConfig = () => {
     </div>
   );
 };
+
+export default RouterConfig;

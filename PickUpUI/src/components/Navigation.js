@@ -8,8 +8,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import { ROOT, ORDERS, CART} from "../navigation/CONSTANTS";
 
 import useStyles from "./NavigationStyle.js";
+
 export const Navigation = () => {
   
   const classes = useStyles();
@@ -18,10 +20,6 @@ export const Navigation = () => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  // const handleProfileMenuOpen = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -83,14 +81,15 @@ export const Navigation = () => {
           </Typography>
           <Typography className={classes.links}>
             <p>Restaurants</p>
-            <p>Orders</p>
+            {/* <RouterConfig /> */}
+            <a href={ORDERS}>Orders</a>
             <p>Account</p>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 2 new items" color="inherit">
               <Badge badgeContent={2} color="secondary">
-                <ShoppingCart />
+                <a href={CART}><ShoppingCart /></a>
               </Badge>
             </IconButton>
             <div>
