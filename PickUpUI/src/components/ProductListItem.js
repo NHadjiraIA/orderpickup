@@ -1,19 +1,12 @@
 // import logo from './logo.svg';
-import React from 'react';
+import React, {useState} from 'react';
 import useStyles from './ProductListItemStyle.js';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import Counter from './Counter.js'
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormGroup from '@material-ui/core/FormGroup';
-// import Checkbox from '@material-ui/core/Checkbox';
-//icon button
-import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -22,27 +15,39 @@ const emails = ['username@gmail.com', 'user02@gmail.com'];
 function ProductListItem(props) {
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
-  // const [value, setValue] = React.useState('female');
-  // const [state, setState] = React.useState({
-  //   checkedA: true,
-  //   checkedB: true,
-  //   checkedC: true,
-  // });
+  const [quantity, updateQuantity] = useState(1);
 
-  // const handleChangeCheckBox = (event) => {
-  //   setState({ ...state, [event.target.name]: event.target.checked });
-  // };
+
   const handleClose = () => {
     onClose(selectedValue);
   };
 
-  // const handleListItemClick = (value) => {
-  //   onClose(value);
-  // };
+  //for the counter
+  // const increment = (index) => {
+  //   let tempState = data
 
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  // };
+  //   tempState[index].qty = tempState[index].qty + 1
+  //   updateData([...tempState])
+
+  // }
+
+  // const decrement = (index) => {
+  //   let tempState = data
+  //   if (tempState[index].qty > 1) {
+  //     tempState[index].qty = tempState[index].qty - 1
+  //     updateData([...tempState])
+
+  //   }
+  // }
+  const increment = () => {
+    updateQuantity(quantity + 1)
+  }
+
+  const decrement = () => {
+    if (quantity > 1) {
+      updateQuantity(quantity-1)
+    }
+  }
 
   return (
     <Dialog 
@@ -62,19 +67,6 @@ function ProductListItem(props) {
           <h4>591 Cals.</h4>
           
           <div>
-          {/* <FormGroup column>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={state.checkedA}
-                  onChange={handleChangeCheckBox}
-                  name="checkedA"
-                  color="primary"
-                />
-              }
-              label="sneeze on it"
-            />
-          </FormGroup> */}
             <h3>Special Requests</h3>
             <form className={classes.root} noValidate autoComplete="off">
               <TextField 
@@ -88,9 +80,14 @@ function ProductListItem(props) {
 
           <div className={classes.finishingOrder}>
             <div className={classes.numberOfItem}>
-              <Counter />
+              <Counter 
+                // index={index} 
+                qty={quantity} 
+                increment={increment} 
+                decrement={decrement} 
+              />
             </div>
-            <Button className={classes.cartButton} size='medium' >Add 1 to Cart</Button>
+            <Button className={classes.cartButton} size='medium' >Add {quantity} to Cart</Button>
             <Button className={classes.cartButton} size='medium'>Go to Cart</Button>
           </div>
           

@@ -13,8 +13,8 @@ const TAX_RATE = 0.13;
 
 const useStyles = makeStyles({
   root: {
-    marginLeft: '4em',
-    marginRight: '4em',
+    
+    margin: '4em',
     typography: '50px',
     fontSize: '18px',
   },
@@ -36,12 +36,7 @@ function CartList() {
 
   const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
   
-  function priceRow(qty) {
-    return qty;
-  }
-  
   function createRow(img, desc, pricePer, qty) {
-    const price = priceRow(qty);
     return { img, desc, pricePer, qty};
   }
   
@@ -49,6 +44,15 @@ function CartList() {
     return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
   }
   
+  // function subTotal(data, index) {
+  //   let sum = 0;
+  //   for (let i = index; i < data.length; i++) {
+  //     sum + data[i];
+  //   }
+  //   return sum;
+  // }
+
+
   const rows = [];
   let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100);
   rows.push(rowItem);
@@ -61,9 +65,9 @@ function CartList() {
     updateData(rows);
   }, []);
 
-  const invoiceSubtotal = subtotal(rows);
+  // const invoiceSubtotal = subTotal(rows);
 
-  // const invoiceSubtotal = subtotal(rows);
+  const invoiceSubtotal = subtotal(rows);
 
 
   const invoiceTaxes = TAX_RATE * invoiceSubtotal;
@@ -94,9 +98,8 @@ function CartList() {
 
   return (
     <div className={classes.root}>
-      <Typography>Restaurant</Typography>
 
-        <TableContainer component={Paper}>
+      <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="spanning table">
           <TableHead>
             <TableRow>
@@ -109,8 +112,8 @@ function CartList() {
           </TableHead>
           <TableBody>
             {data.map((row, index) => (
-              <TableRow key={row.desc}>
-                <TableCell align="center">
+              <TableRow>
+                <TableCell align="left">
                   <img className={classes.productImg} src={row.img} />
                 </TableCell>
                 <TableCell><h2>${row.pricePer}</h2></TableCell>
