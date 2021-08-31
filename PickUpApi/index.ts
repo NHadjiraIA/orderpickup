@@ -8,9 +8,14 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { UserApi } from "./users";
 export {UserApi} from "./users";
+
+
+
 const app = express();
+
 const userApi = new UserApi();
 const userRouter = express.Router();
+
 
 const origin = {
   origin: '*',
@@ -35,10 +40,16 @@ userRouter.get('/users/:email',
 userRouter.post('/users',
   (req, res) => userApi.create(req, res)
 )
+
 userRouter.post("/login", 
  (req, res) => userApi.login(req, res)
 );
+
 app.use('/api/v1', userRouter)
+
+/**---------------------------restaurant------------------------------- */
+
+// /**---------------------------restaurant------------------------------- */
 
 
 const port = process.env.PORT || 3002;
