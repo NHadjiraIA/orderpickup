@@ -73,13 +73,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cartButton:{
-    backgroundColor: 'green',
-    color: 'black',
+    backgroundColor: 'black',
+    color: 'white',
     width: '30%',
     height: '30%',
     alignItems: 'baseline',
     '&:hover': {
-      background: 'none',
+      backgroundColor: 'black',
     },
 
   },
