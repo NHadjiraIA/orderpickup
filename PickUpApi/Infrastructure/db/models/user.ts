@@ -17,6 +17,8 @@ interface UserAttributes {
   id: number;
   name: string;
   email: string;
+  password: string;
+  phone:number;
   role: boolean;
   createdAt: Date;
 }
@@ -24,9 +26,11 @@ interface UserAttributes {
 // Some attributes are optional in `User.build` and `User.create` calls
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
 
-class UserEntity extends Model<UserAttributes, UserCreationAttributes>  implements UserAttributes {
+export class UserEntity extends Model<UserAttributes, UserCreationAttributes>  implements UserAttributes {
   public id!: number; 
   public name!: string;
+  public phone!: number;
+  public password!: string;
   public email!: string;
   public role!: boolean;
   public createdAt!: Date;
@@ -61,6 +65,14 @@ UserEntity.init(
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phone: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
     role: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -76,7 +88,6 @@ UserEntity.init(
   }
 );
 
-export default UserEntity
 
 // Here we associate which actually populates out pre-declared `association` static and other methods.
 //   User.hasMany(Order, {

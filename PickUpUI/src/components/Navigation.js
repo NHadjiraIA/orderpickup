@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { ROOT, ORDERS, CART} from "../navigation/CONSTANTS";
+import { LOGIN, ORDERS, CART} from "../navigation/CONSTANTS";
 
 import useStyles from "./NavigationStyle.js";
 
@@ -93,7 +93,7 @@ export const Navigation = () => {
               </Badge>
             </IconButton>
             <div>
-              <p>Login</p>
+            <a  href= {LOGIN}>LogIn</a>
             </div>
           </div>
           <div className={classes.sectionMobile}>

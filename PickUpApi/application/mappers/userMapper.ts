@@ -1,5 +1,5 @@
 import { UserDto } from "../../domain/dtos/UserDto"
-import UserEntity from "../../Infrastructure/db/models/user"
+import {UserEntity} from "../../Infrastructure/db/models/user"
 
 
 export const toEntity = (userDto: UserDto): UserEntity => {
