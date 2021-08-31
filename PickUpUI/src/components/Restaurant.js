@@ -6,7 +6,8 @@ import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
 import CommentList from './CommentList.js';
 import Button from '@material-ui/core/Button';
 
-function Restaurant() {
+function Restaurant(props) {
+  console.log("propssss", props);
   const classes = useStyles();
 
   const [activeState, setActiveState] = useState({menu:true, comments: false})
@@ -25,6 +26,8 @@ function Restaurant() {
       <hero className={classes.heroroot}>
         <div className={classes.restaurantcard}>
           <img src='https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'/>
+
+          {/* <img src={props.restaurant.img} alt="thumbnail"/> */}
           <div className={classes.restaurantinfo}>
             <h2>Restaurant Name</h2>
             {/* <div class="rating-send">
