@@ -8,10 +8,9 @@ class Counter extends Component {
   
   constructor(props) {
     super(props)
-    console.log('PROPS:', props)
-    this.state = {
-      count: props.qty
-    }
+    // this.state = {
+    //   count: props.qty
+    // }
   }
 
   

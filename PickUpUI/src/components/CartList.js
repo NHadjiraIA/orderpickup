@@ -35,11 +35,6 @@ function CartList() {
   const classes = useStyles();
 
   const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
-
-
-  function ccyFormat(num) {
-    return `${num.toFixed(2)}`;
-  }
   
   function priceRow(qty) {
     return qty;
@@ -47,7 +42,7 @@ function CartList() {
   
   function createRow(img, desc, pricePer, qty) {
     const price = priceRow(qty);
-    return { img, pricePer, desc, qty, price };
+    return { img, desc, pricePer, qty};
   }
   
   function subtotal(items) {
@@ -67,6 +62,10 @@ function CartList() {
   }, []);
 
   const invoiceSubtotal = subtotal(rows);
+
+  // const invoiceSubtotal = subtotal(rows);
+
+
   const invoiceTaxes = TAX_RATE * invoiceSubtotal;
   const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
@@ -74,27 +73,21 @@ function CartList() {
     return (data[index].qty * data[index].pricePer).toFixed(2)
   }
 
+  //for the counter
   const increment = (index) => {
     let tempState = data
     
-    console.log('INCREMENT FUNCTION', tempState[index].qty)
     tempState[index].qty = tempState[index].qty + 1
-    console.log('INCREMENT FUNCTION AFTER', tempState[index].qty)
     updateData([...tempState])
-    // this.setState({
-    //   count: this.state.count + 1
-    // })
+
   }
 
   const decrement = (index) => {
-    console.log('DECREMENT FUNCTION', rows[index])
     let tempState = data
-    if (rows[index].qty > 0) {
-      rows[index].qty --
+    if (tempState[index].qty > 1) {
+      tempState[index].qty = tempState[index].qty - 1
+      updateData([...tempState])
 
-      // this.setState({
-      //   count: this.state.count - 1
-      // })
     }
   }
 
@@ -117,20 +110,18 @@ function CartList() {
           <TableBody>
             {data.map((row, index) => (
               <TableRow key={row.desc}>
-
                 <TableCell align="center">
                   <img className={classes.productImg} src={row.img} />
                 </TableCell>
-                <TableCell><h2>{row.pricePer}</h2></TableCell>
+                <TableCell><h2>${row.pricePer}</h2></TableCell>
                 <TableCell 
                   align="left">
                   <h2>{row.desc}</h2>
                 </TableCell>
                 <TableCell>
-                  <p>THIS PAGE{row.qty}</p>
                   <Counter index={index} qty={row.qty} increment={increment} decrement={decrement} />
                 </TableCell>
-                <TableCell align="right"><h2>{sum(index)}</h2></TableCell>
+                <TableCell align="right"><h2>${sum(index)}</h2></TableCell>
               </TableRow>
             ))}
 
@@ -144,16 +135,16 @@ function CartList() {
             <TableRow>
               <TableCell rowSpan={5} />
               <TableCell colSpan={2}><h2>Subtotal</h2></TableCell>
-              <TableCell align="right"><h2>{ccyFormat(invoiceSubtotal)}</h2></TableCell>
+              <TableCell align="right"><h2>${invoiceSubtotal}</h2></TableCell>
             </TableRow>
             <TableRow>
               <TableCell><h2>Tax</h2></TableCell>
               <TableCell align="right"><h2>{`${(TAX_RATE * 100).toFixed(0)} %`}</h2></TableCell>
-              <TableCell align="right"><h2>{ccyFormat(invoiceTaxes)}</h2></TableCell>
+              <TableCell align="right"><h2>${invoiceTaxes}</h2></TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}><h2>Total</h2></TableCell>
-              <TableCell align="right"><h2>{ccyFormat(invoiceTotal)}</h2></TableCell>
+              <TableCell align="right"><h2>${invoiceTotal}</h2></TableCell>
             </TableRow>
           </TableBody>
 
