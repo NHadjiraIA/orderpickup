@@ -4,11 +4,14 @@ import Home from "../pages/Home";
 import {dish} from "../pages/Dish"
 import {orders} from '../pages/Orders'
 import {cart} from '../pages/Cart'
+import {login} from '../pages/Login'
+import {restaurant} from '../pages/Restaurant'
+import {signup} from '../pages/Signup'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
 import {restaurant} from '../pages/Restaurant'
-
 import{map} from '../pages/Map'
+
 import { NotFound } from "./NotFound";
 import { 
   ROOT, 
@@ -16,6 +19,8 @@ import {
   ORDERS, 
   RESTAURANT,
   CART,
+  LOGIN,
+  SIGNUP,
   VENDOR_DASHBOARD,
   VENDOR_MENU,
 } from "./CONSTANTS";
@@ -72,6 +77,8 @@ export const RouterConfig = (props) => {
         <Route exact path={RESTAURANT} component={restaurant} />
         <Route exact path={ORDERS} component={orders} />
         <Route exact path={CART} component={cart} />
+        <Route exact path={LOGIN} component={login} />
+        <Route exact path={SIGNUP} component={signup} />
         <Route exact path={VENDOR_DASHBOARD} component={dashboard} />
         <Route exact path={VENDOR_MENU} component={vendorMenu}/>
         <Route path="*">

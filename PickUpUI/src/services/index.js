@@ -7,3 +7,5 @@
 
  
 export {getAllDishs} from './dishService';
+export {postLogin} from './loginService';
+export {postUser} from './signupService'
