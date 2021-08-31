@@ -1,13 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {TEST,DISH} from '../../navigation/CONSTANTS'
+import {DISH} from '../../navigation/CONSTANTS'
 import {useHistory} from 'react-router-dom'
 
 const HomeView = props => {
     const history = useHistory();
-    const goToTest = (path) => {
-         history.push(path || TEST);
-    }
+    
     const goToDish = (path) => {
       history.push(path || DISH);
  }
@@ -28,8 +26,7 @@ const HomeView = props => {
                      </span>
 
                   </div>
-                 <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToTest()}>test</button> 
-             
+                  
                 </div>
                 <div>
                 <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToDish()}>List of dishs</button> 
