@@ -8,7 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import Counter from './Counter.js'
 import TextField from '@material-ui/core/TextField';
-
+import {CART} from "../navigation/CONSTANTS";
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
@@ -71,7 +71,7 @@ function ProductListItem(props) {
               />
             </div>
             <Button className={classes.cartButton} size='medium' >Add {quantity} to Cart</Button>
-            <Button className={classes.cartButton} size='medium'>Go to Cart</Button>
+            <Button className={classes.cartButton} size='medium' href={CART}>Go to Cart</Button>
           </div>
           
         </div>
