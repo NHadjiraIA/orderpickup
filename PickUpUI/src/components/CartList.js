@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const TAX_RATE = 0.07;
+const TAX_RATE = 0.13;
 
 const useStyles = makeStyles({
   table: {
@@ -25,13 +25,13 @@ function ccyFormat(num) {
   return `${num.toFixed(2)}`;
 }
 
-function priceRow(qty, unit) {
-  return qty * unit;
+function priceRow(qty) {
+  return qty;
 }
 
-function createRow(desc, qty, unit) {
-  const price = priceRow(qty, unit);
-  return { desc, qty, unit, price };
+function createRow(desc, qty) {
+  const price = priceRow(qty);
+  return { desc, qty, price };
 }
 
 function subtotal(items) {
@@ -39,9 +39,9 @@ function subtotal(items) {
 }
 
 const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
+  createRow('Paperclips (Box)', 100),
+  createRow('Paper (Case)', 10),
+  createRow('Waste Basket', 2),
 ];
 
 const invoiceSubtotal = subtotal(rows);
@@ -73,7 +73,6 @@ function CartList() {
             <TableRow>
               <TableCell>Desc</TableCell>
               <TableCell align="right">Qty.</TableCell>
-              <TableCell align="right">Unit</TableCell>
               <TableCell align="right">Sum</TableCell>
             </TableRow>
           </TableHead>
@@ -82,7 +81,6 @@ function CartList() {
               <TableRow key={row.desc}>
                 <TableCell>{row.desc}</TableCell>
                 <TableCell align="right">{row.qty}</TableCell>
-                <TableCell align="right">{row.unit}</TableCell>
                 <TableCell align="right">{ccyFormat(row.price)}</TableCell>
               </TableRow>
             ))}
