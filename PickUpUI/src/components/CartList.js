@@ -8,18 +8,26 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import Counter from './Counter'
 const TAX_RATE = 0.13;
 
 const useStyles = makeStyles({
+  root: {
+    marginLeft: '4em',
+    marginRight: '4em',
+  },
   table: {
     minWidth: 700,
   },
-  orderInfo:{
-    display: 'flex',
-    flexDirection: 'row',
-  }
+  productImg: {
+    height: '56%',
+    width: '10%',
+    marginBottom: '1em',
+  },
 });
+
+const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
+
 
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
@@ -29,9 +37,9 @@ function priceRow(qty) {
   return qty;
 }
 
-function createRow(desc, qty) {
+function createRow(img, pricePer, desc, qty) {
   const price = priceRow(qty);
-  return { desc, qty, price };
+  return { img, pricePer, desc, qty, price };
 }
 
 function subtotal(items) {
@@ -39,9 +47,9 @@ function subtotal(items) {
 }
 
 const rows = [
-  createRow('Paperclips (Box)', 100),
-  createRow('Paper (Case)', 10),
-  createRow('Waste Basket', 2),
+  createRow(testImg, 'Paperclips (Box)', 3.45, 100),
+  createRow(testImg,'Paper (Case)', 5.62, 10),
+  createRow(testImg,'Waste Basket', 15.20, 2),
 ];
 
 const invoiceSubtotal = subtotal(rows);
@@ -52,26 +60,17 @@ function CartList() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       <Typography>empty cart</Typography>
       <Typography>Restaurant</Typography>
-      <div className={classes.orderInfo}>
-        <div>
-        <Typography>Your Order</Typography>
-        
-        </div>
-      
+
         <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="spanning table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={3}>
-                Details
-              </TableCell>
-              <TableCell align="right">Price</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Desc</TableCell>
+              <TableCell align="left" colSpan={2}>Img.</TableCell>
+              <TableCell align="left">Price Per Item.</TableCell>
+              <TableCell align="left">Desc.</TableCell>
               <TableCell align="right">Qty.</TableCell>
               <TableCell align="right">Sum</TableCell>
             </TableRow>
@@ -79,12 +78,19 @@ function CartList() {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.desc}>
-                <TableCell>{row.desc}</TableCell>
-                <TableCell align="right">{row.qty}</TableCell>
+
+                <TableCell align="left">
+                  <img className={classes.productImg} src={row.img} />
+                </TableCell>
+                <TableCell>{row.pricePer}</TableCell>
+                <TableCell align="left">{row.desc}</TableCell>
+
+                  <Counter />
+
                 <TableCell align="right">{ccyFormat(row.price)}</TableCell>
               </TableRow>
             ))}
-
+            
             <TableRow>
               <TableCell rowSpan={3} />
               <TableCell colSpan={2}>Subtotal</TableCell>
@@ -102,7 +108,6 @@ function CartList() {
           </TableBody>
         </Table>
       </TableContainer>
-      </div>
 
     </div>
   )
