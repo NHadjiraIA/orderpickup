@@ -19,7 +19,6 @@ import {
   DASHBOARD
 } from "./CONSTANTS";
 
-
 export const RouterConfig = () => {
   return (
     <div>
@@ -27,7 +26,6 @@ export const RouterConfig = () => {
       <Switch>
         List all public routes here
         <Route exact path={ROOT} component={Home} />
-        <Route exact path={TEST} component={test} />
         <Route exact path={DISH} component={dish}/>
         <Route exact path={COMMENTS}/>
         <Route exact path={RESTAURANT} component={restaurant} />
