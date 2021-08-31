@@ -23,9 +23,21 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+
+    '& button': {
+      backgroundColor: 'black',
+      color:'white',
+      
+      '&:hover': {
+        backgroundColor: 'black',
+      },
+    }
+
   },
   perorder: {
     backgroundColor: '#e9ebf0',
+    display: 'flex',
+    justifyContent: 'center',
   },
   table: {
     minWidth: 650,
@@ -50,8 +62,23 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-around',
 
+  },
 
-  }
+  tableRoot: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '1em',
+    typography: '50px',
+    fontSize: '18px',
+  },
+  table: {
+    minWidth: 700,
+  },
+  productImg: {
+    height: '56%',
+    width: '10%',
+    marginBottom: '1em',
+  },
 }));
 
 export default useStyles;

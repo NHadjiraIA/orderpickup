@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core';
 import React, {useState, useEffect} from 'react'; 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,6 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Counter from './Counter'
+
+// import DeleteIcon from '@material-ui/icons/Delete';
+
+
 const TAX_RATE = 0.13;
 
 const useStyles = makeStyles({
@@ -112,10 +115,10 @@ function CartList() {
         <Table className={classes.table} aria-label="spanning table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" colSpan={2}><h2>Img.</h2></TableCell>
+              <TableCell align="left"><h2>Img.</h2></TableCell>
               <TableCell align="left"> <h2>Desc.</h2></TableCell>
               <TableCell align="left"> <h2>Price Per Item</h2></TableCell>
-              <TableCell align="right"><h2>Qty.</h2></TableCell>
+              <TableCell align="center"><h2>Qty.</h2></TableCell>
               <TableCell align="right"><h2>Sum</h2></TableCell>
             </TableRow>
           </TableHead>
@@ -147,15 +150,21 @@ function CartList() {
             <TableRow>
               <TableCell rowSpan={5} />
               <TableCell colSpan={2}><h2>Subtotal</h2></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
               <TableCell align="right"><h2>${invoiceSubtotal.toFixed(2)}</h2></TableCell>
             </TableRow>
             <TableRow>
               <TableCell><h2>Tax</h2></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
               <TableCell align="right"><h2>{`${(TAX_RATE * 100).toFixed(0)} %`}</h2></TableCell>
               <TableCell align="right"><h2>${invoiceTaxes}</h2></TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}><h2>Total</h2></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
               <TableCell align="right"><h2>${invoiceTotal.toFixed(2)}</h2></TableCell>
             </TableRow>
           </TableBody>

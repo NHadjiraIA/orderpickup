@@ -50,7 +50,9 @@ function OrderList() {
 
   return (
     <div className={classes.page}>
+      <br></br>
       <h1>Past Orders</h1>
+      <br></br>
       {item}
     </div>
   );
