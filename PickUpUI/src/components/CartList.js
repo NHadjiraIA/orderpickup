@@ -41,7 +41,13 @@ function CartList() {
   }
   
   function subtotal(items) {
-    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+    console.log('ITEMS', items)
+    let total = 0;
+    items.map( item => {
+      let itemPrice = Number(item.pricePer) * Number(item.qty)
+      total += itemPrice
+    })
+    return total;
   }
   
   // function subTotal(data, index) {
@@ -52,6 +58,9 @@ function CartList() {
   //   return sum;
   // }
 
+
+  //ccreate local storage 
+  //set items/objects from local storage to rows
 
   const rows = [];
   let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100);
@@ -138,7 +147,7 @@ function CartList() {
             <TableRow>
               <TableCell rowSpan={5} />
               <TableCell colSpan={2}><h2>Subtotal</h2></TableCell>
-              <TableCell align="right"><h2>${invoiceSubtotal}</h2></TableCell>
+              <TableCell align="right"><h2>${invoiceSubtotal.toFixed(2)}</h2></TableCell>
             </TableRow>
             <TableRow>
               <TableCell><h2>Tax</h2></TableCell>
@@ -147,7 +156,7 @@ function CartList() {
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}><h2>Total</h2></TableCell>
-              <TableCell align="right"><h2>${invoiceTotal}</h2></TableCell>
+              <TableCell align="right"><h2>${invoiceTotal.toFixed(2)}</h2></TableCell>
             </TableRow>
           </TableBody>
 

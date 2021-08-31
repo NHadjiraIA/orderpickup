@@ -22,23 +22,6 @@ function ProductListItem(props) {
     onClose(selectedValue);
   };
 
-  //for the counter
-  // const increment = (index) => {
-  //   let tempState = data
-
-  //   tempState[index].qty = tempState[index].qty + 1
-  //   updateData([...tempState])
-
-  // }
-
-  // const decrement = (index) => {
-  //   let tempState = data
-  //   if (tempState[index].qty > 1) {
-  //     tempState[index].qty = tempState[index].qty - 1
-  //     updateData([...tempState])
-
-  //   }
-  // }
   const increment = () => {
     updateQuantity(quantity + 1)
   }
