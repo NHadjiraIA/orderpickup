@@ -1,5 +1,5 @@
 import React from 'react' 
-import Dashboard from '../../../components/Vendors/Dashboard.js'
+import Dashboard from '../../components/Vendors/Dashboard.js'
 
 export const dashboard = () => {
     return (

@@ -5,6 +5,6 @@ export const COMMENTS = '/restaurant/comments';
 export const ORDERS = '/orders';
 export const CART = '/cart';
 
-
 //----VENDOR PATHS-----------------
-export const DASHBOARD = '/vendors'
+export const VENDOR_DASHBOARD = '/vendors';
+export const VENDOR_MENU = '/vendors/menu';
