@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-
     '& button': {
       backgroundColor: 'black',
       color:'white',
@@ -34,6 +33,15 @@ const useStyles = makeStyles((theme) => ({
     }
 
   },
+
+  accordionButtons: {
+    width: '20em',
+    display: 'flex',
+    justifyContent: 'space-between',
+
+  },
+
+
   perorder: {
     backgroundColor: '#e9ebf0',
     display: 'flex',

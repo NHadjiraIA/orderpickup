@@ -58,8 +58,11 @@ function OrderListItem(props) {
                 <br></br>
                 {props.date}
               </Typography>
-              <Button variant='contained' color='default'>Reorder All</Button>
-              <a href={CART}><Button size='medium'>Go to Cart</Button></a>
+              <div className={classes.accordionButtons}>
+                <Button variant='contained' color='default'>Reorder All</Button>
+                <a href={CART}><Button size='medium'>Go to Cart</Button></a>
+              </div>
+
             </div>
           </AccordionSummary>
           <AccordionDetails className={classes.perorder}>
