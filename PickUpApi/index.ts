@@ -41,6 +41,6 @@ userRouter.post("/login",
 app.use('/api/v1', userRouter)
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 app.listen(port, () => console.log(`App listening on PORT ${port}`));

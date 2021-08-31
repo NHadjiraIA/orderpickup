@@ -10,9 +10,8 @@ export class UserApi{
     }
     
     async getAll(req: express.Request, res: express.Response){
-        console.log('here');
         let usersList = await this._userRepository.Get();
-        res.status(200).json(usersList);
+        return  res.status(200).json(usersList);
     };
 
     async getById(req: express.Request, res: express.Response){
@@ -40,9 +39,9 @@ export class UserApi{
         const userDto = this.getDtoFromRequest(req);
         let createdUser = await this._userRepository.Create(toEntity(userDto))
         if(createdUser){
-            res.status(201).json(createdUser);
+            return res.status(201).json(createdUser);
         }else{
-            res.status(400).send("The user could not be created. Please check the provided data.")
+            return res.status(400).send("The user could not be created. Please check the provided data.")
         }
     }
 
@@ -51,11 +50,11 @@ export class UserApi{
         let existingUser = await this._userRepository.GetByPhone(loginDto.Phone)
         if(existingUser){
             if(existingUser.password == loginDto.Password){
-                res.status(200).json(existingUser);
+                return res.status(200).json(existingUser);
             }
             return res.status(401).send("User name or password are incorrects.")
         }else{
-            res.status(404).send("No user has been found with this phone number")
+            return res.status(404).send("No user has been found with this phone number")
         }
     }
 

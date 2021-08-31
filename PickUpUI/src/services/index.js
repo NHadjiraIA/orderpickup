@@ -8,5 +8,4 @@
  
 export {getAllDishs} from './dishService';
 export {postLogin} from './loginService';
-export {getUserDetails} from './loginService'
 export {postUser} from './signupService'

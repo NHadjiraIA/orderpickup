@@ -33,7 +33,7 @@ export default function Login() {
   const classes = useStyles();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [userId, setUserId] = useState("");
+  const [Id, setId] = useState("");
   const [errors, setErrors] = useState("");
   const userInfo = {
       "id" : undefined,
@@ -51,29 +51,24 @@ export default function Login() {
            };
         postLogin(requestDto)
         .then(result =>{
-          console.log('result from me',result);
-          console.log("The login operation response status code is :%s", result.status);
-          setUserId(result.data.idUser);
-          getUserDetails(phone)
-            .then((res)=>{
-              console.log('returned user object is', res.data)
-              userInfo.name = res.data.name;
-              userInfo.email = res.data.email;
-              userInfo.role = res.data.role;
-              userInfo.phone = res.data.phone;
-              if (userInfo.role == true){
-              // redirect to back office
-              } else if ( userInfo.role == false){
-              // redirect to frent office
-              }
-             // goToStarSurvey();
-            });
+          setId(result.data.id);
+          userInfo.name = result.data.name;
+          userInfo.email = result.data.email;
+          userInfo.role = result.data.role;
+          userInfo.phone = result.data.phone;
+          if (userInfo.role == true){
+            console.log('navigate to backoffice');
+          // redirect to back office
+          } else if ( userInfo.role == false){
+            console.log('navigate to frontoffice');
+          // redirect to frent office
+
+          }
         }).catch(err =>{
           if(err.response.status == 401)
            setErrors('User name or password not valid.');
           else{
-            console.log('Unknown error');
-            //goToHomePage();
+            setErrors('Unknow error!');
           }
         });
        }

@@ -7,13 +7,13 @@ import { GET_USER_DETAILS, POST_LOGIN_USER} from "./CONSTANTS";
  */
   
  
-export const postLogin = () => {
+export const postLogin = (loginRequest) => {
   return new Promise((resolve, reject) => {
     try {
        
       // do an SDK, DB call or API endpoint axios call here and return the promise.
       axios 
-      .post(POST_LOGIN_USER(),
+      .post(POST_LOGIN_USER(), loginRequest
       )
       .then(res => 
         {
@@ -29,26 +29,4 @@ export const postLogin = () => {
       reject(SYSTEM_ERROR);
     }
   });
-};
-
-export const getUserDetails = (phone) => {
- return new Promise((resolve, reject) => {
-   try {
-     // do an SDK, DB call or API endpoint axios call here and return the promise.
-     axios 
-     
-     .get(GET_USER_DETAILS(phone))
-     .then(res => 
-       {
-        resolve(res);
-     })
-     .catch((err) => {
-       console.log("getUserDetails > axios err=", err);
-       reject("Error in getUserDetails axios!");
-     });
-   } catch (error) {
-     console.error("in loginService > getUserDetails, Err===", error);
-     reject(SYSTEM_ERROR);
-   }
- });
 };
