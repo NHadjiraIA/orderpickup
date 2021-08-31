@@ -6,7 +6,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import ProductListItemDemo from './ProductListItem.js'
 import Button from '@material-ui/core/Button';
 
 import Table from '@material-ui/core/Table';
@@ -17,6 +16,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import { CART } from "../navigation/CONSTANTS";
 
 //garbage can
 // import DeleteIcon from '@material-ui/icons/Delete';
@@ -78,9 +78,9 @@ function OrderListItem(props) {
               </TableBody>
             </Table>
             <Typography align="right">Total: $2937463</Typography>
-            <div>
-              <Button className={classes.cartButtons} size='small'>Add 1 to Cart</Button>
-              <Button className={classes.cartButtons} size='small'>Go to Cart</Button>
+            <div  className={classes.cartButtons}>
+              <Button size='small'>Add 1 to Cart</Button>
+              <a href={CART}><Button size='small'>Go to Cart</Button></a>
             </div>
           </TableContainer>
 

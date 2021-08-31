@@ -32,15 +32,25 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cartButtons: {
-    backgroundColor: 'black',
-    color:'white',
+    '& a':{
+      color: 'inherit',
+      textDecoration: 'none',
+    },
+
+    '& button': {
+      backgroundColor: 'black',
+      color:'white',
+      
+      '&:hover': {
+        backgroundColor: 'black',
+      },
+    },
+    
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
 
-    '&:hover': {
-      backgroundColor: 'black',
-    },
+
   }
 }));
 
