@@ -81,9 +81,8 @@ export const Navigation = () => {
           </Typography>
           <Typography className={classes.links}>
             <p>Restaurants</p>
-            {/* <RouterConfig /> */}
             <a href={ORDERS}>Orders</a>
-            <p>Account</p>
+            {/* <p>Account</p> */}
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

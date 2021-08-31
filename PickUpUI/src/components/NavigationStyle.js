@@ -49,7 +49,11 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'space-evenly',
       alignItems: 'center'
     },
-     //questionable placement but i do need it
+
+    '& a':{
+      color: 'inherit',
+      textDecoration: 'none',
+    },
   },
   sectionMobile: {
     display: 'flex',
@@ -61,7 +65,13 @@ const useStyles = makeStyles((theme) => ({
     flex:'1', 
     display: 'flex',
     justifyContent: 'space-between',
-  }
+    '& a':{
+
+      color: 'inherit',
+      textDecoration: 'none',
+    },
+  },
+
 }));
 
 export default useStyles;
