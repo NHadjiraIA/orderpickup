@@ -1,0 +1,27 @@
+#all_restaurants{
+  list-style: none;
+padding-left: 0;
+}
+
+.card-distance :hover{
+  box-shadow: 2px 5px;
+  color: #DA0037;
+}
+
+.card-content {
+  background-color: #f3f2c9;
+  overflow: hidden;
+  /* padding:  */
+  color: #008891;
+  display: flex;
+  /* flex-direction: row; */
+  width: 500px;
+  height: 100%;
+  border: 2px solid #008891;
+  cursor: pointer;
+}
+
+/* .mapped_restaurant :hover{
+  box-shadow: 2px 5px;
+  color: #DA0037;
+} */
