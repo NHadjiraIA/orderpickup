@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
+// import passport from 'passport';
+// import passportLocal from 'passport-local';
 import compression from 'compression';
 import { UserApi } from "./users";
 export {UserApi} from "./users";
@@ -27,10 +29,15 @@ userRouter.get('/users',
 userRouter.get('/users/:id',
   (req, res) => userApi.getById(req, res)
 )
+userRouter.get('/users/:email',
+  (req, res) => userApi.getByEmail(req, res)
+)
 userRouter.post('/users',
   (req, res) => userApi.create(req, res)
 )
-
+userRouter.post("/login", 
+ (req, res) => userApi.login(req, res)
+);
 app.use('/api/v1', userRouter)
 
 

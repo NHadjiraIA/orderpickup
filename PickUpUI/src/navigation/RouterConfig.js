@@ -1,20 +1,22 @@
 import React from "react";
 import { Switch, BrowserRouter ,Route, Link } from "react-router-dom";
 import Home from "../pages/Home";
-import {test} from "../pages/Test"
 import {dish} from "../pages/Dish"
 import {orders} from '../pages/Orders'
 import {cart} from '../pages/Cart'
+import {login} from '../pages/Login'
 import {restaurant} from '../pages/Restaurant'
+import {signup} from '../pages/Signup'
 import { NotFound } from "./NotFound";
 import { 
   ROOT, 
-  TEST, 
   DISH, 
   COMMENTS, 
   ORDERS, 
   RESTAURANT,
-  CART
+  CART,
+  LOGIN,
+  SIGNUP
 } from "./CONSTANTS";
 
 export const RouterConfig = () => {
@@ -29,6 +31,8 @@ export const RouterConfig = () => {
         <Route exact path={RESTAURANT} component={restaurant} />
         <Route exact path={ORDERS} component={orders} />
         <Route exact path={CART} component={cart} />
+        <Route exact path={LOGIN} component={login} />
+        <Route exact path={SIGNUP} component={signup} />
         <Route path="*">
           <NotFound />
         </Route>

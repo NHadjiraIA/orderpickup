@@ -2,8 +2,7 @@ import express from "express";
 import { UserDto } from "./domain/dtos/UserDto";
 import  {UserRepository} from './Infrastructure/repositories/UserRepository'
 import {toEntity} from './application/mappers/userMapper'
-import { EmptyResultError } from "sequelize/types";
-
+import { LoginRequestDto } from "./domain/dtos/LoginRequestDto";
 export class UserApi{
     private _userRepository:any;
     constructor(){
@@ -11,6 +10,7 @@ export class UserApi{
     }
     
     async getAll(req: express.Request, res: express.Response){
+        console.log('here');
         let usersList = await this._userRepository.Get();
         res.status(200).json(usersList);
     };
@@ -25,6 +25,16 @@ export class UserApi{
             return res.status(404).send(`User with id: ${idUser} was not found.`)
         }
     }
+    async getByEmail(req: express.Request, res: express.Response){
+        const emailUser  = req.params.email;
+        let foundUser = await this._userRepository.findAll({tag: emailUser}).exec();
+        if(foundUser){
+            return res.status(200).json(foundUser);
+        }
+        else{
+            return res.status(404).send(`User with id: ${emailUser} was not found.`)
+        }
+    }
     async create(req: express.Request, res: express.Response){
         console.log('this is the body');
         const userDto = this.getDtoFromRequest(req);
@@ -34,13 +44,28 @@ export class UserApi{
         }else{
             res.status(400).send("The user could not be created. Please check the provided data.")
         }
-        res.status(200).send('done');
+    }
+
+    async login(req: express.Request, res: express.Response){
+        const loginDto = this.getLoginDtoFromRequest(req);
+        let existingUser = await this._userRepository.GetByPhone(loginDto.Phone)
+        if(existingUser){
+            if(existingUser.password == loginDto.Password){
+                res.status(200).json(existingUser);
+            }
+            return res.status(401).send("User name or password are incorrects.")
+        }else{
+            res.status(404).send("No user has been found with this phone number")
+        }
     }
 
     //#region private methods
     getDtoFromRequest(req: express.Request){
         return new UserDto(req.body.id, new Date(), req.body.name, req.body.email,
         req.body.phone, req.body.password, req.body.role);
+    }
+    getLoginDtoFromRequest(req: express.Request){
+        return new LoginRequestDto(req.body.phone, req.body.password);
     }
     //#endregion
 }
