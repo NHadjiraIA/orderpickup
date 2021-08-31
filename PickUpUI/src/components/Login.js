@@ -13,7 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './LoginStyle.js'
 import { postLogin, getUserDetails } from "../services";
-import { SIGNUP } from '../navigation/CONSTANTS.js';
+import { RESTAURANT, SIGNUP } from '../navigation/CONSTANTS.js';
+import { useHistory} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -30,6 +31,7 @@ function Copyright() {
 
 
 export default function Login() {
+  const history = useHistory();
   const classes = useStyles();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -42,35 +44,52 @@ export default function Login() {
       "role": undefined,
       "phone": undefined
     }
-    
-    const goToLongin = ()=>{
-        console.warn(phone,password)
-        var requestDto = {
-             "phone": phone,
-             "password": password 
-           };
-        postLogin(requestDto)
-        .then(result =>{
-          setId(result.data.id);
-          userInfo.name = result.data.name;
-          userInfo.email = result.data.email;
-          userInfo.role = result.data.role;
-          userInfo.phone = result.data.phone;
-          if (userInfo.role == true){
-            console.log('navigate to backoffice');
-          // redirect to back office
-          } else if ( userInfo.role == false){
-            console.log('navigate to frontoffice');
-          // redirect to frent office
 
-          }
-        }).catch(err =>{
-          if(err.response.status == 401)
-           setErrors('User name or password not valid.');
-          else{
-            setErrors('Unknow error!');
-          }
-        });
+    const goToRestaurant = (path) => {
+      history.push({
+        pathname: RESTAURANT,
+        state: { 
+          userId: userInfo?.id,
+          userName: userInfo?.name,
+          phoneNumber: userInfo?.phone
+        }
+      });
+    }
+    const goToLongin = ()=>{
+        if(isNaN(phone)){
+          setErrors('Phone must be a number value');
+        }
+        else{
+          var requestDto = {
+            "phone": phone,
+            "password": password 
+          };
+       postLogin(requestDto)
+       .then(result =>{
+            setId(result.data.id);
+            userInfo.name = result.data.name;
+            userInfo.email = result.data.email;
+            userInfo.role = result.data.role;
+            userInfo.phone = result.data.phone;
+            if (userInfo.role == true){
+              console.log('navigate to backoffice');
+            // redirect to back office
+            } else if ( userInfo.role == false){
+              goToRestaurant();
+            }
+          }).catch(err =>{
+            console.log(err)
+            if(err.response.status == 401)
+              setErrors('User name or password not valid.');
+            else{
+              if(err.response.status == 404){
+                setErrors('Unknown user');
+              }else{
+                setErrors('Unknow error!');
+              }
+            }
+          });
+        }
        }
   return (
     <Grid container component="main" className={classes.root}>
