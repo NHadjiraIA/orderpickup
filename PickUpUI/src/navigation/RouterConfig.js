@@ -5,6 +5,7 @@ import {test} from "../pages/Test"
 import {dish} from "../pages/Dish"
 import {orders} from '../pages/Orders'
 import {cart} from '../pages/Cart'
+import {dashboard} from '../pages/Vendors/Dashboard'
 import {restaurant} from '../pages/Restaurant'
 import { NotFound } from "./NotFound";
 import { 
@@ -14,7 +15,8 @@ import {
   COMMENTS, 
   ORDERS, 
   RESTAURANT,
-  CART
+  CART,
+  DASHBOARD
 } from "./CONSTANTS";
 
 
@@ -31,6 +33,7 @@ export const RouterConfig = () => {
         <Route exact path={RESTAURANT} component={restaurant} />
         <Route exact path={ORDERS} component={orders} />
         <Route exact path={CART} component={cart} />
+        <Route exact path={DASHBOARD} component={dashboard} />
         <Route path="*">
           <NotFound />
         </Route>
