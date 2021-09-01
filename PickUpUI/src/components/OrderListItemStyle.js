@@ -23,24 +23,72 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    '& button': {
+      backgroundColor: 'black',
+      color:'white',
+      
+      '&:hover': {
+        backgroundColor: 'black',
+      },
+    }
+
   },
+
+  accordionButtons: {
+    width: '20em',
+    display: 'flex',
+    justifyContent: 'space-between',
+
+  },
+
+
   perorder: {
     backgroundColor: '#e9ebf0',
+    display: 'flex',
+    justifyContent: 'center',
   },
   table: {
     minWidth: 650,
   },
 
   cartButtons: {
-    backgroundColor: 'black',
-    color:'white',
+    '& a':{
+      color: 'inherit',
+      textDecoration: 'none',
+    },
+
+    '& button': {
+      backgroundColor: 'black',
+      color:'white',
+      
+      '&:hover': {
+        backgroundColor: 'black',
+      },
+    },
+    
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
 
-    '&:hover': {
-      backgroundColor: 'black',
-    },
+  },
+
+  tableRoot: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '1em',
+    typography: '50px',
+    fontSize: '18px',
+  },
+  table: {
+    minWidth: 700,
+  },
+  productImg: {
+    height: '60%',
+    // width: '80%',
+    marginBottom: '1em',
+  },
+  imgColumn: {
+    width: '20%'
   }
 }));
 

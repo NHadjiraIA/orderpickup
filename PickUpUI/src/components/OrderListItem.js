@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import useStyles from './OrderListItemStyle.js';
 
 import Accordion from '@material-ui/core/Accordion';
@@ -6,7 +6,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import ProductListItemDemo from './ProductListItem.js'
 import Button from '@material-ui/core/Button';
 
 import Table from '@material-ui/core/Table';
@@ -17,22 +16,31 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import { CART } from "../navigation/CONSTANTS";
 
-//garbage can
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import IconButton from '@material-ui/core/IconButton';
+import React, {useState, useEffect} from 'react'; 
 
 function OrderListItem(props) {
+  const [data, updateData] = useState([]);
   const classes = useStyles();
 
-  function createData(name, quantity, price) {
-    return { name, quantity, price };
-  }
+  const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
   
-  const rows = [ 
-    createData(props.products[0], props.numberOfItems, (props.totalCost/100)),
-    createData(props.products[0], props.numberOfItems, (props.totalCost/100)),
-  ];
+  function createRow(img, desc, pricePer, qty, subtotal) {
+    return { img, desc, pricePer, qty, subtotal};
+  }
+
+  const rows = [];
+  let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100, 340);
+  rows.push(rowItem);
+  rowItem = createRow(testImg,'Paper (Case)', 5.62, 10, 56.2)
+  rows.push(rowItem);
+  rowItem = createRow(testImg,'Waste Basket', 15.20, 2, 30.40)
+  rows.push(rowItem);
+  
+  useEffect(() => {
+    updateData(rows);
+  }, []);
 
   return (
     <body>
@@ -50,39 +58,71 @@ function OrderListItem(props) {
                 <br></br>
                 {props.date}
               </Typography>
-              <Button variant='contained' color='default'>Reorder All</Button>
+              <div className={classes.accordionButtons}>
+                <Button variant='contained' color='default'>Reorder All</Button>
+                <a href={CART}><Button size='medium'>Go to Cart</Button></a>
+              </div>
+
             </div>
           </AccordionSummary>
           <AccordionDetails className={classes.perorder}>
 
-          <TableContainer component={Paper}>
-            <Table padding='normal' className={classes.table} size="small" aria-label="a dense table">
-              <TableHead>
-                <TableRow>
-                  <TableCell >Name</TableCell>
-                  <TableCell >Quantity</TableCell>
-                  <TableCell >Price</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    {/* <TableCell align="right">{row.name}</TableCell> */}
-                    <TableCell>{row.quantity}</TableCell>
-                    <TableCell>${row.price/100}</TableCell>
-                  </TableRow>
-                ))} 
-              </TableBody>
-            </Table>
-            <Typography align="right">Total: $2937463</Typography>
-            <div>
-              <Button className={classes.cartButtons} size='small'>Add 1 to Cart</Button>
-              <Button className={classes.cartButtons} size='small'>Go to Cart</Button>
+            <div className={classes.tableRoot}>
+              <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="spanning table">
+                  <TableHead>
+                    <TableRow>
+                      {/* <TableCell align="left" colSpan={2}><h4>Img.</h4></TableCell> */}
+                      <TableCell className={classes.imgColumn} align="left"><h4>Img.</h4></TableCell>
+                      <TableCell align="left"> <h4>Desc.</h4></TableCell>
+                      <TableCell align="left"> <h4>Price Per Item</h4></TableCell>
+                      <TableCell align="right"><h4>Qty.</h4></TableCell>
+                      <TableCell align="right"><h4>Sum</h4></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data.map((row, index) => (
+                      <TableRow>
+                        <TableCell align="left">
+                          <img className={classes.productImg} src={row.img} />
+                        </TableCell>
+                        <TableCell>{row.desc}</TableCell>
+                        <TableCell align="left">${row.pricePer}</TableCell>
+                        <TableCell align="left">{row.qty}</TableCell>
+                        <TableCell align="right">${row.subtotal}</TableCell>
+                      </TableRow>
+                    ))}
+
+                  </TableBody>
+                </Table>
+                    
+                    
+                <Table className={classes.table} aria-label="spanning table">
+                  <TableBody>
+                    {/* <TableRow>
+                      <TableCell rowSpan={5} />
+                      <TableCell colSpan={2}><h4>Subtotal</h4></TableCell>
+                      <TableCell align="right"><h4>${subtotal}</h4></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell><h4>Tax</h4></TableCell>
+                      <TableCell align="right"><h4>{`${(TAX_RATE * 100).toFixed(0)} %`}</h4></TableCell>
+                      <TableCell align="right"><h4>${invoiceTaxes}</h4></TableCell>
+                    </TableRow> */}
+                    <TableRow>
+                      <TableCell colSpan={2}><h4>Pre-Tax</h4></TableCell>
+                      <TableCell align="right"><h4>$12340</h4></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell colSpan={2}><h4>Total</h4></TableCell>
+                      <TableCell align="right"><h4>$12340</h4></TableCell>
+                    </TableRow>
+                  </TableBody>
+                  
+                </Table>
+              </TableContainer>
+
             </div>
-          </TableContainer>
 
             {/* <Typography >
               <div className={classes.orderlist}>
