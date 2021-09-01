@@ -146,7 +146,7 @@ DishEntity.init(
     },
   },
   {
-    tableName: "dishs",
+    tableName: "dishes",
     sequelize,
   }
 );
