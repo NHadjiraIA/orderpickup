@@ -10,5 +10,10 @@ export class DishsRepository{
         let dishs  = await DishEntity.findAll();
         return dishs;
     }
- 
+    public async GetDishesByRestaurantId(restaurantId): Promise<DishEntity[]>{
+        let dishes  = await DishEntity.findAll({
+            where: {restaurantId: `${restaurantId}`}
+        });
+        return dishes;
+    }
 }
