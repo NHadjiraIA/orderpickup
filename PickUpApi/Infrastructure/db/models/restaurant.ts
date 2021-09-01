@@ -13,7 +13,6 @@ import {
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
 import { CommentEntity } from "./comment";
-import { DishEntity } from "./dish";
 import { OrderEntity } from "./order";
 import { RatingEntity } from "./rating";
 
@@ -30,8 +29,8 @@ interface RestaurantAttributes {
   postal: string;
   open_time: string;
   close_time: string;
-  lat: string;
-  lon: string;
+  lat: bigint;
+  lng: bigint;
   createdAt: Date;
   updatedAt: Date | null;
 }
@@ -51,8 +50,8 @@ export class RestaurantEntity extends Model<RestaurantAttributes, RestaurantCrea
   public postal!: string;
   public open_time!: string;
   public close_time!: string;
-  public lat!: string;
-  public lon!: string;
+  public lat!: bigint;
+  public lng!: bigint;
   public createdAt!: Date;
   public updatedAt!: Date | null;
 
@@ -62,19 +61,12 @@ export class RestaurantEntity extends Model<RestaurantAttributes, RestaurantCrea
   public readonly orders?: OrderEntity[]; 
   public readonly ratings?: RatingEntity[]; 
   public readonly comments?: CommentEntity[]; 
-  public getDishes!: HasManyGetAssociationsMixin<DishEntity>;
-  
-  public readonly dishes?: DishEntity[]; 
 
   public static associations: {
     orders: Association<RestaurantEntity, OrderEntity>;
     ratings: Association<RestaurantEntity, RatingEntity>;
     comments: Association<RestaurantEntity, CommentEntity>;
-    dishes: Association<RestaurantEntity, DishEntity>;
   };
- 
-
- 
 }
 
 RestaurantEntity.init(
@@ -129,11 +121,11 @@ RestaurantEntity.init(
       allowNull: false,
     },
     lat: {
-      type: new DataTypes.DECIMAL,
+      type: new DataTypes.BIGINT,
       allowNull: false,
     },
-    lon: {
-      type: new DataTypes.DECIMAL,
+    lng: {
+      type: new DataTypes.BIGINT,
       allowNull: false,
     },
     updatedAt: {
@@ -155,11 +147,6 @@ RestaurantEntity.init(
     sourceKey: "id",
     foreignKey: "restaurantId",
     as: "orders",
-  });
-  RestaurantEntity.hasMany(DishEntity, {
-    sourceKey: "id",
-    foreignKey: "restaurantId",
-    as: "dishes",
   });
   RestaurantEntity.hasMany(RatingEntity, {
     sourceKey: "id",
