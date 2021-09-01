@@ -93,9 +93,9 @@ const handleChange = (event) => {
 };
   return (
     <>
-    <List>
+    {/* <List>
     {mainListItems}
-    </List>
+    </List> */}
    
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
@@ -106,9 +106,9 @@ const handleChange = (event) => {
             <StyledTableCell align="right">Calories&nbsp;(g)</StyledTableCell>
             <StyledTableCell align="right">Description</StyledTableCell>
             <StyledTableCell align="right">Size&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Type&nbsp;</StyledTableCell>
+            <StyledTableCell align="right">Categorize&nbsp;</StyledTableCell>
             <StyledTableCell align="right">Price&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Delete?</StyledTableCell>
+            <StyledTableCell align="right">Delete Item</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -127,9 +127,11 @@ const handleChange = (event) => {
           value="dairy free"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={true}>Vegan</MenuItem>
+          <MenuItem value={false}>Gluten-free</MenuItem>
+          <MenuItem value={false}>Dairy-free</MenuItem>
+          <MenuItem value={false}>No-nuts</MenuItem>
+          <MenuItem value={false}>Cannabis edible</MenuItem>
         </Select></StyledTableCell>
               <StyledTableCell align="right">{row.price}</StyledTableCell>
               <StyledTableCell align="right"><Button variant="contained" color="primary" disableElevation>
