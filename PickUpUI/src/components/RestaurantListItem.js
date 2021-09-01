@@ -40,7 +40,7 @@ export default function RestaurantListItem(props) {
               <DriveEtaIcon />
               <LoadScript
       id="script-loader"
-      googleMapsApiKey="AIzaSyBFanEsBx0eYHMrchijJOaxu6pnzcAWA-s"
+      googleMapsApiKey="AIzaSyDndCPosolIxMhZ7j1QbvwwhQCQlyn0t5Y"
       libraries={["places"]}
     >
               <DistanceMatrixService
@@ -56,6 +56,7 @@ export default function RestaurantListItem(props) {
           //   "\nDuration:",
           //   response.rows[0].elements[0].duration.text
           // );
+          console.log(response.rows[0].elements[0].duration.text);
           setDuration(response.rows[0].elements[0].duration.text);
         }}
       />
