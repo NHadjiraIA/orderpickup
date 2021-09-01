@@ -23,19 +23,19 @@ export default function RestaurantListItem(props) {
       >
         <div className="card-content">
           <div className="imagebox">
-            <img src={props.restaurant.img} alt="thumbnail" />
+            <img src={props.restaurant.thumbnail_url} alt="thumbnail" />
           </div>
           <div className="card-text">
-            <h3 className="card-title"> {props.restaurant.name}</h3>
+            <h3 className="card-title"> {props.restaurant.title}</h3>
             <div className="foodtype">
-              <h4> Lunch & Dinner</h4>
+              <h4> {props.restaurant.description}</h4>
             </div>
 
             <div className="availability">
               <h3>Unavailable Now</h3>
             </div>
 
-            <div className="time"> {props.restaurant.open}</div>
+            <div className="time"> {props.restaurant.open_time} AM to {props.restaurant.close_time} PM </div>
             <div className="card-distance">
               <DriveEtaIcon />
               <LoadScript
@@ -45,7 +45,7 @@ export default function RestaurantListItem(props) {
     >
               <DistanceMatrixService
         options={{
-          destinations: [props.restaurant.position],
+          destinations: [props.restaurantPosition],
           origins: [props.userPosition],
           travelMode: "DRIVING",
         }}
@@ -57,6 +57,7 @@ export default function RestaurantListItem(props) {
           //   response.rows[0].elements[0].duration.text
           // );
           console.log(response.rows[0].elements[0].duration.text);
+          console.log('SOMETHING',props.restaurantPosition);
           setDuration(response.rows[0].elements[0].duration.text);
         }}
       />

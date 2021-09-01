@@ -10,6 +10,7 @@ return(
 restaurant = {restaurant}
 handleActiveMarker={props.handleActiveMarker}
 userPosition={props.userPosition}
+restaurantPosition={{lat:Number(restaurant.lat), lng:Number(restaurant.lng)}}
 />
   );
 });

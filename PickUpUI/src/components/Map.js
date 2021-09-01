@@ -43,10 +43,9 @@ function Map(props) {
         props.handleUserPosition(coordinates)
     });
   }
-  // const [activeMarker, setActiveMarker] = useState(null);
+
   const [searchBox, setSearchBox] = useState(null);
   
-  // const [center, setCenter] = useState(defaultCenter);
 
 
   
@@ -111,16 +110,16 @@ function Map(props) {
         {
           /* Child components, such as markers, info windows, etc. */
           <div>
-            {markers.map(({ id, name, img, position, address }) => (
+            {markers.map(({ id, name, img, lat, lng, address }) => (
               <Marker
                 key={id}
-                position={position}
+                position={{lat:Number(lat), lng:Number(lng)}}
                 onClick={() => props.handleActiveMarker(id)}
                 // onMouseOver={() => props.handleActiveMarker(id)}
                 // onMouseOut={() => props.handleActiveMarker(null)}
               >
                 {props.activeMarker === id ? (
-                  <InfoWindow onCloseClick={() => props.setActiveMarker(null)}>
+                  <InfoWindow onCloseClick={() => props.handleActiveMarker(null)}>
                     <div className="info-box-wrap">
                       <img src={img} alt="thumbnail" />
                       <div className="info-box-text-wrap">

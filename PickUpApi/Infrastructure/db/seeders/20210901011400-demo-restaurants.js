@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('restaurants', [{
-    title: "Restaurant la joie",
+    title: "Bakery la joie",
     thumbnail_url: "https://images.unsplash.com/photo-1509482560494-4126f8225994?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     description: "sample restaurant for goood people",
     address: "420 pineapple street",
@@ -24,7 +24,7 @@ module.exports = {
     open_time: "9",
     close_time: '8',
     lat: 43.89567763035046,
-    lon: -79.26538230855174,
+    lng: -79.26538230855174,
     createdAt: new Date(),
     updatedAt: new Date()
    }]);
@@ -36,6 +36,62 @@ module.exports = {
     updatedAt: new Date()
    }]);
    
+
+   await queryInterface.bulkInsert('restaurants', [{
+    title: "Bakery la joie",
+    thumbnail_url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    description: "sample restaurant for goood people",
+    address: "420 pineapple street",
+    email: 'angelsjoie@heaven.com',
+    phone: 4455009,
+    city: 'Markham',
+    prov_state: 'Ontario',
+    postal:'P3G H8A',
+    open_time: "9",
+    close_time: '8',
+    lat: 43.89567763035046,
+    lng: -79.26538230855174,
+    createdAt: new Date(),
+    updatedAt: new Date()
+   }]);
+ 
+   await queryInterface.bulkInsert('restaurants', [{
+    title: "Bakery la joie",
+    thumbnail_url: "https://images.unsplash.com/photo-1625937712159-e305336cbf4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=844&q=80",
+    description: "sample restaurant for goood people",
+    address: "420 pineapple street",
+    email: 'angelsjoie@heaven.com',
+    phone: 4455009,
+    city: 'Markham',
+    prov_state: 'Ontario',
+    postal:'P3G H8A',
+    open_time: "9",
+    close_time: '8',
+    lat: 43.89567763035046,
+    lng: -79.26538230855174,
+    createdAt: new Date(),
+    updatedAt: new Date()
+   }]);
+  
+
+   await queryInterface.bulkInsert('restaurants', [{
+    title: "Bakery la joie",
+    thumbnail_url: "https://images.unsplash.com/photo-1509482560494-4126f8225994?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    description: "sample restaurant for goood people",
+    address: "420 pineapple street",
+    email: 'angelsjoie@heaven.com',
+    phone: 4455009,
+    city: 'Markham',
+    prov_state: 'Ontario',
+    postal:'P3G H8A',
+    open_time: "9",
+    close_time: '8',
+    lat: 43.89567763035046,
+    lng: -79.26538230855174,
+    createdAt: new Date(),
+    updatedAt: new Date()
+   }]);
+  
   },
 
   down: async (queryInterface, Sequelize) => {
