@@ -13,6 +13,7 @@ import {
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
 import { CommentEntity } from "./comment";
+import { DishEntity } from "./dish";
 import { OrderEntity } from "./order";
 import { RatingEntity } from "./rating";
 
@@ -61,12 +62,19 @@ export class RestaurantEntity extends Model<RestaurantAttributes, RestaurantCrea
   public readonly orders?: OrderEntity[]; 
   public readonly ratings?: RatingEntity[]; 
   public readonly comments?: CommentEntity[]; 
+  public getDishes!: HasManyGetAssociationsMixin<DishEntity>;
+  
+  public readonly dishes?: DishEntity[]; 
 
   public static associations: {
     orders: Association<RestaurantEntity, OrderEntity>;
     ratings: Association<RestaurantEntity, RatingEntity>;
     comments: Association<RestaurantEntity, CommentEntity>;
+    dishes: Association<RestaurantEntity, DishEntity>;
   };
+ 
+
+ 
 }
 
 RestaurantEntity.init(
@@ -147,6 +155,11 @@ RestaurantEntity.init(
     sourceKey: "id",
     foreignKey: "restaurantId",
     as: "orders",
+  });
+  RestaurantEntity.hasMany(DishEntity, {
+    sourceKey: "id",
+    foreignKey: "restaurantId",
+    as: "dishes",
   });
   RestaurantEntity.hasMany(RatingEntity, {
     sourceKey: "id",

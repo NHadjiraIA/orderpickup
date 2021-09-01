@@ -89,6 +89,11 @@ app.use('/api/v1', ratingsRouter);
 dishisRouter.get("/dishs", 
  (req, res) => dishsApi.getAll(req, res)
 );
+
+dishisRouter.get("/restaurant/:id/dishes", 
+ (req, res) => dishsApi.getByRestaurantId(req, res)
+);
+
 app.use('/api/v1', dishisRouter);
 
 commentRouter.get("/comments", 
