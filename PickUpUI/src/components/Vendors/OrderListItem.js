@@ -17,7 +17,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import { makeStyles } from '@material-ui/core/styles';
-// import './OrderListItem.css'
 
 
 //material UI styling
@@ -35,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    // flex: 1,
-    // flexGrow: 1,
+
   },
   accordion: {
     width: '100%',
@@ -184,7 +182,6 @@ function OrderListItem(props) {
                 <Table className={classes.table} aria-label="spanning table">
                   <TableHead>
                     <TableRow>
-                      {/* <TableCell align="left" colSpan={2}><h4>Img.</h4></TableCell> */}
                       <TableCell className={classes.imgColumn} align="left"><h4>Img.</h4></TableCell>
                       <TableCell align="left"> <h4>Name</h4></TableCell>
                       <TableCell align="left"> <h4>Special Request</h4></TableCell>
@@ -224,24 +221,7 @@ function OrderListItem(props) {
                 </Table>
               </TableContainer>
 
-            </div>
-
-            {/* <Typography >
-              <div className={classes.orderlist}>
-                <p>{props.products.product1.name}</p>
-                <p>{props.products.product2.name}</p>
-                <br></br>
-                <p>Quantity: {props.numberOfItems}</p>
-                <br></br>
-                <p>${props.totalCost/100}</p> 
-
-                <div>
-                  <Button size='medium'>Add 1 to Cart</Button>
-                  <Button size='medium'>Go to Cart</Button>
-                </div>
-
-              </div>
-            </Typography> */}
+            </div>d
           </AccordionDetails>
         </Accordion>
       </div>
