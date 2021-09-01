@@ -120,7 +120,7 @@ function CartList() {
               <TableCell align="left"> <h2>Desc.</h2></TableCell>
               <TableCell align="left"> <h2>Price Per Item</h2></TableCell>
               <TableCell align="center"><h2>Qty.</h2></TableCell>
-              <TableCell align="right"><h2>Sum</h2></TableCell>
+              <TableCell align="center"><h2>Sum</h2></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
