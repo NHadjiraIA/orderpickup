@@ -9,7 +9,7 @@ import {restaurant} from '../pages/Restaurant'
 import {signup} from '../pages/Signup'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
-import {restaurant} from '../pages/Restaurant'
+// import {restaurant} from '../pages/Restaurant'
 import{map} from '../pages/Map'
 
 import { NotFound } from "./NotFound";
