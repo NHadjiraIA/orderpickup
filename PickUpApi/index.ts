@@ -8,14 +8,16 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { UserApi } from "./users";
 import { RestaurantApi } from "./restaurants";
+import { OrdersApi } from "./orders";
 export {UserApi} from "./users";
 
 const app = express();
 const userApi = new UserApi();
 const restaurantApi = new RestaurantApi();
-
+const ordersApi = new OrdersApi();
 const userRouter = express.Router();
 const restaurantRouter = express.Router();
+const ordersRouter = express.Router();
 
 const origin = {
   origin: '*',
@@ -50,6 +52,10 @@ restaurantRouter.get("/restaurants",
 );
 app.use('/api/v1', restaurantRouter)
 
+ordersRouter.get("/orders", 
+ (req, res) => ordersApi.getAll(req, res)
+);
+app.use('/api/v1', ordersRouter)
 
 const port = process.env.PORT || 3002;
 
