@@ -12,5 +12,11 @@ export class OrdersApi{
         return  res.status(200).json(orders);
     };
 
+    async getByUserId(req: express.Request, res: express.Response){
+        let userId = req.params.userId;
+        let userOrders = await this._ordersRepository.GetByUserId(userId);
+        return res.status(200).json(userOrders);
+
+    }
 }
 

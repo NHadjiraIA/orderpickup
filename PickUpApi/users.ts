@@ -24,14 +24,14 @@ export class UserApi{
             return res.status(404).send(`User with id: ${idUser} was not found.`)
         }
     }
-    async getByEmail(req: express.Request, res: express.Response){
-        const emailUser  = req.params.email;
-        let foundUser = await this._userRepository.findAll({tag: emailUser}).exec();
+    async getByPhone(req: express.Request, res: express.Response){
+        const phoneUser  = req.params.phone;
+        let foundUser = await this._userRepository.GetByPhone({tag: phoneUser}).exec();
         if(foundUser){
             return res.status(200).json(foundUser);
         }
         else{
-            return res.status(404).send(`User with id: ${emailUser} was not found.`)
+            return res.status(404).send(`User with id: ${phoneUser} was not found.`)
         }
     }
     async create(req: express.Request, res: express.Response){
