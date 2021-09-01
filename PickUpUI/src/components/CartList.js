@@ -8,8 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Counter from './Counter'
+import IconButton from "@material-ui/core/IconButton";
 
-// import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const TAX_RATE = 0.13;
@@ -136,7 +137,12 @@ function CartList() {
                 <TableCell>
                   <Counter index={index} qty={row.qty} increment={increment} decrement={decrement} />
                 </TableCell>
-                <TableCell align="right"><h2>${sum(index)}</h2></TableCell>
+                <TableCell align="center"><h2>${sum(index)}</h2></TableCell>
+                <TableCell>
+                  <IconButton>
+                    <DeleteIcon color="inherit" fontSize='large' />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
 
@@ -153,6 +159,8 @@ function CartList() {
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell align="right"><h2>${invoiceSubtotal.toFixed(2)}</h2></TableCell>
+              <TableCell></TableCell>
+
             </TableRow>
             <TableRow>
               <TableCell><h2>Tax</h2></TableCell>
@@ -160,12 +168,16 @@ function CartList() {
               <TableCell></TableCell>
               <TableCell align="right"><h2>{`${(TAX_RATE * 100).toFixed(0)} %`}</h2></TableCell>
               <TableCell align="right"><h2>${invoiceTaxes}</h2></TableCell>
+              <TableCell></TableCell>
+
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}><h2>Total</h2></TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell align="right"><h2>${invoiceTotal.toFixed(2)}</h2></TableCell>
+              <TableCell></TableCell>
+
             </TableRow>
           </TableBody>
 
