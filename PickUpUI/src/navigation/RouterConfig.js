@@ -15,6 +15,7 @@ import{map} from '../pages/Map'
 import { NotFound } from "./NotFound";
 import { 
   ROOT, 
+  MAP,
   DISH, 
   ORDERS, 
   RESTAURANT,
@@ -73,6 +74,7 @@ export const RouterConfig = (props) => {
       <Switch>
         List all public routes here
         <Route exact path={ROOT} component={Home} />
+        <Route exact path={MAP} component={map} />
         <Route exact path={DISH} component={dish} />
         <Route exact path={RESTAURANT} component={restaurant} />
         <Route exact path={ORDERS} component={orders} />
