@@ -7,14 +7,17 @@ import helmet from 'helmet';
 // import passportLocal from 'passport-local';
 import compression from 'compression';
 import { UserApi } from "./users";
+import { RestaurantApi } from "./restaurants";
 export {UserApi} from "./users";
-
 
 
 const app = express();
 
 const userApi = new UserApi();
+const restaurantApi = new RestaurantApi();
+
 const userRouter = express.Router();
+const restaurantRouter = express.Router();
 
 
 const origin = {
@@ -47,9 +50,11 @@ userRouter.post("/login",
 
 app.use('/api/v1', userRouter)
 
-/**---------------------------restaurant------------------------------- */
+restaurantRouter.get("/restaurants", 
+ (req, res) => restaurantApi.getAll(req, res)
+);
+app.use('/api/v1', restaurantRouter)
 
-// /**---------------------------restaurant------------------------------- */
 
 
 const port = process.env.PORT || 3002;
