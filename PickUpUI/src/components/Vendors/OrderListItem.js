@@ -221,7 +221,7 @@ function OrderListItem(props) {
                 </Table>
               </TableContainer>
 
-            </div>d
+            </div>
           </AccordionDetails>
         </Accordion>
       </div>
