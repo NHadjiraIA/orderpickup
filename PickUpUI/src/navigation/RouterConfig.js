@@ -11,7 +11,7 @@ import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
 // import {restaurant} from '../pages/Restaurant'
 import{map} from '../pages/Map'
-import {commentList} from '../Vendors/commentList.js'
+import {commentList} from '../pages/Vendors/commentList.js'
 import { NotFound } from "./NotFound";
 import { 
   ROOT, 
@@ -74,6 +74,8 @@ export const RouterConfig = (props) => {
       <BrowserRouter>
       <Switch>
         List all public routes here
+        <Route exact path={VENDOR_COMMENTS} component={commentList}/>
+
         <Route exact path={ROOT} component={Home} />
         <Route exact path={MAP} component={map} />
         <Route exact path={DISH} component={dish} />
@@ -84,7 +86,6 @@ export const RouterConfig = (props) => {
         <Route exact path={SIGNUP} component={signup} />
         <Route exact path={VENDOR_DASHBOARD} component={dashboard} />
         <Route exact path={VENDOR_MENU} component={vendorMenu}/>
-        <Route exact path={VENDOR_COMMENTS} component={commentList}/>
         <Route path="*">
           <NotFound />
         </Route>

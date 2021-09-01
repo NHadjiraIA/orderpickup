@@ -5,7 +5,7 @@ export const commentList = () => {
   
   return (
       <div>
-          <CommentList />
+        <CommentList />
       </div>
   )
 

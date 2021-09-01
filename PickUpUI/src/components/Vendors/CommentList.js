@@ -96,7 +96,9 @@ function CommentList() {
         <Button>Newest to Oldest</Button>
         <Button>Oldest to Newest</Button>
       </div>
-      
+      <div>
+        {item}
+      </div>
       {/* <section className={classes.postAndPostedComments}>
         <div className={classes.postComment}>
           <h2>Post a Review</h2>
