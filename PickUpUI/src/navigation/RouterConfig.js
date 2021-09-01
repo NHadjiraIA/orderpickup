@@ -11,7 +11,7 @@ import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
 // import {restaurant} from '../pages/Restaurant'
 import{map} from '../pages/Map'
-
+import {commentList} from '../Vendors/commentList.js'
 import { NotFound } from "./NotFound";
 import { 
   ROOT, 
