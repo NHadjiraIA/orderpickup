@@ -16,8 +16,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { CART } from "../navigation/CONSTANTS";
-
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -103,12 +101,12 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 700,
   },
   productImg: {
-    height: '60%',
-    // width: '80%',
+    // height: '60%',
+    width: '80%',
     marginBottom: '1em',
   },
   imgColumn: {
-    width: '20%'
+    width: '50px'
   }
 }));
 function OrderListItem(props) {
@@ -117,16 +115,16 @@ function OrderListItem(props) {
 
   const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
   
-  function createRow(img, desc, pricePer, qty, subtotal) {
-    return { img, desc, pricePer, qty, subtotal};
+  function createRow(img, name, specialRequest, pricePer, qty, subtotal) {
+    return { img, name,  specialRequest, pricePer, qty, subtotal};
   }
 
   const rows = [];
-  let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100, 340);
+  let rowItem = createRow(testImg, 'Paperclips (Box)', 'sneeze on it', 3.45, 100, 340);
   rows.push(rowItem);
-  rowItem = createRow(testImg,'Paper (Case)', 5.62, 10, 56.2)
+  rowItem = createRow(testImg,'Paper (Case)', 'no lettuce', 5.62, 10, 56.2)
   rows.push(rowItem);
-  rowItem = createRow(testImg,'Waste Basket', 15.20, 2, 30.40)
+  rowItem = createRow(testImg,'Waste Basket', 'N/A', 15.20, 2, 30.40)
   rows.push(rowItem);
   
   useEffect(() => {
@@ -145,14 +143,12 @@ function OrderListItem(props) {
             <div className={classes.accordion}>
               <Typography className={classes.heading}>
                 {props.img}
-                {props.restaurantName}
+                Order: {props.orderId}
                 <br></br>
                 {props.date}
+                <br></br>
+                Status
               </Typography>
-              <div className={classes.accordionButtons}>
-                <Button variant='contained' color='default'>Reorder All</Button>
-                <a href={CART}><Button size='medium'>Go to Cart</Button></a>
-              </div>
 
             </div>
           </AccordionSummary>
@@ -165,10 +161,13 @@ function OrderListItem(props) {
                     <TableRow>
                       {/* <TableCell align="left" colSpan={2}><h4>Img.</h4></TableCell> */}
                       <TableCell className={classes.imgColumn} align="left"><h4>Img.</h4></TableCell>
-                      <TableCell align="left"> <h4>Desc.</h4></TableCell>
+                      <TableCell align="left"> <h4>Name</h4></TableCell>
+                      <TableCell align="left"> <h4>Special Request</h4></TableCell>
                       <TableCell align="left"> <h4>Price Per Item</h4></TableCell>
                       <TableCell align="right"><h4>Qty.</h4></TableCell>
                       <TableCell align="right"><h4>Sum</h4></TableCell>
+                      <TableCell align="right"><h4>Status</h4></TableCell>
+
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -177,10 +176,12 @@ function OrderListItem(props) {
                         <TableCell align="left">
                           <img className={classes.productImg} src={row.img} />
                         </TableCell>
-                        <TableCell>{row.desc}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.specialRequest}</TableCell>
                         <TableCell align="left">${row.pricePer}</TableCell>
                         <TableCell align="left">{row.qty}</TableCell>
                         <TableCell align="right">${row.subtotal}</TableCell>
+                        <TableCell align="right">DONE</TableCell>
                       </TableRow>
                     ))}
 

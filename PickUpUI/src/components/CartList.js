@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
   productImg: {
     height: '60%',
-    width: '90%',
+    width: '50%',
     marginBottom: '1em',
   },
   imgColumn: {

@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   page: {
-    marginLeft: '0.5em',
-    marginRight: '0.5em',
+    marginLeft: '5em',
+    marginRight: '5em',
     minHeight: '900px',
   }
 }));
@@ -16,6 +16,7 @@ function OrderList() {
   const testOrderData = [
     { 
       id: 1,
+      orderId: 25943,
       date: 'aug, 30, 2021',
       restaurantName: "Restaurant1", 
       img:'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
@@ -30,6 +31,7 @@ function OrderList() {
     },
     { 
       id: 2, 
+      orderId: 25923,
       date: 'aug, 30, 2021',
       restaurantName: "Restaurant2", 
       img:'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
@@ -47,8 +49,8 @@ function OrderList() {
     return (
       <OrderListItem 
         key={item.id} 
+        orderId={item.orderId}
         date={item.date}
-        restaurantName={item.restaurantName}
         products={item.products}
         numberOfItems={item.numberOfItems}
         totalCost={item.totalCost} 
@@ -58,8 +60,6 @@ function OrderList() {
 
   return (
     <div className={classes.page}>
-      <br></br>
-      <h1>Past Orders</h1>
       <br></br>
       {item}
     </div>
