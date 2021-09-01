@@ -1,5 +1,5 @@
-// import React from 'react';
-import React, {useState, useEffect} from 'react'; 
+// https://codepen.io/dhanishgajjar/pen/OgYdzRimport React, {useState, useEffect} from 'react'; 
+import React, {useState, useEffect} from "react";
 
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -17,7 +17,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import { makeStyles } from '@material-ui/core/styles';
+// import './OrderListItem.css'
 
+
+//material UI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -107,32 +110,54 @@ const useStyles = makeStyles((theme) => ({
   },
   imgColumn: {
     width: '50px'
-  }
+  },
+  activeButton: {
+
+  },
 }));
-function OrderListItem(props) {
-  const [data, updateData] = useState([]);
+
+
+function OrderListItemRow({row, toggleOrder, completed}) {
   const classes = useStyles();
-
-  const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
-  
-  function createRow(img, name, specialRequest, pricePer, qty, subtotal) {
-    return { img, name,  specialRequest, pricePer, qty, subtotal};
+  const updateOrderCompleted = () => {
+    toggleOrder(row.id)
   }
+  return (
+  <TableRow>
+    <TableCell align="left">
+      <img className={classes.productImg} src={row.img} />
+    </TableCell>
+    <TableCell>{row.name}</TableCell>
+    <TableCell>{row.specialRequest}</TableCell>
+    <TableCell align="left">${row.pricePer}</TableCell>
+    <TableCell align="left">{row.qty}</TableCell>
+    <TableCell align="right">${row.qty * Number(row.pricePer).toFixed(2)}</TableCell>
+    <TableCell align="right">
+      <Button 
+        variant="contained" 
+        onClick={updateOrderCompleted} 
+        color={completed ? 'secondary' : 'success'} 
+        className={completed ? classes.activeButton : ''}
+      >
+        {completed ? 'Completed' : 'Not Completed'}
+      </Button>
+    </TableCell>
+  </TableRow>
+  )
 
-  const rows = [];
-  let rowItem = createRow(testImg, 'Paperclips (Box)', 'sneeze on it', 3.45, 100, 340);
-  rows.push(rowItem);
-  rowItem = createRow(testImg,'Paper (Case)', 'no lettuce', 5.62, 10, 56.2)
-  rows.push(rowItem);
-  rowItem = createRow(testImg,'Waste Basket', 'N/A', 15.20, 2, 30.40)
-  rows.push(rowItem);
   
-  useEffect(() => {
-    updateData(rows);
-  }, []);
+};
+
+function OrderListItem(props) {
+  const classes = useStyles();
+  const [completedItems, setCompletedItems] = useState({});
+  const toggleOrder = (id) => {
+    setCompletedItems((prev) => {
+      return {...prev, [id]:!prev[id]}
+    })
+  }
 
   return (
-    <body>
       <div className={classes.root}>
         <Accordion>
           <AccordionSummary
@@ -147,7 +172,7 @@ function OrderListItem(props) {
                 <br></br>
                 {props.date}
                 <br></br>
-                Status
+                {Object.values(completedItems).length === props.products.length && Object.values(completedItems).every((item) => item) ? 'Order Completed' : 'Order Incomplete'}
               </Typography>
 
             </div>
@@ -171,18 +196,13 @@ function OrderListItem(props) {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data.map((row, index) => (
-                      <TableRow>
-                        <TableCell align="left">
-                          <img className={classes.productImg} src={row.img} />
-                        </TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>{row.specialRequest}</TableCell>
-                        <TableCell align="left">${row.pricePer}</TableCell>
-                        <TableCell align="left">{row.qty}</TableCell>
-                        <TableCell align="right">${row.subtotal}</TableCell>
-                        <TableCell align="right">DONE</TableCell>
-                      </TableRow>
+                    {props.products.map((row) => (
+                      <OrderListItemRow 
+                        key={row.id}
+                        row={row}
+                        toggleOrder={toggleOrder}
+                        completed={completedItems[row.id] === true}
+                      />
                     ))}
 
                   </TableBody>
@@ -191,16 +211,6 @@ function OrderListItem(props) {
                     
                 <Table className={classes.table} aria-label="spanning table">
                   <TableBody>
-                    {/* <TableRow>
-                      <TableCell rowSpan={5} />
-                      <TableCell colSpan={2}><h4>Subtotal</h4></TableCell>
-                      <TableCell align="right"><h4>${subtotal}</h4></TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell><h4>Tax</h4></TableCell>
-                      <TableCell align="right"><h4>{`${(TAX_RATE * 100).toFixed(0)} %`}</h4></TableCell>
-                      <TableCell align="right"><h4>${invoiceTaxes}</h4></TableCell>
-                    </TableRow> */}
                     <TableRow>
                       <TableCell colSpan={2}><h4>Pre-Tax</h4></TableCell>
                       <TableCell align="right"><h4>$12340</h4></TableCell>
@@ -235,7 +245,6 @@ function OrderListItem(props) {
           </AccordionDetails>
         </Accordion>
       </div>
-    </body>
   );
 }
 
