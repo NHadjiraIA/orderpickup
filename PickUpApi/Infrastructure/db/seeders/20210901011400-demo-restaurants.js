@@ -13,18 +13,18 @@ module.exports = {
     */
    await queryInterface.bulkInsert('restaurants', [{
     title: "Restaurant la joie",
-    thumbnail_url: 'image.jpg',
+    thumbnail_url: "https://images.unsplash.com/photo-1509482560494-4126f8225994?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     description: "sample restaurant for goood people",
-    address: "Heaven",
-    email: 'angels@heaven.com',
+    address: "420 pineapple street",
+    email: 'angelsjoie@heaven.com',
     phone: 4455009,
-    city: 'Ottawa',
+    city: 'Markham',
     prov_state: 'Ontario',
-    postal:' string',
-    open_time: "string",
-    close_time: 'string',
-    lat: 0,
-    lon: 0,
+    postal:'P3G H8A',
+    open_time: "9",
+    close_time: '8',
+    lat: 43.89567763035046,
+    lon: -79.26538230855174,
     createdAt: new Date(),
     updatedAt: new Date()
    }]);
@@ -35,6 +35,7 @@ module.exports = {
     createdAt: new Date(),
     updatedAt: new Date()
    }]);
+   
   },
 
   down: async (queryInterface, Sequelize) => {
