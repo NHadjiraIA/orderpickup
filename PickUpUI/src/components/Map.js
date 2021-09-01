@@ -70,7 +70,7 @@ function Map(props) {
   return (
     <LoadScript
       id="script-loader"
-      googleMapsApiKey="AIzaSyBFanEsBx0eYHMrchijJOaxu6pnzcAWA-s"
+      googleMapsApiKey="AIzaSyDndCPosolIxMhZ7j1QbvwwhQCQlyn0t5Y"
       libraries={["places"]}
     >
       <GoogleMap
@@ -79,7 +79,7 @@ function Map(props) {
         options={options}
         center={props.center}
         zoom={15}
-        onClick={() => props.setActiveMarke(null)}
+        onClick={() => props.handleActiveMarker(null)}
         onLoad={handleOnLoad}
       >
         <StandaloneSearchBox
