@@ -83,10 +83,13 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 700,
   },
   productImg: {
-    height: '56%',
-    width: '10%',
+    height: '60%',
+    // width: '80%',
     marginBottom: '1em',
   },
+  imgColumn: {
+    width: '20%'
+  }
 }));
 
 export default useStyles;
