@@ -10,7 +10,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 // import AssignmentIcon from '@material-ui/icons/Assignment';
-import { VENDOR_MENU, VENDOR_COMMENTS } from "../../navigation/CONSTANTS";
+import { VENDOR_MENU, VENDOR_COMMENTS, VENDOR_ORDERS } from "../../navigation/CONSTANTS";
 
 const mainListItems = (
   <div>
@@ -24,7 +24,7 @@ const mainListItems = (
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
+      <a href={VENDOR_ORDERS}><ListItemText primary="Orders" /></a>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
