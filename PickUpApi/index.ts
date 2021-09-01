@@ -10,12 +10,15 @@ import { UserApi } from "./users";
 import { RestaurantApi } from "./restaurants";
 export {UserApi} from "./users";
 
+
 const app = express();
+
 const userApi = new UserApi();
 const restaurantApi = new RestaurantApi();
 
 const userRouter = express.Router();
 const restaurantRouter = express.Router();
+
 
 const origin = {
   origin: '*',
@@ -40,15 +43,18 @@ userRouter.get('/users/:email',
 userRouter.post('/users',
   (req, res) => userApi.create(req, res)
 )
+
 userRouter.post("/login", 
  (req, res) => userApi.login(req, res)
 );
+
 app.use('/api/v1', userRouter)
 
 restaurantRouter.get("/restaurants", 
  (req, res) => restaurantApi.getAll(req, res)
 );
 app.use('/api/v1', restaurantRouter)
+
 
 
 const port = process.env.PORT || 3002;
