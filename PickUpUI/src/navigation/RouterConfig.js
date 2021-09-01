@@ -9,6 +9,8 @@ import {restaurant} from '../pages/Restaurant'
 import {signup} from '../pages/Signup'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
+import {orderList} from '../pages/Vendors/orderList'
+
 // import {restaurant} from '../pages/Restaurant'
 import{map} from '../pages/Map'
 import {commentList} from '../pages/Vendors/commentList.js'
@@ -25,6 +27,7 @@ import {
   VENDOR_DASHBOARD,
   VENDOR_MENU,
   VENDOR_COMMENTS,
+  VENDOR_ORDERS
 } from "./CONSTANTS";
 
 
@@ -86,6 +89,7 @@ export const RouterConfig = (props) => {
         <Route exact path={SIGNUP} component={signup} />
         <Route exact path={VENDOR_DASHBOARD} component={dashboard} />
         <Route exact path={VENDOR_MENU} component={vendorMenu}/>
+        <Route exact path={VENDOR_ORDERS} component={orderList}/>
         <Route path="*">
           <NotFound />
         </Route>
