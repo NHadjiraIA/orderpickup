@@ -10,8 +10,11 @@ import {
   HasManyCountAssociationsMixin,
   HasManyCreateAssociationMixin,
   Optional,
+  Order,
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
+import { OrderEntity } from "./order";
+import { RatingEntity } from "./rating";
 
 interface UserAttributes {
   id: number;
@@ -39,15 +42,16 @@ export class UserEntity extends Model<UserAttributes, UserCreationAttributes>  i
   // Since TS cannot determine model association at compile time
   // we have to declare them here purely virtually
   // these will not exist until `Model.init` was called.
-//  public getOrders!: HasManyGetAssociationsMixin<Project>; // Note the null assertions!
-
+  public getOrders!: HasManyGetAssociationsMixin<OrderEntity>; // Note the null assertions!
+  public getRatings!: HasManyGetAssociationsMixin<OrderEntity>; 
   // You can also pre-declare possible inclusions, these will only be populated if you
   // actively include a relation.
- // public readonly orders?: Order[]; // Note this is optional since it's only populated when explicitly requested in code
+  public readonly ratings?: OrderEntity[]; 
 
-  // public static associations: {
-  //   projects: Association<User, Order>;
-  // };
+  public static associations: {
+    orders: Association<UserEntity, OrderEntity>;
+    ratings: Association<UserEntity, RatingEntity>;
+  };
 }
 
 UserEntity.init(
@@ -84,14 +88,17 @@ UserEntity.init(
   },
   {
     tableName: "users",
-    sequelize, // passing the `sequelize` instance is required
+    sequelize,
   }
 );
 
-
-// Here we associate which actually populates out pre-declared `association` static and other methods.
-//   User.hasMany(Order, {
-//     sourceKey: "id",
-//     foreignKey: "ownerId",
-//     as: "projects", // this determines the name in `associations`!
-//   });
+  UserEntity.hasMany(OrderEntity, {
+    sourceKey: "id",
+    foreignKey: "userId",
+    as: "orders",
+  });
+  UserEntity.hasMany(RatingEntity, {
+    sourceKey: "id",
+    foreignKey: "userId",
+    as: "ratings",
+  });
