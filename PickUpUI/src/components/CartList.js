@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Counter from './Counter'
 import IconButton from "@material-ui/core/IconButton";
-
+import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
@@ -17,7 +17,6 @@ const TAX_RATE = 0.13;
 
 const useStyles = makeStyles({
   root: {
-    
     margin: '4em',
     typography: '50px',
     fontSize: '18px',
@@ -26,9 +25,20 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
   productImg: {
-    height: '56%',
-    width: '10%',
+    height: '60%',
+    width: '90%',
     marginBottom: '1em',
+  },
+  imgColumn: {
+    width: '30%'
+  },
+  checkoutButton: {
+    backgroundColor: 'black',
+    color:'white',
+      
+      '&:hover': {
+        backgroundColor: 'black',
+      },
   },
 });
 
@@ -116,7 +126,7 @@ function CartList() {
         <Table className={classes.table} aria-label="spanning table">
           <TableHead>
             <TableRow>
-              <TableCell align="left"><h2>Img.</h2></TableCell>
+              <TableCell className={classes.imgColumn} align="left"><h2>Img.</h2></TableCell>
               <TableCell align="left"> <h2>Desc.</h2></TableCell>
               <TableCell align="left"> <h2>Price Per Item</h2></TableCell>
               <TableCell align="center"><h2>Qty.</h2></TableCell>
@@ -184,7 +194,8 @@ function CartList() {
         </Table>
 
       </TableContainer>
-
+      <br></br>
+      <Button fontSize='large' className={classes.checkoutButton}>Checkout</Button>
     </div>
   )
   
