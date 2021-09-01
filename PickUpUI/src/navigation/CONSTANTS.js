@@ -13,3 +13,4 @@ export const MAP = "/searchmap";
 export const VENDOR_DASHBOARD = '/vendors';
 export const VENDOR_MENU = '/vendors/menu';
 
+export const VENDOR_COMMENTS ='vendors/comments'
