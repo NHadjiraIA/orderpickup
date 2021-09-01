@@ -9,8 +9,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import {Paper, Grid} from '@material-ui/core';
 import { Button } from '@material-ui/core';
+
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -49,6 +50,10 @@ const StyledTableRow = withStyles((theme) => ({
 function createData(img, name, calories, desc, size,type,price) {
   return { img, name, calories, desc, size,type,price };
 }
+
+
+
+
 
 const rows = [
   createData("https://images.unsplash.com/photo-1543826173-70651703c5a4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=799&q=80",'Frozen yoghurt', 159,6,0,   4.0,),
@@ -93,12 +98,13 @@ const handleChange = (event) => {
 };
   return (
     <>
-    <List>
+    {/* <List>
     {mainListItems}
-    </List>
+    </List> */}
    
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
+      <Grid columns={[{ field: 'name', editable: true }]} />
         <TableHead>
           <TableRow>
             <StyledTableCell className={classes.productstyle} >Image</StyledTableCell>
@@ -106,9 +112,9 @@ const handleChange = (event) => {
             <StyledTableCell align="right">Calories&nbsp;(g)</StyledTableCell>
             <StyledTableCell align="right">Description</StyledTableCell>
             <StyledTableCell align="right">Size&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Type&nbsp;</StyledTableCell>
+            <StyledTableCell align="right">Categorize&nbsp;</StyledTableCell>
             <StyledTableCell align="right">Price&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Delete?</StyledTableCell>
+            <StyledTableCell align="right">Delete Item</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -127,9 +133,12 @@ const handleChange = (event) => {
           value="dairy free"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={true}>Vegan</MenuItem>
+          <MenuItem value={false}>Gluten-free</MenuItem>
+          <MenuItem value={false}>Dairy-free</MenuItem>
+          <MenuItem value={false}>No-nuts</MenuItem>
+          <MenuItem value={false}>Cannabis edible</MenuItem>
+          <MenuItem value={false}>Others</MenuItem>
         </Select></StyledTableCell>
               <StyledTableCell align="right">{row.price}</StyledTableCell>
               <StyledTableCell align="right"><Button variant="contained" color="primary" disableElevation>
