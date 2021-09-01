@@ -1,9 +1,57 @@
 import React from "react";
-import useStyles from './CommentListItemStyle'
+import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography } from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
-import StarIcon from '@material-ui/icons/Star';
-import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    // width: '100px',
+  },
+
+  commentPage: {
+    padding: '10%', 
+    display: 'flex',
+    flexDirection: 'row',
+    marginLeft: '4em',
+    marginRight: '4em',
+  },
+
+  filters: {
+    width: '40%',
+    height: '30%',
+    backgroundColor: '#e9ebf0',
+    marginRight: '1.5em',
+  },
+
+  postAndPostedComments: {
+    flexDirection: 'column',
+    width: '60%', 
+
+  },
+
+  postComment: {
+    backgroundColor: '#e9ebf0',
+    padding: '1em',
+  },
+
+  commentForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    
+  },
+  commentText: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+
+  postButton: {
+    marginTop: '1em',
+    backgroundColor: 'black',
+    color: 'white',
+    width: '20%',
+  }
+
+
+}));
 
 function CommentListItem(props) {
   const classes = useStyles();
@@ -19,7 +67,7 @@ function CommentListItem(props) {
           <h4 style={{ margin: 0, textAlign: "left" }}>{props.username}</h4>
           <br />
           {/* <div className={classes.commentText}> */}
-            <Typography>
+            <Typography className={classes.typography}>
               {props.comment}
               {" "}
             </Typography>

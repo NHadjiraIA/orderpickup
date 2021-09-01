@@ -153,6 +153,6 @@ DishEntity.init(
 
   DishEntity.hasMany(OrderDetailEntity, {
     sourceKey: "id",
-    foreignKey: "dishid",
+    foreignKey: "dishId",
     as: "orderdetails",
   });
