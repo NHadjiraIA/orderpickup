@@ -139,11 +139,8 @@ function CartList() {
                 <TableCell align="left">
                   <img className={classes.productImg} src={row.img} />
                 </TableCell>
+                <TableCell align="left"><h2>{row.desc}</h2></TableCell>
                 <TableCell><h2>${row.pricePer}</h2></TableCell>
-                <TableCell 
-                  align="left">
-                  <h2>{row.desc}</h2>
-                </TableCell>
                 <TableCell>
                   <Counter index={index} qty={row.qty} increment={increment} decrement={decrement} />
                 </TableCell>
