@@ -15,7 +15,7 @@ export class OrdersApi{
     async getByUserId(req: express.Request, res: express.Response){
         let userId = req.params.userId;
         let userOrders = await this._ordersRepository.GetByUserId(userId);
-        return res.status(200).json(userOrders);
+        return res.status(200).json(userOrders)
 
     }
 }
