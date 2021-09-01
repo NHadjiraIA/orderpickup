@@ -7,6 +7,7 @@ import {cart} from '../pages/Cart'
 import {login} from '../pages/Login'
 import {restaurant} from '../pages/Restaurant'
 import {signup} from '../pages/Signup'
+import {landing} from '../pages/Landing'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
 import {orderList} from '../pages/Vendors/orderList'
@@ -73,13 +74,13 @@ const restaurantsList = [
 ];
 export const RouterConfig = (props) => {
   return (
-    <div>
+    <>
       <BrowserRouter>
       <Switch>
         List all public routes here
         <Route exact path={VENDOR_COMMENTS} component={commentList}/>
 
-        <Route exact path={ROOT} component={Home} />
+        <Route exact path={ROOT} component={landing} />
         <Route exact path={MAP} component={map} />
         <Route exact path={DISH} component={dish} />
         <Route exact path={RESTAURANT} component={restaurant} />
@@ -95,7 +96,7 @@ export const RouterConfig = (props) => {
         </Route>
       </Switch>
       </BrowserRouter>
-    </div>
+    </>
   );
 };
 
