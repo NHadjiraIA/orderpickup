@@ -81,7 +81,7 @@ DishEntity.init(
       allowNull: false,
     },
     img_url: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.STRING,
       allowNull: false,
     },
     name: {
@@ -146,7 +146,7 @@ DishEntity.init(
     },
   },
   {
-    tableName: "dishs",
+    tableName: "dishes",
     sequelize,
   }
 );

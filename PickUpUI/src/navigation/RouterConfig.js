@@ -9,13 +9,13 @@ import {restaurant} from '../pages/Restaurant'
 import {signup} from '../pages/Signup'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
-import {commentList} from '../pages/Vendors/commentsList.js'
 // import {restaurant} from '../pages/Restaurant'
 import{map} from '../pages/Map'
 
 import { NotFound } from "./NotFound";
 import { 
   ROOT, 
+  MAP,
   DISH, 
   ORDERS, 
   RESTAURANT,
@@ -75,6 +75,7 @@ export const RouterConfig = (props) => {
       <Switch>
         List all public routes here
         <Route exact path={ROOT} component={Home} />
+        <Route exact path={MAP} component={map} />
         <Route exact path={DISH} component={dish} />
         <Route exact path={RESTAURANT} component={restaurant} />
         <Route exact path={ORDERS} component={orders} />

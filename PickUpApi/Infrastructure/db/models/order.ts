@@ -18,8 +18,8 @@ import { UserEntity } from "./user";
 
 interface OrderAttributes {
   id: number;
-  userId: string;
-  restaurantId: string;
+  userId: number;
+  restaurantId: number;
   done: boolean;
   createdAt: Date;
   updatedAt: Date | null;
@@ -29,8 +29,8 @@ interface OrderCreationAttributes extends Optional<OrderAttributes, "id"> {}
 
 export class OrderEntity extends Model<OrderAttributes, OrderCreationAttributes>  implements OrderAttributes {
   public id!: number;
-  public userId!: string;
-  public restaurantId!: string;
+  public userId!: number;
+  public restaurantId!: number;
   public done!: boolean;
   public createdAt!: Date;
   public updatedAt!: Date | null;
