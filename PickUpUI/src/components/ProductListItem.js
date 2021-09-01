@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import Counter from './Counter.js'
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import FormGroup from '@material-ui/core/FormGroup';
 // import Checkbox from '@material-ui/core/Checkbox';
@@ -87,16 +88,7 @@ function ProductListItem(props) {
 
           <div className={classes.finishingOrder}>
             <div className={classes.numberOfItem}>
-              <IconButton 
-                aria-label="minus-item" 
-                className={classes.margin}
-              >
-                <RemoveCircleIcon fontSize='large'/>
-              </IconButton>
-              <p>1</p>
-              <IconButton aria-label="add-item" className={classes.margin}>
-                <AddCircleIcon fontSize='large'/>
-              </IconButton>
+              <Counter />
             </div>
             <Button className={classes.cartButton} size='medium' >Add 1 to Cart</Button>
             <Button className={classes.cartButton} size='medium'>Go to Cart</Button>

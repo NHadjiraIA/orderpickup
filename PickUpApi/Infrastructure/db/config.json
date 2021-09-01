@@ -1,11 +1,11 @@
 {
-    "development": {
-      "username": "foodgroup",
-      "password": "hsc2021",
-      "database": "pickFoodDatabase",
-      "host": "127.0.0.1",
-      "dialect": "postgres"
-    },
+  "development": {
+    "username": "foodgroup",
+    "password": "hsc2021",
+    "database": "pickFoodDb-test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
     "test": {
       "username": "root",
       "password": null,

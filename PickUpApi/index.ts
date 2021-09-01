@@ -15,7 +15,9 @@ import { CommentEntity } from "./Infrastructure/db/models/comment";
 import { CommentsApi } from "./comment";
 export {UserApi} from "./users";
 
+
 const app = express();
+
 const userApi = new UserApi();
 const restaurantApi = new RestaurantApi();
 const ordersApi = new OrdersApi();
@@ -28,6 +30,7 @@ const ordersRouter = express.Router();
 const ratingsRouter = express.Router();
 const dishisRouter = express.Router();
 const commentRouter = express.Router();
+
 
 const origin = {
   origin: '*',
@@ -52,9 +55,11 @@ userRouter.get('/users/:phoen',
 userRouter.post('/users',
   (req, res) => userApi.create(req, res)
 )
+
 userRouter.post("/login", 
  (req, res) => userApi.login(req, res)
 );
+
 app.use('/api/v1', userRouter)
 
 restaurantRouter.get("/restaurants", 
@@ -75,7 +80,7 @@ ordersRouter.get("/user/:userId/orders",
 
 
 app.use('/api/v1', ordersRouter)
-
+ 
 ratingsRouter.get("/ratings", 
  (req, res) => ratingsApi.getAll(req, res)
 );
@@ -93,6 +98,7 @@ commentRouter.post('/comments',
   (req, res) => commentsApi.create(req, res)
 )
 app.use('/api/v1', commentRouter);
+ 
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => console.log(`App listening on PORT ${port}`));
