@@ -134,7 +134,7 @@ function OrderListItemRow({row, toggleOrder, completed}) {
       <Button 
         variant="contained" 
         onClick={updateOrderCompleted} 
-        color={completed ? 'secondary' : 'success'} 
+        color={completed ?  'green' : 'secondary'} 
         className={completed ? classes.activeButton : ''}
       >
         {completed ? 'Completed' : 'Not Completed'}
