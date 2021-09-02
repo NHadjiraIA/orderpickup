@@ -67,7 +67,7 @@ function Map(props) {
   return (
     <LoadScript
       id="script-loader"
-      googleMapsApiKey=""
+      googleMapsApiKey="AIzaSyDndCPosolIxMhZ7j1QbvwwhQCQlyn0t5Y"
       libraries={libraries}
     >
       <GoogleMap

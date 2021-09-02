@@ -41,7 +41,7 @@ export default function RestaurantListItem(props) {
               <DriveEtaIcon />
               <LoadScript
                 id="script-loader"
-                googleMapsApiKey=""
+                googleMapsApiKey="AIzaSyDndCPosolIxMhZ7j1QbvwwhQCQlyn0t5Y"
                 libraries={libraries}
               >
                 <DistanceMatrixService
