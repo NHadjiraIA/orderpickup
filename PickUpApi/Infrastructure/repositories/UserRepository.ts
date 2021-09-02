@@ -5,10 +5,15 @@ export class UserRepository<UserEntity> extends BaseRepository<UserEntity>{
     constructor(){
         super(Entity);
     }
-    async GetByPhone(phoneNumber: string): Promise<Entity | null>{
+    async GetByPhone(phoneNumber: number): Promise<Entity | null>{
        return  Entity.findOne({
             where: {phone: `${phoneNumber}`}
         })
     }
- 
+    // async GetById(userId: number): Promise< Entity | null>{
+    //     return Entity.findOne({
+    //         where: {id: `${userId}`}
+    //     })
+        
+    // }
 }

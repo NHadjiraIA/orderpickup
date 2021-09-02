@@ -2,7 +2,7 @@ import { IBaseDto } from "../contracts/IBaseDto";
 
 
 export class UserDto implements IBaseDto{
-    constructor(id:number, createAt: Date, userName: string, email: string, phone: string, password:string , role: boolean){
+    constructor(id:number, createAt: Date, userName: string, email: string, phone: number, password:string , role: boolean){
         this.Id = id;
         this.CreatedAt = createAt;
         this.UpdatedAt = null;
@@ -18,7 +18,7 @@ export class UserDto implements IBaseDto{
     UpdatedAt: Date | null;
     Name: string;
     Email: string;
-    Phone: string;
+    Phone: number;
     Password: string;
     Role: boolean;
 }

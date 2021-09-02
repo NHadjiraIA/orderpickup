@@ -17,7 +17,7 @@ import { UserEntity } from "./user";
 
 interface CommentAttributes {
   id: number;
-  userId: string;
+  userId: number;
   restaurantId: string;
   Comment: string;
   createdAt: Date;
@@ -28,7 +28,7 @@ interface CommentCreationAttributes extends Optional<CommentAttributes, "id"> {}
 
 export class CommentEntity extends Model<CommentAttributes, CommentCreationAttributes>  implements CommentAttributes {
   public id!: number;
-  public userId!: string;
+  public userId!: number;
   public restaurantId!: string;
   public Comment!: string;
   public createdAt!: Date;
