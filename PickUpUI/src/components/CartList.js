@@ -13,6 +13,9 @@ import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
+//FOR LOCALSTORAGE
+// localstorage.getItem('quantity')
+
 const TAX_RATE = 0.13;
 
 const useStyles = makeStyles({

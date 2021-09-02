@@ -21,6 +21,8 @@ function ProductListItem(props) {
 
   const handleClose = () => {
     onClose(selectedValue);
+    //ADDING LOCAL STORAGE STUFF HERE TO TEST
+    // localStorage.setItem('quantity', quantity);
   };
 
   const increment = () => {
@@ -71,7 +73,13 @@ function ProductListItem(props) {
                 decrement={decrement} 
               />
             </div>
-            <Button className={classes.cartButton} size='medium'> Add {quantity} to Cart</Button>
+            <Button 
+              className={classes.cartButton} 
+              size='medium'
+              onClick={() => {localStorage.setItem('quantity', quantity)}}
+            > 
+              Add {quantity} to Cart
+            </Button>
             <Button className={classes.cartButton} size='medium' href={CART}>Go to Cart</Button>
           </div>
           
