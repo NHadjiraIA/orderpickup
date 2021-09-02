@@ -9,11 +9,12 @@ import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { LOGIN, ORDERS, CART, MAP} from "../navigation/CONSTANTS";
-
+import { useHistory } from "react-router-dom";
+// import Button from '@material-ui/core/Button';
 import useStyles from "./NavigationStyle.js";
 
 export const Navigation = () => {
-  
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -33,6 +34,25 @@ export const Navigation = () => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  let history = useHistory();
+
+  const clickToLogin = () => {
+    
+    history.push(LOGIN);
+  }
+
+  const clickToOrders = () => {
+    history.push(ORDERS);
+  }
+
+  const clickToCart = () => {
+    history.push(CART);
+  }
+
+  const clickToMap = () => {
+    history.push(MAP);
+  }
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -80,19 +100,20 @@ export const Navigation = () => {
             NoshFeast
           </Typography>
           <Typography className={classes.links}>
-          <a href={MAP}>Find Restaurants</a>
-            <a href={ORDERS}>Orders</a>
+            {/* <Button onClick={clickToMap}>Find Restaurants</Button> */}
+            <Typography onClick={clickToMap}>Find Restaurants</Typography>
+            <Typography onClick={clickToOrders}>Orders</Typography>
             {/* <p>Account</p> */}
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 2 new items" color="inherit">
+            <IconButton aria-label="show 2 new items" color="inherit" onClick={clickToCart}>
               <Badge badgeContent={2} color="secondary">
-                <a href={CART}><ShoppingCart /></a>
+                <ShoppingCart />
               </Badge>
             </IconButton>
             <div>
-            <a  href= {LOGIN}>LogIn</a>
+              <Typography onClick={clickToLogin}>LogIn</Typography>
             </div>
           </div>
           <div className={classes.sectionMobile}>

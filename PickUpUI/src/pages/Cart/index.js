@@ -1,10 +1,12 @@
 import React from 'react' 
 import CartList from '../../components/CartList'
 
-export const Cart = () => {
+export const Cart = (props) => {
     return (
         <div>
-            <CartList/>
+            <CartList
+                {...props}
+            />
         </div>
     )
 }
