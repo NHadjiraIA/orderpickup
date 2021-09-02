@@ -12,8 +12,6 @@ import {
   Optional,
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
-import { RestaurantEntity } from "./restaurant";
-import { UserEntity } from "./user";
 
 interface CommentAttributes {
   id: number;
@@ -68,6 +66,3 @@ CommentEntity.init(
     sequelize,
   }
 );
-
-  // CommentEntity.belongsTo(RestaurantEntity);
-  // CommentEntity.belongsTo(UserEntity);

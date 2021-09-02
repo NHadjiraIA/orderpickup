@@ -1,7 +1,5 @@
 import './App.css';
-import { RouterConfig } from './navigation/RouterConfig';
-import {Navigation} from "./components/Navigation"
-import Footer from './components/Footer';
+import WrapperComponent from './components/WrapperComponent';
 
 
 const restaurantsList = [
@@ -48,10 +46,7 @@ const restaurantsList = [
 function App() {
   return (
     <div className="App">
-      <Navigation/>
-      <RouterConfig/>
-      <Footer />
-     
+      <WrapperComponent/>
     </div>
   );
 }

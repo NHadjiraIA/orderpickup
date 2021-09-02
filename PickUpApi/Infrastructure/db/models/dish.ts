@@ -60,13 +60,6 @@ export class DishEntity extends Model<DishAttributes, DishCreationAttributes>  i
   public createdAt!: Date;
   public updatedAt!: Date | null;
 
-  public getOrderDetails!: HasManyGetAssociationsMixin<OrderDetailEntity>;
-  
-  public readonly orders?: OrderDetailEntity[]; 
-
-  public static associations: {
-    orders: Association<DishEntity, OrderDetailEntity>;
-  };
 }
 
 DishEntity.init(
@@ -150,9 +143,3 @@ DishEntity.init(
     sequelize,
   }
 );
-
-  DishEntity.hasMany(OrderDetailEntity, {
-    sourceKey: "id",
-    foreignKey: "dishId",
-    as: "orderdetails",
-  });
