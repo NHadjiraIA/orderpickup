@@ -59,7 +59,7 @@ module.exports = {
         type: sequelize.DECIMAL,
         allowNull: false,
       },
-      lon: {
+      lng: {
         type: sequelize.DECIMAL,
         allowNull: false,
       },

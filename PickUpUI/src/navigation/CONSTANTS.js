@@ -8,7 +8,7 @@ export const CART = '/cart';
 export const LOGIN = '/login';
 export const SIGNUP = '/signup';
 //----MAP PATHS-----------------
-export const MAP = "/searchmap";
+export const MAP = "/searchrestaurants";
 //----VENDOR PATHS-----------------
 export const VENDOR_DASHBOARD = '/vendors';
 export const VENDOR_MENU = '/vendors/menu';

@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { LOGIN, ORDERS, CART} from "../navigation/CONSTANTS";
+import { LOGIN, ORDERS, CART, MAP} from "../navigation/CONSTANTS";
 
 import useStyles from "./NavigationStyle.js";
 
@@ -80,7 +80,7 @@ export const Navigation = () => {
             NoshFeast
           </Typography>
           <Typography className={classes.links}>
-            <p>Restaurants</p>
+          <a href={MAP}>Find Restaurants</a>
             <a href={ORDERS}>Orders</a>
             {/* <p>Account</p> */}
           </Typography>
