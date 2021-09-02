@@ -13,6 +13,7 @@ import { RatingsApi } from "./ratings";
 import { DishsApi } from "./dishs"
 import { CommentEntity } from "./Infrastructure/db/models/comment";
 import { CommentsApi } from "./comment";
+import { PaymentApi } from "./payments";
 export {UserApi} from "./users";
 
 
@@ -24,12 +25,15 @@ const ordersApi = new OrdersApi();
 const dishsApi = new DishsApi();
 const ratingsApi = new RatingsApi();
 const commentsApi = new CommentsApi();
+const paymentsApi = new PaymentApi();
+
 const userRouter = express.Router();
 const restaurantRouter = express.Router();
 const ordersRouter = express.Router();
 const ratingsRouter = express.Router();
 const dishisRouter = express.Router();
 const commentRouter = express.Router();
+const paymentRouter = express.Router();
 
 
 const origin = {
@@ -104,6 +108,11 @@ commentRouter.post('/comments',
 )
 app.use('/api/v1', commentRouter);
  
+commentRouter.post('/payments',
+  (req, res) => paymentsApi.createPayment(req, res)
+)
+app.use('/api/v1', commentRouter);
+
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => console.log(`App listening on PORT ${port}`));

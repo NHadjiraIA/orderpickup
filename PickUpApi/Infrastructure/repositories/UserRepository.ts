@@ -1,5 +1,5 @@
 import { BaseRepository } from "../contracts/BaseRepository"
-import  {UserEntity as Entity}  from "../db/models/user"
+import  {UserEntity as Entity, UserEntity}  from "../db/models/user"
 
 export class UserRepository<UserEntity> extends BaseRepository<UserEntity>{
     constructor(){
@@ -10,5 +10,10 @@ export class UserRepository<UserEntity> extends BaseRepository<UserEntity>{
             where: {phone: `${phoneNumber}`}
         })
     }
- 
+    public async GetuserById(userId): Promise<UserEntity[]>{
+        let dishes  = await UserEntity.findAll({
+            where: {userId: `${userId}`}
+        });
+        return dishes;
+    }
 }

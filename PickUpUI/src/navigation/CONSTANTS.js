@@ -4,6 +4,7 @@ export const RESTAURANT = '/restaurant';
 export const COMMENTS = '/restaurant/comments';
 export const ORDERS = '/orders';
 export const CART = '/cart';
+export const PAYMENT ='/payment'
 //----VENDOR PATHS-----------------
 export const LOGIN = '/login';
 export const SIGNUP = '/signup';
