@@ -7,7 +7,7 @@ import {
   HasManyAddAssociationMixin,
   HasManyHasAssociationMixin,
   Association,
-  HasManyCountAssociationsMixin,
+  HasOneGetAssociationMixin,
   HasManyCreateAssociationMixin,
   Optional,
 } from "sequelize";
@@ -33,6 +33,14 @@ export class OrderDetailEntity extends Model<OrderDetailAttributes, OrderDetailC
   public quantity!: number;
   public createdAt!: Date;
   public updatedAt!: Date | null;
+
+  public getDish!: HasOneGetAssociationMixin<DishEntity>;
+  
+  public readonly dish?: DishEntity;
+
+  public static associations: {
+    dish: Association<OrderDetailEntity, DishEntity>;
+  };
 }
 
 OrderDetailEntity.init(
@@ -69,5 +77,8 @@ OrderDetailEntity.init(
   }
 );
 
-  // OrderDetailEntity.belongsTo(OrderEntity);
-  // OrderDetailEntity.belongsTo(DishEntity);
+  OrderDetailEntity.hasOne(DishEntity,{
+    sourceKey:'dishId',
+    foreignKey: 'id',
+    as: 'dish'
+  });
