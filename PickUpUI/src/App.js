@@ -1,9 +1,6 @@
 import "./App.css";
-import { RouterConfig } from "./navigation/RouterConfig";
-import { Navigation } from "./components/Navigation";
-import Footer from "./components/Footer";
+import WrapperComponent from "./components/WrapperComponent";
 import { BrowserRouter } from "react-router-dom";
-
 const restaurantsList = [
   {
     id: 1,
@@ -46,11 +43,12 @@ const restaurantsList = [
 
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <BrowserRouter>
-        <Navigation />
-        <RouterConfig />
-        <Footer />
+        <WrapperComponent />
       </BrowserRouter>
     </div>
   );

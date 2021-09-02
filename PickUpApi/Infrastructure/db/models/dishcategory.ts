@@ -12,8 +12,6 @@ import {
   Optional,
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
-import { RestaurantEntity } from "./restaurant";
-import { UserEntity } from "./user";
 
 interface DishCategoryAttributes {
   id: number;
