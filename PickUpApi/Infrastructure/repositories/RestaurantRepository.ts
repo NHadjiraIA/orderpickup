@@ -15,7 +15,7 @@ export class RestaurantRepository{
     public async GetById(id: number): Promise<RestaurantEntity | null>{
         let restaurant = await RestaurantEntity.findOne({
             where:{id: `${id}`},
-            include: 'orders'
+            include: {all: true}
         })
         return restaurant;
     }
