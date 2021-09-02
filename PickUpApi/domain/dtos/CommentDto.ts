@@ -7,7 +7,7 @@ export class CommentDto implements IBaseDto{
         this.CreatedAt = createAt;
         this.UpdatedAt = null;
         this.UserId = userId;
-        this.restaurantId = restaurantId;
+        this.RestaurantId = restaurantId;
         this.Comment = Comment;
     }
 
@@ -15,6 +15,6 @@ export class CommentDto implements IBaseDto{
     CreatedAt: Date;
     UpdatedAt: Date | null;
     UserId: number;
-    restaurantId: string;
+    RestaurantId: string;
     Comment: string;
 }
