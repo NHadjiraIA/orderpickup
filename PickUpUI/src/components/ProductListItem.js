@@ -88,7 +88,7 @@ ProductListItem.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function ProductListItemDemo() {
+export default function ProductListItemDemo(props) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -113,21 +113,21 @@ export default function ProductListItemDemo() {
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       {/* <br /> */}
       <div className={classes.productIntro}>
-        <Typography onClick={handleClickOpen}><h3>Name</h3></Typography>
+        <Typography onClick={handleClickOpen}><h3>{props.itemName}</h3></Typography>
         <Typography onClick={handleClickOpen}>
-          <p>Product Intro Product Intro Product Intro Product Intro Product Intro Intro Product Intro Intro Product Intro </p>
+          <p>{props.description} </p>
         </Typography>
         <br/>
         <br/>
         <br/>
         <br/>
         <div className={classes.priceAndCalories}>
-          <Typography onClick={handleClickOpen}>$4.59</Typography>
+          <Typography onClick={handleClickOpen}>${props.price}</Typography>
           <Typography 
             onClick={handleClickOpen}
             className={classes.calories}
             >
-              258 Cals.
+              {props.calories}Cals.
             </Typography>
         </div>
         {/* <br/> */}

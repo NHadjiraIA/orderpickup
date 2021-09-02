@@ -6,9 +6,16 @@ import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
 import CommentList from './CommentList.js';
 import Button from '@material-ui/core/Button';
 
+import CallEndRoundedIcon from '@material-ui/icons/CallEndRounded';
+
 function Restaurant(props) {
-  console.log("propssss", props);
+  // console.log("propssss", props);
   const classes = useStyles();
+
+
+const restaurantDetails = props.restaurant;
+const productDetails = props.product;
+// console.log("detailsssssss", restaurantDetails);
 
   const [activeState, setActiveState] = useState({menu:true, comments: false})
 
@@ -25,11 +32,11 @@ function Restaurant(props) {
     <>
       <hero className={classes.heroroot}>
         <div className={classes.restaurantcard}>
-          <img src='https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'/>
+          <img src={restaurantDetails.thumbnail_url}/>
 
           {/* <img src={props.restaurant.img} alt="thumbnail"/> */}
           <div className={classes.restaurantinfo}>
-            <h2>Restaurant Name</h2>
+            <h2>{restaurantDetails.title}</h2>
             {/* <div class="rating-send">
               <div class="star-buttons">
                 <div class="star-rating">
@@ -65,11 +72,12 @@ function Restaurant(props) {
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
         <div className={classes.contactinfo}>
-          <h3>address</h3>
-          <h3>city, prov</h3>
-          <h3>country</h3>
-          <h3>phone number</h3>
-          <h3>email</h3>
+          <h4>{restaurantDetails.address}</h4>
+          <h3>{restaurantDetails.city} , {restaurantDetails.prov_state}</h3>
+          <div className= "phone"> <CallEndRoundedIcon/>
+          <h3>Call us @ {restaurantDetails.phone}</h3></div>
+         
+          <h3>Email us: {restaurantDetails.email}</h3>
         </div>
       </hero>
       <div className={classes.heroMenu}>
@@ -78,7 +86,9 @@ function Restaurant(props) {
       </div>
       {activeState.menu && 
         <div className={classes.menu}>
-          <ProductList />
+          <ProductList 
+          productDetails={productDetails}
+          />
         </div>
       }
       {activeState.comment && 
