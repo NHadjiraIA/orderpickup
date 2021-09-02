@@ -24,11 +24,9 @@ export const Mapping = () => {
          setRestaurant(res.data);
         })
         .catch((err) => {
-          // console.log("getAllUsers > axios err=", err);
-          // reject("Error in getAllrESTAURANTS axios!");
+          
         });
-       
-    //    console.log("useeffett", array);
+      
     }, [])
 
 const[restaurant, setRestaurant] = useState([]);

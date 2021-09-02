@@ -12,6 +12,7 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('restaurants', [{
+ 
     title: "Bakery la joie",
     thumbnail_url: "https://images.unsplash.com/photo-1509482560494-4126f8225994?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     description: "sample restaurant for goood people",

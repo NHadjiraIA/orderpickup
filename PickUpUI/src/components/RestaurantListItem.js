@@ -3,6 +3,7 @@ import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import "./restaurantListItem.css";
 import { DistanceMatrixService, LoadScript } from "@react-google-maps/api";
 
+import { RESTAURANT } from "../navigation/CONSTANTS";
 
 const libraries = ["places"];
 
@@ -13,6 +14,8 @@ export default function RestaurantListItem(props) {
     <ul id="all_restaurants">
       <li
         className="mapped_restaurant"
+
+      //  onClick={() =>{}}
         onMouseOver={() => {
           props.handleActiveMarker(props.restaurant.id);
         }}
