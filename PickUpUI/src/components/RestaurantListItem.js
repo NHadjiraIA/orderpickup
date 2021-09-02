@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import "./restaurantListItem.css";
 import { DistanceMatrixService, LoadScript } from "@react-google-maps/api";
+import API from '../mapAPIKey'
 
 
 const libraries = ["places"];
@@ -41,7 +42,7 @@ export default function RestaurantListItem(props) {
               <DriveEtaIcon />
               <LoadScript
                 id="script-loader"
-                googleMapsApiKey=""
+                googleMapsApiKey={API}
                 libraries={libraries}
               >
                 <DistanceMatrixService

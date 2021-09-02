@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "./map.css";
 import mapStyles from "./mapStyles";
+import API from '../mapAPIKey'
 
 import {
   GoogleMap,
@@ -67,7 +68,7 @@ function Map(props) {
   return (
     <LoadScript
       id="script-loader"
-      googleMapsApiKey=""
+      googleMapsApiKey={API}
       libraries={libraries}
     >
       <GoogleMap

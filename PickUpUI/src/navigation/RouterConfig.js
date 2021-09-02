@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, BrowserRouter ,Route, Link } from "react-router-dom";
 import Home from "../pages/Home";
 import {dish} from "../pages/Dish"
-import {orders} from '../pages/Orders'
+import {Orders} from '../pages/Orders'
 import {cart} from '../pages/Cart'
 import {login} from '../pages/Login'
 import {restaurant} from '../pages/Restaurant'
@@ -46,7 +46,7 @@ export const RouterConfig = (props) => {
         <Route exact path={MAP} component={Mapping} />
         <Route exact path={DISH} component={dish} />
         <Route exact path={RESTAURANT} component={restaurant} />
-        <Route exact path={ORDERS} component={orders} />
+        <Route exact path={ORDERS} component={Orders} />
         <Route exact path={CART} component={cart} />
         <Route exact path={LOGIN} component={login} />
         <Route exact path={SIGNUP} component={signup} />
