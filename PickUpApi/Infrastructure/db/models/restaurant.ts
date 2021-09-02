@@ -18,6 +18,7 @@ import { DishEntity } from "./dish";
 import { OrderEntity } from "./order";
 import { RatingEntity } from "./rating";
 import { UserEntity } from "./user";
+import { DishEntity } from "./dish";
 
 interface RestaurantAttributes {
   id: number;

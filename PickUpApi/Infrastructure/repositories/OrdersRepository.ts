@@ -7,14 +7,16 @@ export class OrdersRepository{
     }
 
     public async Get(): Promise<OrderEntity[]>{
-        let orders  = await OrderEntity.findAll({include: 'orderdetails'});
+        let orders  = await OrderEntity.findAll({
+            include: {all: true, nested: true}
+        });
         return orders;
     }
 
     public async GetByUserId(userId): Promise<OrderEntity[]>{
         let orders  = await OrderEntity.findAll({
             where: {userId: `${userId}`},
-            include: 'orderdetails'
+            include: {all:true, nested: true}
         });
         return orders;
     }

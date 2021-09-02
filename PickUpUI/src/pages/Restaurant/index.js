@@ -1,7 +1,19 @@
 import React from "react";
 import Restaurant from "../../components/Restaurant";
+import React from "react";
+import Restaurant from "../../components/Restaurant";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+const RestaurantPage = (props) => {
+  return (
+    <div>
+      <Restaurant {...props} />
+    </div>
+  );
+};
+
+export default RestaurantPage;
 
 
 

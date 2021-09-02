@@ -8,11 +8,11 @@ import {
   HasManyHasAssociationMixin,
   Association,
   HasManyCountAssociationsMixin,
+  HasOneGetAssociationMixin,
   HasManyCreateAssociationMixin,
   Optional,
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
-import { RestaurantEntity } from "./restaurant";
 import { UserEntity } from "./user";
 
 interface CommentAttributes {
@@ -33,6 +33,14 @@ export class CommentEntity extends Model<CommentAttributes, CommentCreationAttri
   public Comment!: string;
   public createdAt!: Date;
   public updatedAt!: Date | null;
+
+  public getCommenter!: HasOneGetAssociationMixin<UserEntity>;
+  
+  public readonly commenter?: UserEntity;
+
+  public static associations: {
+    commenter: Association<CommentEntity, UserEntity>;
+  }
 }
 
 CommentEntity.init(
@@ -69,5 +77,8 @@ CommentEntity.init(
   }
 );
 
-  // CommentEntity.belongsTo(RestaurantEntity);
-  // CommentEntity.belongsTo(UserEntity);
+CommentEntity.hasOne(UserEntity, {
+  sourceKey:'userId',
+  foreignKey:'id',
+  as: 'commenter'
+})

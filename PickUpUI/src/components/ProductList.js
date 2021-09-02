@@ -41,7 +41,7 @@ function ProductList(props) {
         price={item.price}
         calories={item.calories}
       />
-    )
+    );
   });
 
   return (

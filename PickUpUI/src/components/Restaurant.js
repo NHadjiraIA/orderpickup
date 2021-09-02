@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import useStyles from './RestaurantStyle.js'
-import ProductList from './ProductList.js'
-import StarIcon from '@material-ui/icons/Star';
-import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import CommentList from './CommentList.js';
-import Button from '@material-ui/core/Button';
+import useStyles from "./RestaurantStyle.js";
+import ProductList from "./ProductList.js";
+import StarIcon from "@material-ui/icons/Star";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import CommentList from "./CommentList.js";
+import Button from "@material-ui/core/Button";
 
 import CallEndRoundedIcon from '@material-ui/icons/CallEndRounded';
 
@@ -21,12 +21,12 @@ const productDetails = props.product;
 
   const toggleActive = (currentState) => {
     // setActiveState({...activeState, currentState: true})
-    if (currentState === 'menu') {
-      setActiveState({menu: true, comment: false})
+    if (currentState === "menu") {
+      setActiveState({ menu: true, comment: false });
     } else {
-      setActiveState({menu: false, comment: true})
+      setActiveState({ menu: false, comment: true });
     }
-  }
+  };
 
   return (
     <>
@@ -53,21 +53,24 @@ const productDetails = props.product;
                 </div>
               </div>
             </div> */}
-            <StarIcon fontSize='large'/><StarIcon fontSize='large'/><StarIcon fontSize='large'/><StarIcon fontSize='large'/><StarIcon fontSize='large'/>
+            <StarIcon fontSize="large" />
+            <StarIcon fontSize="large" />
+            <StarIcon fontSize="large" />
+            <StarIcon fontSize="large" />
+            <StarIcon fontSize="large" />
             <>6.5k</>
-            <div className={classes.tagsAndDistance}> 
+            <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
                 <p>#vegetariand</p>
-                <p>#halal</p> 
+                <p>#halal</p>
                 <p>#thebest</p>
                 <p>#nut free</p>
               </div>
-              <div className={classes.distance}> 
+              <div className={classes.distance}>
                 <DirectionsWalkIcon></DirectionsWalkIcon>
                 <p>5-10 min</p>
               </div>
             </div>
-
           </div>
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
@@ -81,23 +84,22 @@ const productDetails = props.product;
         </div>
       </hero>
       <div className={classes.heroMenu}>
-        <Button onClick={() => toggleActive('menu')}>Menu</Button>
-        <Button onClick={() => toggleActive('comments')}>Comments</Button>
+        <Button onClick={() => toggleActive("menu")}>Menu</Button>
+        <Button onClick={() => toggleActive("comments")}>Comments</Button>
       </div>
-      {activeState.menu && 
+      {activeState.menu && (
         <div className={classes.menu}>
           <ProductList 
           productDetails={productDetails}
           />
         </div>
-      }
-      {activeState.comment && 
-      <div>
-        <CommentList />
-      </div>
-      }
+      )}
+      {activeState.comment && (
+        <div>
+          <CommentList />
+        </div>
+      )}
     </>
-
   );
 }
 

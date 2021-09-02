@@ -5,7 +5,7 @@ import {CommentEntity} from "../../Infrastructure/db/models/comment"
 export const toEntity = (CommentDto: CommentDto): CommentEntity => {
     let commentEntity = new CommentEntity();
     commentEntity.id = CommentDto.Id;
-    commentEntity.restaurantId = CommentDto.restaurantId;
+    commentEntity.restaurantId = CommentDto.RestaurantId;
     commentEntity.userId = CommentDto.UserId;
     commentEntity.Comment = CommentDto.Comment;
     commentEntity.createdAt = CommentDto.CreatedAt;
