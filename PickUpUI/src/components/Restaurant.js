@@ -7,6 +7,9 @@ import CommentList from './CommentList.js';
 import Button from '@material-ui/core/Button';
 
 function Restaurant(props) {
+
+  //getting setCart from props 
+
   console.log("propssss", props);
   const classes = useStyles();
 
@@ -78,7 +81,9 @@ function Restaurant(props) {
       </div>
       {activeState.menu && 
         <div className={classes.menu}>
-          <ProductList />
+          <ProductList 
+            setCart={props.setCart}
+          />
         </div>
       }
       {activeState.comment && 

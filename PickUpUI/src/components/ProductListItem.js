@@ -9,15 +9,27 @@ import Typography from '@material-ui/core/Typography';
 import Counter from './Counter.js'
 import TextField from '@material-ui/core/TextField';
 import {CART} from "../navigation/CONSTANTS";
-import { ListItemAvatar } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 function ProductListItem(props) {
+  //setCart
+
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
-  const [quantity, updateQuantity] = useState(1);
+  
+  const [quantity, setQuantity] = useState(1);
+  
+  const addToCart = () => {
+    const cartItem = {
+      name: props.name,
+      quantity: quantity,
 
+    }
+
+    props.setCart((prev)=> [...prev, cartItem])
+  }
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -26,12 +38,12 @@ function ProductListItem(props) {
   };
 
   const increment = () => {
-    updateQuantity(quantity + 1)
+    setQuantity(quantity + 1)
   }
 
   const decrement = () => {
     if (quantity > 1) {
-      updateQuantity(quantity-1)
+      setQuantity(quantity-1)
     }
   }
 
@@ -76,7 +88,8 @@ function ProductListItem(props) {
             <Button 
               className={classes.cartButton} 
               size='medium'
-              onClick={() => {localStorage.setItem('quantity', quantity)}}
+              // onClick={() => {localStorage.setItem('quantity', quantity)}}
+              onClick={addToCart}
             > 
               Add {quantity} to Cart
             </Button>

@@ -1,19 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import { Switch, BrowserRouter ,Route, Link } from "react-router-dom";
 import Home from "../pages/Home";
 import {dish} from "../pages/Dish"
 import {Orders} from '../pages/Orders'
-import {cart} from '../pages/Cart'
+import {Cart} from '../pages/Cart'
 import {login} from '../pages/Login'
-import {restaurant} from '../pages/Restaurant'
+import RestaurantPage from '../pages/Restaurant'
 import {signup} from '../pages/Signup'
 import {landing} from '../pages/Landing'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
 import { payement } from '../pages/Payment'
 import {orderList} from '../pages/Vendors/orderList'
-// import {restaurant} from '../pages/Restaurant'
-import{Mapping} from '../pages/Map'
+import {Mapping} from '../pages/Map'
 import {commentList} from '../pages/Vendors/commentList.js'
 import { NotFound } from "./NotFound";
 import { 
@@ -32,9 +31,12 @@ import {
   VENDOR_ORDERS
 } from "./CONSTANTS";
 
-
+//put state of the cart here 
 
 export const RouterConfig = (props) => {
+
+  const [cart, setCart] = useState({});
+
   return (
     <>
       <BrowserRouter>
@@ -45,9 +47,20 @@ export const RouterConfig = (props) => {
         <Route exact path={ROOT} component={landing} />
         <Route exact path={MAP} component={Mapping} />
         <Route exact path={DISH} component={dish} />
-        <Route exact path={RESTAURANT} component={restaurant} />
+        <Route exact path={RESTAURANT}>
+          <RestaurantPage 
+            setCart={setCart}
+          />
+        </Route>
         <Route exact path={ORDERS} component={Orders} />
-        <Route exact path={CART} component={cart} />
+        <Route exact path={CART}>
+          <Cart 
+            cart={cart}
+            setCart={setCart}
+
+          />
+
+        </Route>
         <Route exact path={LOGIN} component={login} />
         <Route exact path={SIGNUP} component={signup} />
         <Route exact path={VENDOR_DASHBOARD} component={dashboard} />

@@ -1,10 +1,15 @@
 import React from 'react' 
 import Restaurant from '../../components/Restaurant'
 
-export const restaurant = () => {
+const RestaurantPage = (props) => {
+
     return (
         <div>
-            <Restaurant/>
+            <Restaurant
+                setCart={props.setCart}
+            />
         </div>
     )
 }
+
+export default RestaurantPage;

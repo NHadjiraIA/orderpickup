@@ -1,7 +1,7 @@
 import React from 'react' 
 import CartList from '../../components/CartList'
 
-export const cart = () => {
+export const Cart = () => {
     return (
         <div>
             <CartList/>
