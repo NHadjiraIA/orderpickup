@@ -10,14 +10,17 @@ import {
   HasManyCountAssociationsMixin,
   HasManyCreateAssociationMixin,
   Optional,
+  HasOneGetAssociationMixin,
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
 import { CommentEntity } from "./comment";
 import { OrderEntity } from "./order";
 import { RatingEntity } from "./rating";
+import { UserEntity } from "./user";
 
 interface RestaurantAttributes {
   id: number;
+  ownerId:number;
   title: string;
   thumbnail_url: string;
   description: string;
@@ -39,6 +42,7 @@ interface RestaurantCreationAttributes extends Optional<RestaurantAttributes, "i
 
 export class RestaurantEntity extends Model<RestaurantAttributes, RestaurantCreationAttributes>  implements RestaurantAttributes {
   public id!: number;
+  public ownerId!: number;
   public title!: string;
   public thumbnail_url!: string;
   public description!: string;
@@ -61,11 +65,18 @@ export class RestaurantEntity extends Model<RestaurantAttributes, RestaurantCrea
   public readonly orders?: OrderEntity[]; 
   public readonly ratings?: RatingEntity[]; 
   public readonly comments?: CommentEntity[]; 
+  public getDishes!: HasManyGetAssociationsMixin<DishEntity>;
+  public getOwner!: HasOneGetAssociationMixin<UserEntity>;
+  
+  public readonly dishes?: DishEntity[]; 
+  public readonly owner?: UserEntity;
 
   public static associations: {
     orders: Association<RestaurantEntity, OrderEntity>;
     ratings: Association<RestaurantEntity, RatingEntity>;
     comments: Association<RestaurantEntity, CommentEntity>;
+    dishes: Association<RestaurantEntity, DishEntity>;
+    owner: Association<RestaurantEntity, UserEntity>;
   };
 }
 
@@ -75,6 +86,9 @@ RestaurantEntity.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+    },
+    ownerId: {
+      type: DataTypes.INTEGER
     },
     title: {
       type: new DataTypes.STRING(128),
@@ -157,4 +171,9 @@ RestaurantEntity.init(
     sourceKey: "id",
     foreignKey: "restaurantId",
     as: "comments",
+  });
+  RestaurantEntity.hasOne(UserEntity,{
+    sourceKey: "ownerId",
+    foreignKey: "id",
+    as: "owner"
   });

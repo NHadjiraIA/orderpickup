@@ -15,7 +15,12 @@ export class UserApi{
     };
 
     async getById(req: express.Request, res: express.Response){
+        
+        const phone  = req.params.phone;
         const idUser  = req.params.id;
+        console.log('were are in getUserById');
+        console.log(`the id user is ${idUser}`);
+        console.log(`the user phone  is ${phone}`);
         let foundUser = await this._userRepository.GetById(idUser);
         if(foundUser){
             return res.status(200).json(foundUser);
@@ -25,8 +30,11 @@ export class UserApi{
         }
     }
     async getByPhone(req: express.Request, res: express.Response){
-        const phoneUser  = req.params.phone;
-        let foundUser = await this._userRepository.GetByPhone({tag: phoneUser}).exec();
+        const phoneUser  = Number(req.query.phone);
+        if(isNaN(phoneUser)){
+            return res.status(400).send("User phone must be a number.");
+        }
+        let foundUser = await this._userRepository.GetByPhone(phoneUser);
         if(foundUser){
             return res.status(200).json(foundUser);
         }

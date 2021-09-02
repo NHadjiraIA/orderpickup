@@ -9,6 +9,7 @@ export const toEntity = (userDto: UserDto): UserEntity => {
     userEntity.email = userDto.Email;
     userEntity.password = userDto.Password;
     userEntity.role = userDto.Role;
+    userEntity.phone = userDto.Phone;
     userEntity.createdAt = userDto.CreatedAt;
     userEntity.updatedAt = userDto.UpdatedAt;
     return userEntity;

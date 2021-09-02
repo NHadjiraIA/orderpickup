@@ -10,8 +10,8 @@ import {signup} from '../pages/Signup'
 import {landing} from '../pages/Landing'
 import {dashboard} from '../pages/Vendors/index.js'
 import {vendorMenu} from '../pages/Vendors/vendorMenu.js'
+import { payement } from '../pages/Payment'
 import {orderList} from '../pages/Vendors/orderList'
-
 // import {restaurant} from '../pages/Restaurant'
 import{Mapping} from '../pages/Map'
 import {commentList} from '../pages/Vendors/commentList.js'
@@ -28,6 +28,7 @@ import {
   VENDOR_DASHBOARD,
   VENDOR_MENU,
   VENDOR_COMMENTS,
+  PAYMENT,
   VENDOR_ORDERS
 } from "./CONSTANTS";
 
@@ -40,7 +41,7 @@ export const RouterConfig = (props) => {
       <Switch>
         List all public routes here
         <Route exact path={VENDOR_COMMENTS} component={commentList}/>
-
+        <Route exact path={PAYMENT} component={payement}/>
         <Route exact path={ROOT} component={landing} />
         <Route exact path={MAP} component={Mapping} />
         <Route exact path={DISH} component={dish} />

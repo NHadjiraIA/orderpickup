@@ -29,6 +29,7 @@
     "nodemon": "^2.0.12",
     "pg": "^8.7.1",
     "sequelize": "^6.6.5",
-    "sequelize-typescript": "^2.1.0"
+    "sequelize-typescript": "^2.1.0",
+    "stripe": "^8.173.0"
   }
 }

@@ -2,7 +2,7 @@
   "development": {
     "username": "xuxu",
     "password": "xuxu",
-    "database": "pickFoodDb-test",
+    "database": "databasePickFood",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

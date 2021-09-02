@@ -6,6 +6,7 @@ export const toEntity = (CommentDto: CommentDto): CommentEntity => {
     let commentEntity = new CommentEntity();
     commentEntity.id = CommentDto.Id;
     commentEntity.restaurantId = CommentDto.restaurantId;
+    commentEntity.userId = CommentDto.UserId;
     commentEntity.Comment = CommentDto.Comment;
     commentEntity.createdAt = CommentDto.CreatedAt;
     commentEntity.updatedAt = CommentDto.UpdatedAt;
