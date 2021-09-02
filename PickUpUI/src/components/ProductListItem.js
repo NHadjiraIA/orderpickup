@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Counter from './Counter.js'
 import TextField from '@material-ui/core/TextField';
 import {CART} from "../navigation/CONSTANTS";
+import { ListItemAvatar } from '@material-ui/core';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
@@ -41,13 +42,13 @@ function ProductListItem(props) {
       open={open} 
     >
       <div className={classes.entireDialog}>
-        <img src='https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80'/>
+        <img src={props.img_url}/>
 
         <div className={classes.dialogDetail}>
-          <DialogTitle id="simple-dialog-title">Product Name</DialogTitle>
-          <p>description description description description description description description description description description description description description description description description description description description description description description description</p>
-          <h4>$5.62</h4>
-          <h4>591 Cals.</h4>
+          <DialogTitle id="simple-dialog-title">{props.name}</DialogTitle>
+          <p>{props.description}</p>
+          <h4>${props.price}</h4>
+          <h4>{props.calories} Cals.</h4>
           
           <div>
             <h3>Special Requests</h3>
@@ -70,7 +71,7 @@ function ProductListItem(props) {
                 decrement={decrement} 
               />
             </div>
-            <Button className={classes.cartButton} size='medium' >Add {quantity} to Cart</Button>
+            <Button className={classes.cartButton} size='medium'> Add {quantity} to Cart</Button>
             <Button className={classes.cartButton} size='medium' href={CART}>Go to Cart</Button>
           </div>
           
@@ -88,7 +89,7 @@ ProductListItem.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function ProductListItemDemo() {
+export default function ProductListItemDemo(props) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -113,28 +114,38 @@ export default function ProductListItemDemo() {
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       {/* <br /> */}
       <div className={classes.productIntro}>
-        <Typography onClick={handleClickOpen}><h3>Name</h3></Typography>
+        <Typography onClick={handleClickOpen}><h3>{props.name}</h3></Typography>
         <Typography onClick={handleClickOpen}>
-          <p>Product Intro Product Intro Product Intro Product Intro Product Intro Intro Product Intro Intro Product Intro </p>
+          <p>{props.description}</p>
         </Typography>
         <br/>
         <br/>
         <br/>
         <br/>
         <div className={classes.priceAndCalories}>
-          <Typography onClick={handleClickOpen}>$4.59</Typography>
+          <Typography onClick={handleClickOpen}>${props.price}</Typography>
           <Typography 
             onClick={handleClickOpen}
             className={classes.calories}
             >
-              258 Cals.
+              {props.calories}Cals.
             </Typography>
         </div>
         {/* <br/> */}
         {/* <Button variant="outlined" color="primary">Add to Cart</Button> */}
-        <ProductListItem selectedValue={selectedValue} open={open} onClose={handleClose} />
+        <ProductListItem 
+          selectedValue={selectedValue} 
+          open={open} 
+          onClose={handleClose} 
+          key={props.id} 
+          name={props.name} 
+          img_url={props.img_url}
+          description={props.description}
+          price={props.price}
+          calories={props.calories}
+          />
       </div>
-      <img src='https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80' onClick={handleClickOpen}/>
+      <img src={props.img_url} onClick={handleClickOpen}/>
     </div>
 
   );
