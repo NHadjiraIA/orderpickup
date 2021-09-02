@@ -47,14 +47,23 @@ app.use(compression())
 app.use(helmet())
 app.use(morgan('combined'))
 
-userRouter.get('/users',
-  (req, res) => userApi.getAll(req, res)
-)
+// userRouter.get('/users',
+//   (req, res) => userApi.getAll(req, res)
+// )
 userRouter.get('/users/:id',
   (req, res) => userApi.getById(req, res)
 )
-userRouter.get('/users/:phoen',
-  (req, res) => userApi.getByPhone(req, res)
+userRouter.get('/users',
+  (req, res) => {
+    let phoneValue = req.query.phone;
+    if(phoneValue){
+      userApi.getByPhone(req, res);
+    }
+    else{
+      userApi.getAll(req, res);
+    }
+    
+  }
 )
 userRouter.post('/users',
   (req, res) => userApi.create(req, res)
