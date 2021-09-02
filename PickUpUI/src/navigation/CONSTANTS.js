@@ -9,9 +9,10 @@ export const PAYMENT ='/payment'
 export const LOGIN = '/login';
 export const SIGNUP = '/signup';
 //----MAP PATHS-----------------
-export const MAP = "/searchmap";
+export const MAP = "/searchrestaurants";
 //----VENDOR PATHS-----------------
 export const VENDOR_DASHBOARD = '/vendors';
 export const VENDOR_MENU = '/vendors/menu';
 
-export const VENDOR_COMMENTS ='/vendors/comments'
+export const VENDOR_COMMENTS ='/vendors/comments';
+export const VENDOR_ORDERS ='/vendors/orders';

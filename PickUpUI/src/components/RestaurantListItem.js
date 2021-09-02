@@ -1,15 +1,12 @@
 import React, { useState, useCallback } from "react";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import "./restaurantListItem.css";
-import {
-  DistanceMatrixService,
-  LoadScript
-  } from "@react-google-maps/api";
-// import "components/InterviewerListItem.scss";
-// import classNames from 'classnames';
+import { DistanceMatrixService, LoadScript } from "@react-google-maps/api";
+
+
+const libraries = ["places"];
 
 export default function RestaurantListItem(props) {
-  console.log("restaurant itemmmmmm", props);
   const [duration, setDuration] = useState("loading");
 
   return (
@@ -17,50 +14,48 @@ export default function RestaurantListItem(props) {
       <li
         className="mapped_restaurant"
         onMouseOver={() => {
-          props.handleActiveMarker(props.restaurant.id)
+          props.handleActiveMarker(props.restaurant.id);
         }}
         onMouseOut={() => props.handleActiveMarker(null)}
       >
         <div className="card-content">
           <div className="imagebox">
-            <img src={props.restaurant.img} alt="thumbnail" />
+            <img src={props.restaurant.thumbnail_url} alt="thumbnail" />
           </div>
           <div className="card-text">
-            <h3 className="card-title"> {props.restaurant.name}</h3>
+            <h3 className="card-title"> {props.restaurant.title}</h3>
             <div className="foodtype">
-              <h4> Lunch & Dinner</h4>
+              <h4> {props.restaurant.description}</h4>
             </div>
 
             <div className="availability">
               <h3>Unavailable Now</h3>
             </div>
 
-            <div className="time"> {props.restaurant.open}</div>
+            <div className="time">
+              {" "}
+              {props.restaurant.open_time} AM to {props.restaurant.close_time}{" "}
+              PM{" "}
+            </div>
             <div className="card-distance">
               <DriveEtaIcon />
               <LoadScript
-      id="script-loader"
-      googleMapsApiKey="AIzaSyBFanEsBx0eYHMrchijJOaxu6pnzcAWA-s"
-      libraries={["places"]}
-    >
-              <DistanceMatrixService
-        options={{
-          destinations: [props.restaurant.position],
-          origins: [props.userPosition],
-          travelMode: "DRIVING",
-        }}
-        callback={(response) => {
-          // console.log(
-          //   "Distance:",
-          //   response.rows[0].elements[0].distance.text,
-          //   "\nDuration:",
-          //   response.rows[0].elements[0].duration.text
-          // );
-          setDuration(response.rows[0].elements[0].duration.text);
-        }}
-      />
-          </LoadScript>
-          <span>{duration}</span>
+                id="script-loader"
+                googleMapsApiKey=""
+                libraries={libraries}
+              >
+                <DistanceMatrixService
+                  options={{
+                    destinations: [props.restaurantPosition],
+                    origins: [props.userPosition],
+                    travelMode: "DRIVING",
+                  }}
+                  callback={(response) => {
+                    setDuration(response.rows[0].elements[0].duration.text);
+                  }}
+                />
+              </LoadScript>
+              <span>{duration}</span>
             </div>
           </div>
         </div>
