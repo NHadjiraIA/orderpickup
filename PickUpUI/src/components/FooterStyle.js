@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     // top: '0',
     // width: '100vw',
     // flex: '1',
+    // flexGrow: 1,
+
     height: '90px',
     paddingLeft: '2em', 
     paddingRight: '2em',

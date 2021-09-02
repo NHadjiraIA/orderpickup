@@ -84,11 +84,11 @@ const useStyles = makeStyles((theme) => ({
   },
   productImg: {
     height: '60%',
-    // width: '80%',
+    width: '80%',
     marginBottom: '1em',
   },
   imgColumn: {
-    width: '20%'
+    width: '40px'
   }
 }));
 

@@ -4,21 +4,24 @@ import RestaurantListItem from "./RestaurantListItem";
 
 export default function RestaurantContainer(props){
   let item = props.restaurants.map((restaurant) => {
-    console.log("PicKK "+ restaurant);
+    
 return(
 <RestaurantListItem
 restaurant = {restaurant}
 handleActiveMarker={props.handleActiveMarker}
 userPosition={props.userPosition}
+restaurantPosition={{lat:Number(restaurant.lat), lng:Number(restaurant.lng)}}
 />
   );
 });
 
 return(
   <section className="items">
+    <nav>
   <ul className="itemsList">
     {item}
     </ul>
+    </nav>
   </section>
   );
 };
