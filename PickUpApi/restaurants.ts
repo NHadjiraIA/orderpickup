@@ -19,8 +19,9 @@ export class RestaurantApi{
             return res.status(200).json(foundRestaurant);
         }
         else{
-            return res.status(404).send(`User with id: ${idRestaurant} was not found.`)
+            return res.status(404).send(`restaurant with id: ${idRestaurant} was not found.`)
         }
     }
 }
 
+ 

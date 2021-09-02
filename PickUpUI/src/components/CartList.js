@@ -11,6 +11,8 @@ import Counter from './Counter'
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
+import { PAYMENT } from '../navigation/CONSTANTS';
+import { useHistory} from "react-router-dom";
 
 
 //FOR LOCALSTORAGE
@@ -47,8 +49,9 @@ const useStyles = makeStyles({
 
 
 function CartList() {
-
-  const [data, updateData] = useState([]);
+  const history = useHistory();
+  const [data, setData] = useState([]);
+  const [total , setTotal] = useState(0);
   const classes = useStyles();
 
   const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
@@ -57,10 +60,9 @@ function CartList() {
     return { img, desc, pricePer, qty};
   }
   
-  function subtotal(items) {
-    console.log('ITEMS', items)
+  function subtotal(data) {
     let total = 0;
-    items.map( item => {
+    data.map( item => {
       let itemPrice = Number(item.pricePer) * Number(item.qty)
       total += itemPrice
     })
@@ -80,24 +82,25 @@ function CartList() {
   //set items/objects from local storage to rows
 
   const rows = [];
-  let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100);
+  let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 1);
   rows.push(rowItem);
-  rowItem = createRow(testImg,'Paper (Case)', 5.62, 10)
+  rowItem = createRow(testImg,'Paper (Case)', 5.62, 1)
   rows.push(rowItem);
-  rowItem = createRow(testImg,'Waste Basket', 15.20, 2)
+  rowItem = createRow(testImg,'Waste Basket', 15.20, 1)
   rows.push(rowItem);
   
   useEffect(() => {
-    updateData(rows);
+
+    setData(rows);
   }, []);
 
   // const invoiceSubtotal = subTotal(rows);
 
-  const invoiceSubtotal = subtotal(rows);
+  let  invoiceSubtotal = subtotal(rows);
 
 
-  const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-  const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+  const invoiceTaxes = TAX_RATE * total;
+  const invoiceTotal = invoiceTaxes + total;
 
   const sum = (index) => {
     return (data[index].qty * data[index].pricePer).toFixed(2)
@@ -106,22 +109,40 @@ function CartList() {
   //for the counter
   const increment = (index) => {
     let tempState = data
-    
     tempState[index].qty = tempState[index].qty + 1
-    updateData([...tempState])
-
+    setData([...tempState])
+   
   }
 
   const decrement = (index) => {
     let tempState = data
     if (tempState[index].qty > 1) {
       tempState[index].qty = tempState[index].qty - 1
-      updateData([...tempState])
+      setData([...tempState])
 
     }
   }
-
-
+  const removeItem = (desc) => {
+    console.log("remove item")
+    const newData = [...data];
+    const filteredData = newData.filter(row => row.desc !== desc)
+    setData(filteredData) 
+    
+  }
+  const calculateTotal = (items) => {
+   const calculatedTotal = subtotal(items)
+    setTotal(calculatedTotal) 
+    
+  }
+  const pay = (path) => {
+    history.push({
+      pathname: PAYMENT,
+      state: { 
+        total: invoiceTotal
+      }
+    });
+  }
+ 
   return (
     <div className={classes.root}>
 
@@ -138,7 +159,9 @@ function CartList() {
           </TableHead>
           <TableBody>
             {data.map((row, index) => (
+               
               <TableRow>
+                {console.log(index)}
                 <TableCell align="left">
                   <img className={classes.productImg} src={row.img} />
                 </TableCell>
@@ -147,11 +170,28 @@ function CartList() {
                 <TableCell>
                   <Counter index={index} qty={row.qty} increment={increment} decrement={decrement} />
                 </TableCell>
-                <TableCell align="center"><h2>${sum(index)}</h2></TableCell>
+                <TableCell align="center"><h2> ${sum(index)}</h2></TableCell>
                 <TableCell>
-                  <IconButton>
-                    <DeleteIcon color="inherit" fontSize='large' />
-                  </IconButton>
+                 
+                  <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={()=>removeItem(row.desc)
+            }
+            >
+              Delete
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={()=>calculateTotal(data)
+            }
+            >
+              Add to total
+            </Button>
+ 
                 </TableCell>
               </TableRow>
             ))}
@@ -168,7 +208,7 @@ function CartList() {
               <TableCell colSpan={2}><h2>Subtotal</h2></TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
-              <TableCell align="right"><h2>${invoiceSubtotal.toFixed(2)}</h2></TableCell>
+              <TableCell align="right"><h2>${total.toFixed(2)}</h2></TableCell>
               <TableCell></TableCell>
 
             </TableRow>
@@ -195,7 +235,8 @@ function CartList() {
 
       </TableContainer>
       <br></br>
-      <Button fontSize='large' className={classes.checkoutButton}>Checkout</Button>
+      <Button fontSize='large' className={classes.checkoutButton} onClick={()=>pay()
+       } >Checkout</Button>
     </div>
   )
   
