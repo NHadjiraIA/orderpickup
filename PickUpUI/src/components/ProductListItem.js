@@ -10,12 +10,13 @@ import Counter from "./Counter.js";
 import TextField from "@material-ui/core/TextField";
 import { CART } from "../navigation/CONSTANTS";
 import { useHistory } from "react-router-dom";
+import { useCart } from "../context/cart";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
 function ProductListItem(props) {
   let history = useHistory();
-
+  const cart = useCart();
   const clickToCart = () => {
     history.push(CART);
   };
@@ -35,7 +36,7 @@ function ProductListItem(props) {
       price: props.price,
       calories: props.calories,
     };
-    props.addItem(cartItem);
+    cart.addItem(cartItem);
   };
 
   const handleClose = () => {
@@ -170,8 +171,6 @@ export default function ProductListItemDemo(props) {
           description={props.description}
           price={props.price}
           calories={props.calories}
-          addItem={props.addItem}
-          cart={props.cart}
         />
       </div>
       <img src={props.img_url} onClick={handleClickOpen} />

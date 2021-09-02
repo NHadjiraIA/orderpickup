@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,14 +8,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Counter from "./Counter";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { PAYMENT } from "../navigation/CONSTANTS";
 import { useHistory } from "react-router-dom";
-
-//FOR LOCALSTORAGE
-// localstorage.getItem('quantity')
+import { useCart } from "../context/cart";
 
 const TAX_RATE = 0.13;
 
@@ -49,7 +45,8 @@ const useStyles = makeStyles({
 function CartList(props) {
   const history = useHistory();
   const [total, setTotal] = useState(0);
-  const cart = Object.values(props.cart);
+  const cart = useCart();
+  const cartList = Object.values(cart.cart);
 
   const classes = useStyles();
 
@@ -66,7 +63,7 @@ function CartList(props) {
   const invoiceTotal = invoiceTaxes + total;
 
   const sum = (index) => {
-    return (cart[index].quantity * cart[index].price).toFixed(2);
+    return (cartList[index].quantity * cartList[index].price).toFixed(2);
   };
 
   const calculateTotal = (items) => {
@@ -108,7 +105,7 @@ function CartList(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cart.map((row, index) => (
+            {cartList.map((row, index) => (
               <TableRow>
                 <TableCell align="left">
                   <img className={classes.productImg} src={row.img_url} />
@@ -122,8 +119,8 @@ function CartList(props) {
                 <TableCell>
                   <Counter
                     qty={row.quantity}
-                    increment={() => props.increaseQuantity(row.id)}
-                    decrement={() => props.decreaseQuantity(row.id)}
+                    increment={() => cart.increaseQuantity(row.id)}
+                    decrement={() => cart.decreaseQuantity(row.id)}
                   />
                 </TableCell>
                 <TableCell align="center">
@@ -134,7 +131,7 @@ function CartList(props) {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    onClick={() => props.removeItem(row.id)}
+                    onClick={() => cart.removeItem(row.id)}
                   >
                     Delete
                   </Button>
@@ -142,7 +139,7 @@ function CartList(props) {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    onClick={() => calculateTotal(cart)}
+                    onClick={() => calculateTotal(cartList)}
                   >
                     Add to total
                   </Button>

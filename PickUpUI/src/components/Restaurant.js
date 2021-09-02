@@ -86,7 +86,7 @@ function Restaurant(props) {
       </div>
       {activeState.menu && (
         <div className={classes.menu}>
-          <ProductList addItem={props.addItem} cart={props.cart} />
+          <ProductList />
         </div>
       )}
       {activeState.comment && (

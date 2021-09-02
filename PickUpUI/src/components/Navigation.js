@@ -8,13 +8,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { LOGIN, ORDERS, CART, MAP} from "../navigation/CONSTANTS";
-import { useHistory } from "react-router-dom";
-// import Button from '@material-ui/core/Button';
+import { LOGIN, ORDERS, CART, MAP } from "../navigation/CONSTANTS";
+import { Link } from "react-router-dom";
 import useStyles from "./NavigationStyle.js";
 
 export const Navigation = () => {
-
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -34,25 +32,6 @@ export const Navigation = () => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-  let history = useHistory();
-
-  const clickToLogin = () => {
-    
-    history.push(LOGIN);
-  }
-
-  const clickToOrders = () => {
-    history.push(ORDERS);
-  }
-
-  const clickToCart = () => {
-    history.push(CART);
-  }
-
-  const clickToMap = () => {
-    history.push(MAP);
-  }
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -100,20 +79,26 @@ export const Navigation = () => {
             NoshFeast
           </Typography>
           <Typography className={classes.links}>
-            {/* <Button onClick={clickToMap}>Find Restaurants</Button> */}
-            <Typography onClick={clickToMap}>Find Restaurants</Typography>
-            <Typography onClick={clickToOrders}>Orders</Typography>
-            {/* <p>Account</p> */}
+            <Link to={MAP}>
+              <Typography>Find Restaurants</Typography>
+            </Link>
+            <Link to={ORDERS}>
+              <Typography>Orders</Typography>
+            </Link>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 2 new items" color="inherit" onClick={clickToCart}>
+            <IconButton aria-label="show 2 new items" color="inherit">
               <Badge badgeContent={2} color="secondary">
-                <ShoppingCart />
+                <Link to={CART}>
+                  <ShoppingCart />
+                </Link>
               </Badge>
             </IconButton>
             <div>
-              <Typography onClick={clickToLogin}>LogIn</Typography>
+              <Link to={LOGIN}>
+                <Typography>LogIn</Typography>
+              </Link>
             </div>
           </div>
           <div className={classes.sectionMobile}>
@@ -133,4 +118,4 @@ export const Navigation = () => {
       {renderMenu}
     </div>
   );
-}
+};

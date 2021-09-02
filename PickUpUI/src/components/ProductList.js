@@ -45,8 +45,6 @@ function ProductList(props) {
         description={item.description}
         price={item.price}
         calories={item.calories}
-        addItem={props.addItem}
-        cart={props.cart}
       />
     );
   });
