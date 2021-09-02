@@ -12,6 +12,8 @@ import {
   StandaloneSearchBox,
 } from "@react-google-maps/api";
 
+const libraries = ["places"];
+
 const containerStyle = {
   width: "70%",
   height: "800px",
@@ -24,32 +26,27 @@ const defaultCenter = {
   lng: -79.278,
 };
 
-const libraries = ["places"];
-
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
 
-
-
 function Map(props) {
   function handleOnLoad() {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        console.log("Latitude is :", position.coords.latitude);
-        console.log("Longitude is :", position.coords.longitude);
-        const coordinates = {lat: position.coords.latitude, lng: position.coords.longitude}
-        props.handleUserPosition(coordinates)
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      const coordinates = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      props.handleUserPosition(coordinates);
     });
   }
-  // const [activeMarker, setActiveMarker] = useState(null);
+
   const [searchBox, setSearchBox] = useState(null);
-  
-  // const [center, setCenter] = useState(defaultCenter);
 
-
-  
   const markers = props.restaurants;
 
   const onSearchBoxLoad = useCallback((ref) => {
@@ -58,20 +55,20 @@ function Map(props) {
 
   const onPlacesChanged = useCallback(() => {
     const places = searchBox.getPlaces();
-    const lat=places[0].geometry.location.lat();
-    const lng=places[0].geometry.location.lng()
+    const lat = places[0].geometry.location.lat();
+    const lng = places[0].geometry.location.lng();
     props.setCenter({
       lat: lat,
       lng: lng,
-    })
+    });
     console.log(lat, lng);
   }, [searchBox]);
 
   return (
     <LoadScript
       id="script-loader"
-      googleMapsApiKey="AIzaSyBFanEsBx0eYHMrchijJOaxu6pnzcAWA-s"
-      libraries={["places"]}
+      googleMapsApiKey=""
+      libraries={libraries}
     >
       <GoogleMap
         id="searchbox"
@@ -79,7 +76,7 @@ function Map(props) {
         options={options}
         center={props.center}
         zoom={15}
-        onClick={() => props.setActiveMarke(null)}
+        onClick={() => props.handleActiveMarker(null)}
         onLoad={handleOnLoad}
       >
         <StandaloneSearchBox
@@ -88,7 +85,7 @@ function Map(props) {
         >
           <input
             type="text"
-            placeholder="Customized your placeholder"
+            placeholder="Search here"
             // value="Toronto"
             style={{
               boxSizing: `border-box`,
@@ -107,24 +104,26 @@ function Map(props) {
             }}
           />
         </StandaloneSearchBox>
-        
+
         {
           /* Child components, such as markers, info windows, etc. */
           <div>
-            {markers.map(({ id, name, img, position, address }) => (
+            {markers.map(({ id, title, thumbnail_url, lat, lng, address }) => (
               <Marker
                 key={id}
-                position={position}
+                position={{ lat: Number(lat), lng: Number(lng) }}
                 onClick={() => props.handleActiveMarker(id)}
                 // onMouseOver={() => props.handleActiveMarker(id)}
                 // onMouseOut={() => props.handleActiveMarker(null)}
               >
                 {props.activeMarker === id ? (
-                  <InfoWindow onCloseClick={() => props.setActiveMarker(null)}>
+                  <InfoWindow
+                    onCloseClick={() => props.handleActiveMarker(null)}
+                  >
                     <div className="info-box-wrap">
-                      <img src={img} alt="thumbnail" />
+                      <img src={thumbnail_url} alt="thumbnail" />
                       <div className="info-box-text-wrap">
-                        <h6 className="name">{name}</h6>
+                        <h6 className="name">{title}</h6>
                         <p className="address">{address}</p>
                       </div>
                     </div>
@@ -141,4 +140,3 @@ function Map(props) {
 }
 
 export default React.memo(Map);
-

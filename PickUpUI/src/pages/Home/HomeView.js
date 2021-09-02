@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {MAP} from '../../navigation/CONSTANTS'
+import {DISH} from '../../navigation/CONSTANTS'
 import {useHistory} from 'react-router-dom'
 
 const HomeView = props => {
     const history = useHistory();
     
     const goToDish = (path) => {
-      history.push(path || MAP);
+      history.push(path || DISH);
  }
     return (
         <div>     
@@ -18,7 +18,7 @@ const HomeView = props => {
             <div className="col s12">
               <div className="card">
                 <div className="card-content">
-                  <span className="card-title green-text center">Find Food Near Me </span>
+                  <span className="card-title green-text center">Something here </span>
                   <div className="row">
                     <span className="black-text">
                       <p>welcome message.
@@ -29,7 +29,7 @@ const HomeView = props => {
                   
                 </div>
                 <div>
-                <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToDish()}>Search Restaurants</button> 
+                <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToDish()}>Search Something</button> 
              
                 </div>
               </div>
