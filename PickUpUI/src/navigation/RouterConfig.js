@@ -57,9 +57,7 @@ export const RouterConfig = (props) => {
           <Cart 
             cart={cart}
             setCart={setCart}
-
           />
-
         </Route>
         <Route exact path={LOGIN} component={login} />
         <Route exact path={SIGNUP} component={signup} />

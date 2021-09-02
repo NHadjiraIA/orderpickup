@@ -14,7 +14,11 @@ import { useHistory } from "react-router-dom";
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 function ProductListItem(props) {
-  //setCart
+  let history = useHistory();
+
+  const clickToCart = () => {
+    history.push(CART);
+  }
 
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
@@ -25,16 +29,16 @@ function ProductListItem(props) {
     const cartItem = {
       name: props.name,
       quantity: quantity,
-
+      img_url: props.img_url,
+      description: props.description,
+      price: props.price,
+      calories: props.calories,
     }
-
     props.setCart((prev)=> [...prev, cartItem])
   }
 
   const handleClose = () => {
     onClose(selectedValue);
-    //ADDING LOCAL STORAGE STUFF HERE TO TEST
-    // localStorage.setItem('quantity', quantity);
   };
 
   const increment = () => {
@@ -88,12 +92,13 @@ function ProductListItem(props) {
             <Button 
               className={classes.cartButton} 
               size='medium'
-              // onClick={() => {localStorage.setItem('quantity', quantity)}}
               onClick={addToCart}
             > 
               Add {quantity} to Cart
             </Button>
-            <Button className={classes.cartButton} size='medium' href={CART}>Go to Cart</Button>
+            <Button className={classes.cartButton} size='medium' 
+              onClick={clickToCart}
+            >Go to Cart</Button>
           </div>
           
         </div>
