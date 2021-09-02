@@ -8,12 +8,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { LOGIN, ORDERS, CART, MAP} from "../navigation/CONSTANTS";
-
+import { LOGIN, ORDERS, CART, MAP } from "../navigation/CONSTANTS";
+import { Link } from "react-router-dom";
 import useStyles from "./NavigationStyle.js";
 
 export const Navigation = () => {
-  
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -80,19 +79,26 @@ export const Navigation = () => {
             NoshFeast
           </Typography>
           <Typography className={classes.links}>
-          <a href={MAP}>Find Restaurants</a>
-            <a href={ORDERS}>Orders</a>
-            {/* <p>Account</p> */}
+            <Link to={MAP}>
+              <Typography>Find Restaurants</Typography>
+            </Link>
+            <Link to={ORDERS}>
+              <Typography>Orders</Typography>
+            </Link>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 2 new items" color="inherit">
               <Badge badgeContent={2} color="secondary">
-                <a href={CART}><ShoppingCart /></a>
+                <Link to={CART}>
+                  <ShoppingCart />
+                </Link>
               </Badge>
             </IconButton>
             <div>
-            <a  href= {LOGIN}>LogIn</a>
+              <Link to={LOGIN}>
+                <Typography>LogIn</Typography>
+              </Link>
             </div>
           </div>
           <div className={classes.sectionMobile}>
@@ -112,4 +118,4 @@ export const Navigation = () => {
       {renderMenu}
     </div>
   );
-}
+};

@@ -99,16 +99,7 @@ function OrderListItem(props) {
                     
                 <Table className={classes.table} aria-label="spanning table">
                   <TableBody>
-                    {/* <TableRow>
-                      <TableCell rowSpan={5} />
-                      <TableCell colSpan={2}><h4>Subtotal</h4></TableCell>
-                      <TableCell align="right"><h4>${subtotal}</h4></TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell><h4>Tax</h4></TableCell>
-                      <TableCell align="right"><h4>{`${(TAX_RATE * 100).toFixed(0)} %`}</h4></TableCell>
-                      <TableCell align="right"><h4>${invoiceTaxes}</h4></TableCell>
-                    </TableRow> */}
+
                     <TableRow>
                       <TableCell colSpan={2}><h4>Pre-Tax</h4></TableCell>
                       <TableCell align="right"><h4>$12340</h4></TableCell>
@@ -124,22 +115,7 @@ function OrderListItem(props) {
 
             </div>
 
-            {/* <Typography >
-              <div className={classes.orderlist}>
-                <p>{props.products.product1.name}</p>
-                <p>{props.products.product2.name}</p>
-                <br></br>
-                <p>Quantity: {props.numberOfItems}</p>
-                <br></br>
-                <p>${props.totalCost/100}</p> 
-
-                <div>
-                  <Button size='medium'>Add 1 to Cart</Button>
-                  <Button size='medium'>Go to Cart</Button>
-                </div>
-
-              </div>
-            </Typography> */}
+            
           </AccordionDetails>
         </Accordion>
       </div>

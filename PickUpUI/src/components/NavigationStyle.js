@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
   },
   grow: {
-    // flexGrow: 1,
-    width: '100%', 
+    flexGrow: 1,
+    // width: '100%', 
   },
   menuButton: {
     marginRight: theme.spacing(2),
