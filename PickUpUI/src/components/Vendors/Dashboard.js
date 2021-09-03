@@ -157,6 +157,7 @@ export default function Dashboard() {
             className={classes.title}
           >
             Welcome to NoshFeast!
+
           </Typography>
           <IconButton color="inherit">
             {/* <Badge badgeContent={4} color="secondary">
