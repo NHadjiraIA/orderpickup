@@ -33,6 +33,7 @@ import {
 } from "./CONSTANTS";
 
 export const RouterConfig = (props) => {
+  console.log("Routerrrrrr", props);
   const restaurants = props.restaurants;
   return (
     <CartProvider>
@@ -41,10 +42,12 @@ export const RouterConfig = (props) => {
         <Route exact path={VENDOR_COMMENTS} component={commentList} />
         <Route exact path={PAYMENT} component={payement} />
         <Route exact path={ROOT} component={landing} />
-        <Route exact path={MAP} component={Mapping} />
+        <Route exact path={MAP}>
+          <Mapping restaurants={restaurants} />
+        </Route>
         <Route exact path={DISH} component={dish} />
         <Route exact path={RESTAURANT}>
-          <RestaurantPage />
+          <RestaurantPage restaurants={restaurants} restaurantId={3} />
         </Route>
         <Route exact path={ORDERS} component={Orders} />
         <Route exact path={CART}>

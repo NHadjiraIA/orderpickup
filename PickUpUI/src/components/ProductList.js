@@ -36,7 +36,7 @@ function ProductList(props) {
         key={item.id} 
         id={item.id}
         name={item.name} 
-        img_url={item.img_url}
+        img_url={item.thumbnail_url}
         description={item.description}
         price={item.price}
         calories={item.calories}

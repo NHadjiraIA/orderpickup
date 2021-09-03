@@ -14,7 +14,7 @@ function Restaurant(props) {
 
 
 const restaurantDetails = props.restaurant;
-const productDetails = props.product;
+// const productDetails = props.product;
 // console.log("detailsssssss", restaurantDetails);
 
   const [activeState, setActiveState] = useState({menu:true, comments: false})
@@ -32,11 +32,11 @@ const productDetails = props.product;
     <>
       <hero className={classes.heroroot}>
         <div className={classes.restaurantcard}>
-          <img src={restaurantDetails.thumbnail_url}/>
+          <img src="alt"/>
 
           {/* <img src={props.restaurant.img} alt="thumbnail"/> */}
           <div className={classes.restaurantinfo}>
-            <h2>{restaurantDetails.title}</h2>
+            <h2>Titlee</h2>
             {/* <div class="rating-send">
               <div class="star-buttons">
                 <div class="star-rating">
@@ -87,13 +87,13 @@ const productDetails = props.product;
         <Button onClick={() => toggleActive("menu")}>Menu</Button>
         <Button onClick={() => toggleActive("comments")}>Comments</Button>
       </div>
-      {activeState.menu && (
+      {/* {activeState.menu && (
         <div className={classes.menu}>
           <ProductList 
           productDetails={productDetails}
           />
         </div>
-      )}
+      )} */}
       {activeState.comment && (
         <div>
           <CommentList />
