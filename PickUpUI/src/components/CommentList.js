@@ -29,7 +29,6 @@ function Comment() {
   }
 
   useEffect(() => {
-    console.log("SS:: listFields called ");
     return new Promise((resolve, reject) => {
       try {
         getCommentByRestaurant(restaurantId)

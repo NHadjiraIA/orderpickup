@@ -6,4 +6,7 @@
  export const POST_USER =()=>BASE_ADDRESS()+'/api/v1/users';
  export const POST_COMMENT = () => `${BASE_ADDRESS()}/api/v1/comments`;
  export const GET_COMMENT_BY_RESTAURANT = (restaurantId) => `${BASE_ADDRESS()}/api/v1/comments?restaurantId=${restaurantId}`
+ export const GET_ORDERS_BY_USER_ID = (userId) => `${BASE_ADDRESS()}/api/v1/user/${userId}/orders`
+ export const POST_ORDER = (userId) => `${BASE_ADDRESS()}/api/v1/orders`
+ export const GET_ORDERS_DONE_BY_USER_ID = (userId,done) => `${BASE_ADDRESS()}/api/v1/user/${userId}/${done}/orders`
 

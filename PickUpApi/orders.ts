@@ -30,6 +30,13 @@ export class OrdersApi{
         let userOrders = await this._ordersRepository.GetByUserId(userId);
         return res.status(200).json(userOrders)
     }
+    
+    async getDoneOrdersByUserId(req: express.Request, res: express.Response){
+        let userId = req.params.userId;
+        let done = req.params.done;
+        let userOrdersDone = await this._ordersRepository.getDoneOrdersByUserId(userId,done);
+        return res.status(200).json(userOrdersDone)
+    }
 
     async create(req: express.Request, res: express.Response){
         const orderDto = this.getDtoFromRequest(req);
