@@ -21,7 +21,7 @@ module.exports = {
 
      await queryInterface.bulkInsert('ratings', [{
       userId: 2,
-      restaurantId: 2,
+      restaurantId: 1,
       rating: 5,
       createdAt: new Date(),
       updatedAt: new Date()

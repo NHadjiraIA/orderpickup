@@ -142,11 +142,9 @@ export default function ProductListItemDemo(props) {
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       {/* <br /> */}
       <div className={classes.productIntro}>
+        <Typography onClick={handleClickOpen}><h3>{props.name}</h3></Typography>
         <Typography onClick={handleClickOpen}>
-          <h3>{props.name}</h3>
-        </Typography>
-        <Typography onClick={handleClickOpen}>
-          <p>{props.description}</p>
+          <p>{props.description} </p>
         </Typography>
         <br />
         <br />
@@ -154,9 +152,12 @@ export default function ProductListItemDemo(props) {
         <br />
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>
-          <Typography onClick={handleClickOpen} className={classes.calories}>
-            {props.calories}Cals.
-          </Typography>
+          <Typography 
+            onClick={handleClickOpen}
+            className={classes.calories}
+            >
+              {props.calories}Cals.
+            </Typography>
         </div>
         {/* <br/> */}
         {/* <Button variant="outlined" color="primary">Add to Cart</Button> */}

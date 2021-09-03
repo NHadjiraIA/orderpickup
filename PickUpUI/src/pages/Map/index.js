@@ -11,27 +11,9 @@ import RestaurantContainer from '../../components/RestaurantContainer';
     lat: 43.888,
     lng: -79.278,
   };
-export const Mapping = () => {
+export const Mapping = (props) => {
 
-    // console.log("Arrayyy", getAllRestaurants());
-
-    useEffect(() => {
-         axios
-        .get('http://localhost:3002/api/v1/restaurants')
-        .then((res) => {
-          // console.log("getAllUsers > axios res=", res);
-          console.log(res.data);
-         setRestaurant(res.data);
-        })
-        .catch((err) => {
-          // console.log("getAllUsers > axios err=", err);
-          // reject("Error in getAllrESTAURANTS axios!");
-        });
-       
-    //    console.log("useeffett", array);
-    }, [])
-
-const[restaurant, setRestaurant] = useState([]);
+ const restaurants = props.restaurants;
 
     const [activeMarker, setActiveMarker] = useState(null);
     const [center, setCenter] = useState(defaultCenter);
@@ -52,13 +34,13 @@ const[restaurant, setRestaurant] = useState([]);
         <div className="container">
         <div className= "restaurant_map">
         <RestaurantContainer
-      restaurants={restaurant}
+      restaurants={restaurants}
       handleActiveMarker={handleActiveMarker}
       userPosition={userPosition}
       /> 
      
             <Map
-            restaurants={restaurant}
+            restaurants={restaurants}
             handleActiveMarker={handleActiveMarker}
             handleUserPosition={handleUserPosition}
             handleUserPosition = {handleUserPosition}
