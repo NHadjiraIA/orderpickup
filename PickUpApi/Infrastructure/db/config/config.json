@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "cathy",
-    "password": "password",
-    "database": "cathy",
+    "username": "xuxu",
+    "password": "xuxu",
+    "database": "databasePickFood",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

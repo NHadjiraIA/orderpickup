@@ -104,11 +104,11 @@ function OrderListItem(props) {
 
                     <TableRow>
                       <TableCell colSpan={2}><h4>Pre-Tax</h4></TableCell>
-                      <TableCell align="right"><h4>${data.map(s=> s.quantity * s.price).reduce((a,b) => a+b, 0)}</h4></TableCell>
+                      <TableCell align="right"><h4>${(data.map(s=> s.quantity * s.price).reduce((a,b) => a+b, 0)).toFixed(2)}</h4></TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell colSpan={2}><h4>Total</h4></TableCell>
-                      <TableCell align="right"><h4>${data.map(s=> s.quantity * s.price).reduce((a,b) => a+b, 0) * 1.13}</h4></TableCell>
+                      <TableCell align="right"><h4>${(data.map(s=> s.quantity * s.price).reduce((a,b) => a+b, 0) * 1.13).toFixed(2)}</h4></TableCell>
                     </TableRow>
                   </TableBody>
                   
