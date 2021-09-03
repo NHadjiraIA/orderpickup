@@ -3,7 +3,7 @@ import axios from "axios";
 import useStyles from "./RestaurantStyle.js";
 import ProductList from "./ProductList.js";
 import StarIcon from "@material-ui/icons/Star";
-import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import CommentList from "./CommentList.js";
 import Button from "@material-ui/core/Button";
 import { useLocation } from "react-router-dom";
@@ -117,10 +117,11 @@ function Restaurant() {
               <div className={classes.tags}>
                 {/* <DishSelection /> Dont Delete thisss yet*/}
                 <p>#halal</p>
-                <p>#thebest</p>
+                <p>#dairy-free</p>
+                <p>#contains cannabis</p>
               </div>
               <div className={classes.distance}>
-                <DirectionsWalkIcon></DirectionsWalkIcon>
+              <DriveEtaIcon/>
                 <p>{durationTime}</p>
               </div>
             </div>
