@@ -1,8 +1,9 @@
 {
   "development": {
-    "username": "xuxu",
-    "password": "xuxu",
-    "database": "databasePickFood",
+
+    "username": "foodgroup",
+    "password": "hsc2021",
+    "database": "pickFoodData",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

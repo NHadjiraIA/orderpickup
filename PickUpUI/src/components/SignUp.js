@@ -52,7 +52,18 @@ export default function SignUp() {
     setConfirmation("your account is created successfully")
     
    }
-
+   const emailTextHandleChange = (event)=>{
+    setEmail(event.target.value);
+  }
+  const nameTextHandleChange = (event)=>{
+    setName(event.target.value);
+  }
+  const phoneTextHandleChange = (event)=>{
+    setPhone(event.target.value);
+  }
+  const passwordTextHandleChange = (event)=>{
+    setPassword(event.target.value);
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -75,7 +86,7 @@ export default function SignUp() {
                 id="Name"
                 label="User Name"
                 autoFocus
-                onChange={(e)=>setName(e.target.value)}
+                onChange={nameTextHandleChange} value={name} 
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -87,7 +98,7 @@ export default function SignUp() {
                 label="Phone"
                 name="phone"
                 autoComplete="lname"
-                onChange={(e)=>setPhone(e.target.value)}
+                onChange={phoneTextHandleChange} value={phone} 
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,7 +110,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={emailTextHandleChange} value={email} 
               />
             </Grid>
             <Grid item xs={12}>
@@ -112,7 +123,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(e)=>setPassword(e.target.value)}
+                onChange={passwordTextHandleChange} value={password} 
               />
             </Grid>
             <Grid item xs={12}>

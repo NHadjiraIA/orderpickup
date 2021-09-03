@@ -10,8 +10,9 @@ import Paper from "@material-ui/core/Paper";
 import Counter from "./Counter";
 import Button from "@material-ui/core/Button";
 import { PAYMENT } from "../navigation/CONSTANTS";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useCart } from "../context/cart";
+import { postOrder } from "../services/orderService";
 
 const TAX_RATE = 0.13;
 
@@ -44,12 +45,18 @@ const useStyles = makeStyles({
 
 function CartList(props) {
   const history = useHistory();
+  const location = useLocation();
   const [total, setTotal] = useState(0);
   const cart = useCart();
   const cartList = Object.values(cart.cart);
-
+  console.log(cartList);
   const classes = useStyles();
 
+  const quantity = location?.state?.quantity;
+  //const dishId = location?.state?.id;
+  const description = location?.state?.description;
+  const image = location?.state?.img_url;
+  const name = location?.state?.name;
   function subtotal(data) {
     let total = 0;
     data.map((item) => {
@@ -61,6 +68,8 @@ function CartList(props) {
 
   const invoiceTaxes = TAX_RATE * total;
   const invoiceTotal = invoiceTaxes + total;
+  const [errors, setErrors] = useState("");
+  const [detailsOrderData, setdetailsOrderData] = useState([]);
 
   const sum = (index) => {
     return (cartList[index].quantity * cartList[index].price).toFixed(2);
@@ -70,7 +79,38 @@ function CartList(props) {
     const calculatedTotal = subtotal(items);
     setTotal(calculatedTotal);
   };
-  const pay = (path) => {
+  const pay = () => {
+    let restaurantId = 1;
+    let userId = 1;
+    let orderId = 8;
+    let dishId = 2;
+    var requestDto = {
+      userId: userId,
+      restaurantId: restaurantId,
+      done: true,
+      details: [
+        {
+          dishId: dishId,
+          orderId: orderId,
+          quantity: quantity,
+        },
+      ],
+    };
+    postOrder(requestDto)
+      .then((result) => {})
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 404) {
+          setErrors("No comment found!");
+        } else {
+          if (err.response.status == 400) {
+            setErrors("restaurantId is not valid!");
+          } else {
+            setErrors("Unknow error!");
+          }
+        }
+      });
+
     history.push({
       pathname: PAYMENT,
       state: {

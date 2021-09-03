@@ -18,7 +18,19 @@ function ProductListItem(props) {
   let history = useHistory();
   const cart = useCart();
   const clickToCart = () => {
-    history.push(CART);
+   
+    history.push({
+      pathname: CART,
+      state: { 
+        id: props.id,
+        name: props.name,
+        quantity: quantity,
+        img_url: props.img_url,
+        description: props.description,
+        price: props.price,
+        calories: props.calories,
+      }
+    });  
   };
 
   const classes = useStyles();

@@ -8,14 +8,23 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { LOGIN, ORDERS, CART, MAP } from "../navigation/CONSTANTS";
+import { LOGIN, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
 import { Link } from "react-router-dom";
 import useStyles from "./NavigationStyle.js";
+import { useCart } from "../context/cart";
 
-export const Navigation = () => {
+export const Navigation = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const cart = useCart();
+
+  const cartArray = Object.values(cart.cart);
+  const cartQuantity = cartArray.map((objectInArray) => {
+    return objectInArray.quantity;
+  });
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const cartQuantitySum = cartQuantity.reduce(reducer, 0);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -33,51 +42,55 @@ export const Navigation = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      // onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  // const menuId = "primary-search-account-menu";
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
+  //     open={isMenuOpen}
+  //     // onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+  //   </Menu>
+  // );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      // onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={2} color="secondary">
-            <ShoppingCart />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-    </Menu>
-  );
+  // const mobileMenuId = "primary-search-account-menu-mobile";
+  // const renderMobileMenu = (
+  //   <Menu
+  //     anchorEl={mobileMoreAnchorEl}
+  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
+  //     id={mobileMenuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
+  //     open={isMobileMenuOpen}
+  //     // onClose={handleMobileMenuClose}
+  //   >
+  //     <MenuItem>
+  //       <IconButton aria-label="show 4 new mails" color="inherit">
+  //         <Badge badgeContent={2} color="secondary">
+  //           <ShoppingCart />
+  //         </Badge>
+  //       </IconButton>
+  //       <Link to={LOGIN}>
+  //         <Typography>LogIn</Typography>
+  //       </Link>
+  //     </MenuItem>
+  //   </Menu>
+  // );
 
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.wholenav}>
         <Toolbar disableGutters={true} className={classes.toolbar}>
-          <Typography className={classes.title} variant="h6" noWrap>
-            NoshFeast
-          </Typography>
+          <Link to={ROOT}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              NoshFeast
+            </Typography>
+          </Link>
           <Typography className={classes.links}>
             <Link to={MAP}>
               <Typography>Find Restaurants</Typography>
@@ -88,8 +101,8 @@ export const Navigation = () => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 2 new items" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+            <IconButton color="inherit">
+              <Badge badgeContent={cartQuantitySum} color="secondary">
                 <Link to={CART}>
                   <ShoppingCart />
                 </Link>
@@ -101,21 +114,21 @@ export const Navigation = () => {
               </Link>
             </div>
           </div>
-          <div className={classes.sectionMobile}>
+          {/* <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
-              aria-controls={mobileMenuId}
+              // aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
               <MoreIcon />
             </IconButton>
-          </div>
+          </div> */}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMobileMenu} */}
+      {/* {renderMenu} */}
     </div>
   );
 };
