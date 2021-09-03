@@ -21,8 +21,9 @@ import { CART } from "../navigation/CONSTANTS";
 import React, {useState, useEffect} from 'react'; 
 
 function OrderListItem(props) {
-  const [data, updateData] = useState([]);
+  const [data, setData] = useState([]);
   const classes = useStyles();
+  const products = props.products;
 
   const testImg = 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
   
@@ -31,15 +32,16 @@ function OrderListItem(props) {
   }
 
   const rows = [];
-  let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100, 340);
-  rows.push(rowItem);
-  rowItem = createRow(testImg,'Paper (Case)', 5.62, 10, 56.2)
-  rows.push(rowItem);
-  rowItem = createRow(testImg,'Waste Basket', 15.20, 2, 30.40)
-  rows.push(rowItem);
+  // let rowItem = createRow(testImg, 'Paperclips (Box)', 3.45, 100, 340);
+  // rows.push(rowItem);
+  // rowItem = createRow(testImg,'Paper (Case)', 5.62, 10, 56.2)
+  // rows.push(rowItem);
+  // rowItem = createRow(testImg,'Waste Basket', 15.20, 2, 30.40)
+  // rows.push(rowItem);
   
   useEffect(() => {
-    updateData(rows);
+    console.log(products);
+    setData(products);
   }, []);
 
   return (
@@ -73,7 +75,7 @@ function OrderListItem(props) {
                   <TableHead>
                     <TableRow>
                       {/* <TableCell align="left" colSpan={2}><h4>Img.</h4></TableCell> */}
-                      <TableCell className={classes.imgColumn} align="left"><h4>Img.</h4></TableCell>
+                      <TableCell className={classes.imgColumn} align="left" ><h4>Img.</h4></TableCell>
                       <TableCell align="left"> <h4>Desc.</h4></TableCell>
                       <TableCell align="left"> <h4>Price Per Item</h4></TableCell>
                       <TableCell align="right"><h4>Qty.</h4></TableCell>
@@ -84,12 +86,12 @@ function OrderListItem(props) {
                     {data.map((row, index) => (
                       <TableRow>
                         <TableCell align="left">
-                          <img className={classes.productImg} src={row.img} />
+                          <img className={classes.image} src={row.image} height="70px" width="70px"/>
                         </TableCell>
-                        <TableCell>{row.desc}</TableCell>
-                        <TableCell align="left">${row.pricePer}</TableCell>
-                        <TableCell align="left">{row.qty}</TableCell>
-                        <TableCell align="right">${row.subtotal}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell align="left">${row.price}</TableCell>
+                        <TableCell align="left">{row.quantity}</TableCell>
+                        <TableCell align="right">${row.price * row.quantity}</TableCell>
                       </TableRow>
                     ))}
 
@@ -102,11 +104,11 @@ function OrderListItem(props) {
 
                     <TableRow>
                       <TableCell colSpan={2}><h4>Pre-Tax</h4></TableCell>
-                      <TableCell align="right"><h4>$12340</h4></TableCell>
+                      <TableCell align="right"><h4>${data.map(s=> s.quantity * s.price).reduce((a,b) => a+b, 0)}</h4></TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell colSpan={2}><h4>Total</h4></TableCell>
-                      <TableCell align="right"><h4>$12340</h4></TableCell>
+                      <TableCell align="right"><h4>${data.map(s=> s.quantity * s.price).reduce((a,b) => a+b, 0) * 1.13}</h4></TableCell>
                     </TableRow>
                   </TableBody>
                   
