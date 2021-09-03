@@ -1,49 +1,40 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import OrderListItem from "./OrderListItem.js";
 import useStyles from "./OrderListStyle.js";
+import { useHistory, useLocation } from "react-router-dom";
+import {getOrdersDoneByUserId} from "../services/orderService"
 
 function OrderList() {
+  const location = useLocation();
   const classes = useStyles();
+  let userId = location?.state?.userId;
 
-  const testOrderData = [
-    { 
-      id: 1,
-      date: 'aug, 30, 2021',
-      restaurantName: "Restaurant1", 
-      img:'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-      products: [
-        
-        'product1',
-        'product2',
-        'product3',
-      ],
-      numberOfItems: 3,
-      totalCost: 23434,
-    },
-    { 
-      id: 2, 
-      date: 'aug, 30, 2021',
-      restaurantName: "Restaurant2", 
-      img:'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-      products: [
-        
-        'product1',
-        'product2',
-      ],
-      numberOfItems: 2,
-      totalCost: 23467,
-    },
-  ];
+  const [orderListData, setOrderListData] = useState([]);
+  useEffect(() => {
+    return new Promise((resolve, reject) => {
+      try {
+        userId =1;
+        getOrdersDoneByUserId(userId, true)
+          .then(result=>{
+            setOrderListData(result);
+          });
+      } catch (error) {
+        console.error("signin error!==", error);
+        reject("signin error!");
+      }
+    });
+  }, [setOrderListData]);
 
-  const item = testOrderData.map((item) => {
+
+  const item = orderListData.map((item) => {
     return (
       <OrderListItem 
         key={item.id} 
-        date={item.date}
+        date={item.createdAt}
         restaurantName={item.restaurantName}
-        products={item.products}
-        numberOfItems={item.numberOfItems}
-        totalCost={item.totalCost} 
+        products={item.orderdetails.map(a => ({image:a.dish.img_url, name: a.dish.name, price:a.dish.price, quantity:a.quantity}))}
+        numberOfItems={item.orderdetails.map(a => a.quantity)}
+        totalCost={item.orderdetails.map(a=>a.dish.price * a.quantity) } 
       />
     );
   });

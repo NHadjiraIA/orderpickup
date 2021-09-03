@@ -91,6 +91,10 @@ ordersRouter.get("/user/:userId/orders",
  (req, res) => ordersApi.getByUserId(req, res)
 );
 
+ordersRouter.get("/user/:userId/:done/orders", 
+ (req, res) => ordersApi.getDoneOrdersByUserId(req, res)
+);
+
 ordersRouter.post("/orders", 
  (req, res) => ordersApi.create(req, res)
 );
