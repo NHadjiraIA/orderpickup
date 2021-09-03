@@ -1,27 +1,32 @@
-#all_restaurants{
+#all_restaurants {
   list-style: none;
-padding-left: 0;
+  padding-left: 0;
 }
 
-.card-distance :hover{
+.card-distance :hover {
   box-shadow: 2px 5px;
-  color: #DA0037;
+  /* color: #da0037; */
+  color: #80ed99;
 }
 
 .card-content {
-  background-color: #f3f2c9;
+  /* background-color: #f3f2c9; */
+  background-color: #38a3a5;
+
   overflow: hidden;
   /* padding:  */
-  color: #008891;
-  display: flex;
+  padding: 1em;
+  color: white;
   /* flex-direction: row; */
   width: 500px;
   height: 100%;
-  border: 2px solid #008891;
+  /* border: 2px solid black; */
   cursor: pointer;
+  margin: 0.5em;
 }
 
 /* .mapped_restaurant :hover{
   box-shadow: 2px 5px;
   color: #DA0037;
+  #008891
 } */

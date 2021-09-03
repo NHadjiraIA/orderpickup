@@ -82,11 +82,11 @@ function Restaurant() {
   //   return dishesList;
   // }
 
-   /***********Dont delete it yettttttt ************/
+  /***********Dont delete it yettttttt ************/
 
   return (
     <>
-      <hero className={classes.heroroot}>
+      <hero className={classes.heroroot} style={{ backgroundColor: "#e8d6cb" }}>
         <div className={classes.restaurantcard}>
           <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>

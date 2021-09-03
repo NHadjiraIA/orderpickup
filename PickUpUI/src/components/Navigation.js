@@ -4,15 +4,89 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { LOGIN, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
 import { Link } from "react-router-dom";
-import useStyles from "./NavigationStyle.js";
 import { useCart } from "../context/cart";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  wholenav: {
+    // backgroundColor: 'red !important',
+    paddingLeft: "3em",
+    paddingRight: "1em",
+  },
+  toolbar: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    overflowX: "hidden",
+  },
+  grow: {
+    flexGrow: 1,
+    // width: '100%',
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+    flex: "1",
+    // marginLeft: '0.5em',
+    color: "white",
+    textDecoration: "none",
+    paddingTop: "1em",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      flex: "1",
+      justifyContent: "space-evenly",
+      alignItems: "center",
+    },
+    "& a": {
+      color: "inherit",
+      textDecoration: "none",
+    },
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  links: {
+    flex: "1",
+    display: "flex",
+    justifyContent: "space-between",
+    "& a": {
+      color: "inherit",
+      textDecoration: "none",
+      paddingTop: "1em",
+    },
+  },
+}));
 export const Navigation = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,52 +116,17 @@ export const Navigation = (props) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  // const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMenuOpen}
-  //     // onClose={handleMenuClose}
-  //   >
-  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-  //   </Menu>
-  // );
-
-  // const mobileMenuId = "primary-search-account-menu-mobile";
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMobileMenuOpen}
-  //     // onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem>
-  //       <IconButton aria-label="show 4 new mails" color="inherit">
-  //         <Badge badgeContent={2} color="secondary">
-  //           <ShoppingCart />
-  //         </Badge>
-  //       </IconButton>
-  //       <Link to={LOGIN}>
-  //         <Typography>LogIn</Typography>
-  //       </Link>
-  //     </MenuItem>
-  //   </Menu>
-  // );
-
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.wholenav}>
         <Toolbar disableGutters={true} className={classes.toolbar}>
           <Link to={ROOT}>
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography
+              className={classes.title}
+              variant="h6"
+              noWrap
+              style={{ textDecoration: "none" }}
+            >
               NoshFeast
             </Typography>
           </Link>
@@ -114,21 +153,8 @@ export const Navigation = (props) => {
               </Link>
             </div>
           </div>
-          {/* <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              // aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div> */}
         </Toolbar>
       </AppBar>
-      {/* {renderMobileMenu} */}
-      {/* {renderMenu} */}
     </div>
   );
 };
