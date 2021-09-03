@@ -11,6 +11,8 @@ import CallEndRoundedIcon from '@material-ui/icons/CallEndRounded';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import RoomIcon from '@material-ui/icons/Room';
 
+import parse from 'html-react-parser';
+
 function Restaurant() {
   // console.log("propssss", props);
   const location = useLocation();
@@ -18,6 +20,7 @@ function Restaurant() {
 
 
 const restaurantDetails = location.state.restaurantInfo;
+const durationTime = location.state.duration;
 // const productDetails = props.product;
 // console.log("detailsssssss", restaurantDetails);
 
@@ -44,6 +47,36 @@ const restaurantDetails = location.state.restaurantInfo;
       setActiveState({ menu: false, comment: true });
     }
   };
+
+  function DishSelection(){
+    const dishesList = dishes.map((dish)=>{
+      let output = "";
+      if (dish.vegan) {
+       output += "<p>#Vegan</p>";
+      }
+      if(dish.gluten){
+        output+="<p>#Gluten free</p>";
+      }
+      if(dish.halal){
+        output+="<p>#Halal</p>";
+      }
+      if(dish.dairy){
+        output+="<p>#Dairy free</p>";
+      }
+      if(dish.nuts){
+        output+="<p>#Contains nuts</p>";
+      }
+      if(dish.marijuana){
+        output+="<p>#Contains cannabis</p>";
+      }
+      
+    
+      console.log('DISHESES', dish);
+      console.log(output);
+      return parse(output);
+    })
+    return dishesList;
+  }
 
   return (
     <>
@@ -78,14 +111,14 @@ const restaurantDetails = location.state.restaurantInfo;
             <>6.5k</>
             <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
-                <p>#vegetariand</p>
+                
+              <DishSelection/>
                 <p>#halal</p>
                 <p>#thebest</p>
-                <p>#nut free</p>
               </div>
               <div className={classes.distance}>
                 <DirectionsWalkIcon></DirectionsWalkIcon>
-                <p>5-10 min</p>
+                <p>{durationTime}</p>
               </div>
             </div>
           </div>

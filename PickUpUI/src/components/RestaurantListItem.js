@@ -13,7 +13,7 @@ export default function RestaurantListItem(props) {
   const history = useHistory();
   const restaurantInfo = props.restaurant;
   function handleClick() {
-    history.push(RESTAURANT, {restaurantInfo:restaurantInfo});
+    history.push(RESTAURANT, {restaurantInfo:restaurantInfo, duration:duration});
   }
 
   const [duration, setDuration] = useState("loading");
