@@ -14,42 +14,47 @@ import {
   VENDOR_ORDERS,
   VENDOR_DASHBOARD,
 } from "../../navigation/CONSTANTS";
+import useStyles from "../NavigationStyle.js";
 
-const mainListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <Link to={VENDOR_DASHBOARD}>
-        <ListItemText primary="Dashboard" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <Link to={VENDOR_ORDERS}>
-        <ListItemText primary="Orders" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <Link to={VENDOR_COMMENTS}>
-        <ListItemText primary="Comments" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <Link to={VENDOR_MENU}>
-        <ListItemText primary="Menu" />
-      </Link>
-    </ListItem>
-  </div>
-);
+const MainListItems = () => {
+  const classes = useStyles();
 
-export default mainListItems;
+  return (
+    <div className={classes.grow}>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <Link to={VENDOR_DASHBOARD}>
+          <ListItemText primary="Dashboard" />
+        </Link>
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <Link to={VENDOR_ORDERS}>
+          <ListItemText primary="Orders" />
+        </Link>
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <Link to={VENDOR_COMMENTS}>
+          <ListItemText primary="Comments" />
+        </Link>
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <Link to={VENDOR_MENU}>
+          <ListItemText primary="Menu" />
+        </Link>
+      </ListItem>
+    </div>
+  );
+};
+
+export default MainListItems;

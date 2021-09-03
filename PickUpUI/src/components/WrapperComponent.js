@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CartProvider from "../context/cart";
+import MainListItems from "./Vendors/listItems";
 
 export default function WrapperComponent(props) {
   const [restaurants, setRestaurants] = useState([]);
@@ -13,22 +14,16 @@ export default function WrapperComponent(props) {
     axios
       .get("http://localhost:3002/api/v1/restaurants")
       .then((res) => {
-        console.log("Infoooooooooo", res.data);
-
         setRestaurants(res.data);
       })
       .catch((err) => {});
   }, []);
-  console.log("RESTAURANTEESSSS", restaurants);
   const matched = useRouteMatch("/vendors/");
 
   return (
     <div>
       <CartProvider>
-        <Route
-          path={"/"}
-          render={() => (!matched ? <Navigation /> : <mainListItems />)}
-        />
+        <Route path={"/"} render={() => (!matched ? <Navigation /> : null)} />
 
         <RouterConfig restaurants={restaurants} />
         <Footer />

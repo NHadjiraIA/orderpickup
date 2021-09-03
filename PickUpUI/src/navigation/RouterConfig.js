@@ -15,6 +15,7 @@ import { orderList } from "../pages/Vendors/orderList";
 import { Mapping } from "../pages/Map";
 import { commentList } from "../pages/Vendors/commentList.js";
 import { NotFound } from "./NotFound";
+import ResponsiveDrawer from "../components/Vendors/VendorHome";
 import {
   ROOT,
   MAP,
@@ -53,7 +54,10 @@ export const RouterConfig = (props) => {
       </Route>
       <Route exact path={LOGIN} component={login} />
       <Route exact path={SIGNUP} component={signup} />
-      <Route exact path={VENDOR_DASHBOARD} component={dashboard} />
+      {/* <Route exact path={VENDOR_DASHBOARD} component={dashboard} /> */}
+      <Route exact path={VENDOR_DASHBOARD}>
+        <ResponsiveDrawer />
+      </Route>
       <Route exact path={VENDOR_MENU} component={vendorMenu} />
       <Route exact path={VENDOR_ORDERS} component={orderList} />
       <Route path="*">
