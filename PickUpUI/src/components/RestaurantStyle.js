@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
 
     height: "15em",
-    backgroundColor: "#6b78be",
+    // backgroundColor: "#6b78be",
+    backgroundColor: "#57cc99",
 
     paddingLeft: "5em",
     paddingRight: "5em",

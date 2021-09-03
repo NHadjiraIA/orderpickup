@@ -86,7 +86,10 @@ function Restaurant() {
 
   return (
     <>
-      <hero className={classes.heroroot} style={{ backgroundColor: "#e8d6cb" }}>
+      <hero
+        className={classes.heroroot}
+        style={{ backgroundColor: "#38A3A5", color: "white" }}
+      >
         <div className={classes.restaurantcard}>
           <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
