@@ -5,7 +5,7 @@ import {toEntity as orderDetailToEntity} from './application/mappers/orderDetail
 import { OrderDetailsRepository } from "./Infrastructure/repositories/OrderDetailsRepository";
 import { OrderDto } from "./domain/dtos/OrderDto";
 import { OrderDetailDto } from "./domain/dtos/OrderDetailDto";
-import {accountSid, authToken, client, myNumber, twilioNumber} from "./twilio"
+// import {accountSid, authToken, client, myNumber, twilioNumber} from "./twilio"
 
 
 export class OrdersApi{

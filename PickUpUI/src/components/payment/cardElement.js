@@ -4,7 +4,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { ORDERS } from "../../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
 import useResponsiveFontSize from "./useResponsiveFontSize";
-const stripe = loadStripe("pk_test_51JSifWJSoqVYwO4CuQy0pHIspSXCcL7gbLjBw9UPL9kUAMUzqt21gTdZAZOLtj5s5etLP4iImTV89X0AKvKeUYgI003NwwzsAt");
+const stripe = loadStripe(
+  "pk_test_51JSifWJSoqVYwO4CuQy0pHIspSXCcL7gbLjBw9UPL9kUAMUzqt21gTdZAZOLtj5s5etLP4iImTV89X0AKvKeUYgI003NwwzsAt"
+);
 const useOptions = () => {
   // const fontSize = useResponsiveFontSize();
   const options = useMemo(
@@ -32,11 +34,12 @@ const useOptions = () => {
 const history = useHistory();
 const [message, setMessage] = useState("");
 const validatePayment = () => {
-  setErrors('successful payment');
+  setErrors("successful payment");
   history.push({
-    pathname: ORDERS,ß
-    });
-}
+    pathname: ORDERS,
+    ß,
+  });
+};
 const CardForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -79,10 +82,16 @@ const CardForm = () => {
           }}
         />
       </label>
-      <button type="submit" disabled={!stripe} onClick= {()=> validatePayment()}>
+      <button
+        type="submit"
+        disabled={!stripe}
+        onClick={() => validatePayment()}
+      >
         Pay
       </button>
-      <span style={message ? {visibility: "visible", color: "bleu"}: null} >{message}</span>
+      <span style={message ? { visibility: "visible", color: "bleu" } : null}>
+        {message}
+      </span>
     </form>
   );
 };
