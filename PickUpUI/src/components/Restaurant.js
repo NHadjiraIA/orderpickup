@@ -1,23 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import useStyles from "./RestaurantStyle.js";
 import ProductList from "./ProductList.js";
 import StarIcon from "@material-ui/icons/Star";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 import CommentList from "./CommentList.js";
 import Button from "@material-ui/core/Button";
-
+import { useLocation } from 'react-router-dom';
 import CallEndRoundedIcon from '@material-ui/icons/CallEndRounded';
+import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import RoomIcon from '@material-ui/icons/Room';
 
-function Restaurant(props) {
+function Restaurant() {
   // console.log("propssss", props);
+  const location = useLocation();
   const classes = useStyles();
 
 
-const restaurantDetails = props.restaurant;
+const restaurantDetails = location.state.restaurantInfo;
 // const productDetails = props.product;
 // console.log("detailsssssss", restaurantDetails);
 
   const [activeState, setActiveState] = useState({menu:true, comments: false})
+
+  const [dishes, setDishes] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3002/api/v1/restaurant/${restaurantDetails.id}/dishes`)
+      .then((res) => {
+        console.log("Dishes", res.data);
+
+        setDishes(res.data);
+      })
+      .catch((err) => {});
+  }, []);
 
   const toggleActive = (currentState) => {
     // setActiveState({...activeState, currentState: true})
@@ -36,7 +53,7 @@ const restaurantDetails = props.restaurant;
 
           {/* <img src={props.restaurant.img} alt="thumbnail"/> */}
           <div className={classes.restaurantinfo}>
-            <h2>Titlee</h2>
+            <h2>{restaurantDetails.title}</h2>
             {/* <div class="rating-send">
               <div class="star-buttons">
                 <div class="star-rating">
@@ -75,25 +92,25 @@ const restaurantDetails = props.restaurant;
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
         <div className={classes.contactinfo}>
-          <h4>{restaurantDetails.address}</h4>
+          <h3><RoomIcon/>{restaurantDetails.address}</h3>
           <h3>{restaurantDetails.city} , {restaurantDetails.prov_state}</h3>
-          <div className= "phone"> <CallEndRoundedIcon/>
-          <h3>Call us @ {restaurantDetails.phone}</h3></div>
-         
-          <h3>Email us: {restaurantDetails.email}</h3>
+          <div >
+          <h3> <CallEndRoundedIcon/>{restaurantDetails.phone}</h3></div>
+        
+          <h3><EmailOutlinedIcon/> {restaurantDetails.email}</h3>
         </div>
       </hero>
       <div className={classes.heroMenu}>
         <Button onClick={() => toggleActive("menu")}>Menu</Button>
         <Button onClick={() => toggleActive("comments")}>Comments</Button>
       </div>
-      {/* {activeState.menu && (
+      {activeState.menu && (
         <div className={classes.menu}>
           <ProductList 
-          productDetails={productDetails}
+          productDetails={dishes}
           />
         </div>
-      )} */}
+      )}
       {activeState.comment && (
         <div>
           <CommentList />

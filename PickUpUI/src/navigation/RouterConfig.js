@@ -47,7 +47,7 @@ export const RouterConfig = (props) => {
         </Route>
         <Route exact path={DISH} component={dish} />
         <Route exact path={RESTAURANT}>
-          <RestaurantPage restaurants={restaurants} restaurantId={3} />
+          <RestaurantPage />
         </Route>
         <Route exact path={ORDERS} component={Orders} />
         <Route exact path={CART}>

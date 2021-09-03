@@ -5,29 +5,6 @@ import useStyles from "./ProductListStyle.js";
 function ProductList(props) {
   const classes = useStyles();
 
-  // const testOrderData = [
-  //   { 
-  //     id: 1, 
-  //     name: "food item 1",
-  //     description: 'askjdfaskjfasdf',
-  //     price: 500,
-  //     calories: 123 
-  //   },
-  //   { 
-  //     id: 1, 
-  //     name: "food item 1",
-  //     description: 'askjdfaskjfasdf',
-  //     price: 598,
-  //     calories: 198 
-  //   },
-  //   { 
-  //     id: 1, 
-  //     name: "food item 1",
-  //     description: 'askjdfaskjfasdf',
-  //     price: 598,
-  //     calories: 198 
-  //   },
-  // ];
 
   const item = props.productDetails.map((item) => {
     return (
@@ -36,7 +13,7 @@ function ProductList(props) {
         key={item.id} 
         id={item.id}
         name={item.name} 
-        img_url={item.thumbnail_url}
+        img_url={item.img_url}
         description={item.description}
         price={item.price}
         calories={item.calories}

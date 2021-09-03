@@ -8,16 +8,12 @@ import { RESTAURANT } from "../navigation/CONSTANTS";
 
 const libraries = ["places"];
 
-
-
-
-
 export default function RestaurantListItem(props) {
-
-  let history = useHistory();
-
+  // console.log('BANMIN', props);
+  const history = useHistory();
+  const restaurantInfo = props.restaurant;
   function handleClick() {
-    history.push(RESTAURANT);
+    history.push(RESTAURANT, {restaurantInfo:restaurantInfo});
   }
 
   const [duration, setDuration] = useState("loading");
@@ -26,8 +22,9 @@ export default function RestaurantListItem(props) {
     <ul id="all_restaurants">
       <li
         className="mapped_restaurant"
-
-        onClick={() =>{handleClick()}}
+        onClick={() => {
+          handleClick();
+        }}
         onMouseOver={() => {
           props.handleActiveMarker(props.restaurant.id);
         }}
