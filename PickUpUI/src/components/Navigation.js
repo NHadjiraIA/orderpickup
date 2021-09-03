@@ -5,7 +5,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import { LOGIN, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/cart";
@@ -13,79 +12,97 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   wholenav: {
-    // backgroundColor: 'red !important',
     paddingLeft: "3em",
     paddingRight: "1em",
+    backgroundColor: "#22577A",
+    padding: "1em",
+    textDecoration: "none",
   },
   toolbar: {
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
     overflowX: "hidden",
+    color: "red",
   },
-  grow: {
-    flexGrow: 1,
-    // width: '100%',
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-    flex: "1",
-    // marginLeft: '0.5em',
-    color: "white",
-    textDecoration: "none",
-    paddingTop: "1em",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-      flex: "1",
-      justifyContent: "space-evenly",
-      alignItems: "center",
-    },
-    "& a": {
-      color: "inherit",
-      textDecoration: "none",
-    },
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-  },
-  sectionMobile: {
+  // grow: {
+  //   flexGrow: 1,
+  //   // width: '100%',
+  // },
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
+  // title: {
+  //   display: "none",
+  //   [theme.breakpoints.up("sm")]: {
+  //     display: "block",
+  //   },
+  //   flex: "1",
+  //   // marginLeft: '0.5em',
+  //   color: "white",
+  //   textDecoration: "none",
+  //   paddingTop: "1em",
+  // },
+  // inputRoot: {
+  //   color: "inherit",
+  // },
+  // inputInput: {
+  //   padding: theme.spacing(1, 1, 1, 0),
+  //   // vertical padding + font size from searchIcon
+  //   paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+  //   transition: theme.transitions.create("width"),
+  //   width: "100%",
+  //   [theme.breakpoints.up("md")]: {
+  //     width: "20ch",
+  //   },
+  // },
+  // sectionDesktop: {
+  //   display: "none",
+  //   [theme.breakpoints.up("md")]: {
+  //     display: "flex",
+  //     flex: "1",
+  //     justifyContent: "space-evenly",
+  //     alignItems: "center",
+  //   },
+  //   "& a": {
+  //     color: "inherit",
+  //     textDecoration: "none",
+  //   },
+  //   "&:hover": {
+  //     backgroundColor: "transparent",
+  //   },
+  // },
+  // sectionMobile: {
+  //   display: "flex",
+  //   [theme.breakpoints.up("md")]: {
+  //     display: "none",
+  //   },
+  // },
+  title: { paddingLeft: "0.5em" },
+  mapAndOrders: {
     display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
-  },
-  links: {
-    flex: "1",
-    display: "flex",
+    flexDirection: "row",
     justifyContent: "space-between",
-    "& a": {
-      color: "inherit",
-      textDecoration: "none",
-      paddingTop: "1em",
-    },
+    width: "30%",
   },
+  cartAndLogin: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    color: "white",
+    width: "15%",
+    paddingRight: "4em",
+  },
+  // links: {
+  //   flex: "1",
+  //   display: "flex",
+  //   justifyContent: "space-between",
+  //   "& a": {
+  //     color: "inherit",
+  //     textDecoration: "none",
+  //     paddingTop: "1em",
+  //   },
+  // },
 }));
 export const Navigation = (props) => {
   const classes = useStyles();
@@ -103,58 +120,38 @@ export const Navigation = (props) => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
   return (
-    <div className={classes.grow}>
-      <AppBar position="static" className={classes.wholenav}>
-        <Toolbar disableGutters={true} className={classes.toolbar}>
-          <Link to={ROOT}>
-            <Typography
-              className={classes.title}
-              variant="h6"
-              noWrap
-              style={{ textDecoration: "none" }}
-            >
-              NoshFeast
-            </Typography>
-          </Link>
-          <Typography className={classes.links}>
-            <Link to={MAP}>
-              <Typography>Find Restaurants</Typography>
-            </Link>
-            <Link to={ORDERS}>
-              <Typography>Orders</Typography>
-            </Link>
+    <AppBar position="static" className={classes.wholenav}>
+      <Toolbar disableGutters={true} className={classes.toolbar}>
+        <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
+          <Typography className={classes.title} variant="h4" noWrap>
+            NoshFeast
           </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton color="inherit">
-              <Badge badgeContent={cartQuantitySum} color="secondary">
-                <Link to={CART}>
-                  <ShoppingCart />
-                </Link>
-              </Badge>
-            </IconButton>
-            <div>
-              <Link to={LOGIN}>
-                <Typography>LogIn</Typography>
+        </Link>
+        <div className={classes.mapAndOrders}>
+          <Link to={MAP} style={{ textDecoration: "none", color: "white" }}>
+            <Typography>Find Restaurants</Typography>
+          </Link>
+          <Link to={ORDERS} style={{ textDecoration: "none", color: "white" }}>
+            <Typography>Orders</Typography>
+          </Link>
+        </div>
+        <div className={classes.cartAndLogin}>
+          <IconButton color="inherit">
+            <Badge badgeContent={cartQuantitySum}>
+              <Link
+                to={CART}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <ShoppingCart />
               </Link>
-            </div>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
+            </Badge>
+          </IconButton>
+          <Link to={LOGIN} style={{ textDecoration: "none", color: "white" }}>
+            <Typography>LogIn</Typography>
+          </Link>
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 };
