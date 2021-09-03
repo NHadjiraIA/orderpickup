@@ -36,8 +36,7 @@ const options = {
 function Map(props) {
   function handleOnLoad() {
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
+
       const coordinates = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,

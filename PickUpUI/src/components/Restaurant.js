@@ -1,21 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import useStyles from "./RestaurantStyle.js";
 import ProductList from "./ProductList.js";
 import StarIcon from "@material-ui/icons/Star";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 import CommentList from "./CommentList.js";
 import Button from "@material-ui/core/Button";
+import { useLocation } from "react-router-dom";
+import CallEndRoundedIcon from "@material-ui/icons/CallEndRounded";
+import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
+import RoomIcon from "@material-ui/icons/Room";
 
-function Restaurant(props) {
-  //getting setCart from props
+import parse from "html-react-parser";
 
-  console.log("propssss", props);
+function Restaurant() {
+  // console.log("propssss", props);
+  const location = useLocation();
   const classes = useStyles();
+
+  const restaurantDetails = location.state.restaurantInfo;
+  const durationTime = location.state.duration;
+  // const productDetails = props.product;
+  // console.log("detailsssssss", restaurantDetails);
 
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
   });
+
+  const [dishes, setDishes] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3002/api/v1/restaurant/${restaurantDetails.id}/dishes`
+      )
+      .then((res) => {
+        console.log("Dishes", res.data);
+
+        setDishes(res.data);
+      })
+      .catch((err) => {});
+  }, []);
 
   const toggleActive = (currentState) => {
     // setActiveState({...activeState, currentState: true})
@@ -26,15 +52,45 @@ function Restaurant(props) {
     }
   };
 
+  /***********Dont delete it yettttttt ************/
+  // function DishSelection() {
+  //   const dishesList = dishes.map((dish) => {
+  //     let output = "";
+  //     if (dish.vegan) {
+  //       output += "<p>#Vegan</p>";
+  //     }
+  //     if (dish.gluten) {
+  //       output += "<p>#Gluten free</p>";
+  //     }
+  //     if (dish.halal) {
+  //       output += "<p>#Halal</p>";
+  //     }
+  //     if (dish.dairy) {
+  //       output += "<p>#Dairy free</p>";
+  //     }
+  //     if (dish.nuts) {
+  //       output += "<p>#Contains nuts</p>";
+  //     }
+  //     if (dish.marijuana) {
+  //       output += "<p>#Contains cannabis</p>";
+  //     }
+
+  //     console.log("DISHESES", dish);
+  //     console.log(output);
+  //     return parse(output);
+  //   });
+  //   return dishesList;
+  // }
+
+   /***********Dont delete it yettttttt ************/
+
   return (
     <>
       <hero className={classes.heroroot}>
         <div className={classes.restaurantcard}>
-          <img src="https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" />
-
-          {/* <img src={props.restaurant.img} alt="thumbnail"/> */}
+          <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
-            <h2>Restaurant Name</h2>
+            <h2>{restaurantDetails.title}</h2>
             {/* <div class="rating-send">
               <div class="star-buttons">
                 <div class="star-rating">
@@ -59,25 +115,37 @@ function Restaurant(props) {
             <>6.5k</>
             <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
-                <p>#vegetariand</p>
+                {/* <DishSelection /> Dont Delete thisss yet*/}
                 <p>#halal</p>
                 <p>#thebest</p>
-                <p>#nut free</p>
               </div>
               <div className={classes.distance}>
                 <DirectionsWalkIcon></DirectionsWalkIcon>
-                <p>5-10 min</p>
+                <p>{durationTime}</p>
               </div>
             </div>
           </div>
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
         <div className={classes.contactinfo}>
-          <h3>address</h3>
-          <h3>city, prov</h3>
-          <h3>country</h3>
-          <h3>phone number</h3>
-          <h3>email</h3>
+          <h3>
+            <RoomIcon />
+            {restaurantDetails.address}
+          </h3>
+          <h3>
+            {restaurantDetails.city} | {restaurantDetails.prov_state}
+          </h3>
+          <div>
+            <h3>
+              {" "}
+              <CallEndRoundedIcon />
+              {restaurantDetails.phone}
+            </h3>
+          </div>
+
+          <h3>
+            <EmailOutlinedIcon /> {restaurantDetails.email}
+          </h3>
         </div>
       </hero>
       <div className={classes.heroMenu}>
@@ -86,7 +154,7 @@ function Restaurant(props) {
       </div>
       {activeState.menu && (
         <div className={classes.menu}>
-          <ProductList />
+          <ProductList productDetails={dishes} />
         </div>
       )}
       {activeState.comment && (

@@ -5,42 +5,14 @@ import useStyles from "./ProductListStyle.js";
 function ProductList(props) {
   const classes = useStyles();
 
-  const testOrderData = [
-    {
-      id: 1,
-      name: "food item 1",
-      img_url:
-        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-      description: "askjdfaskjfasdf",
-      price: 500,
-      calories: 123,
-    },
-    {
-      id: 2,
-      name: "food item 1",
-      img_url:
-        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-      description: "askjdfaskjfasdf",
-      price: 598,
-      calories: 198,
-    },
-    {
-      id: 3,
-      name: "food item 1",
-      img_url:
-        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-      description: "askjdfaskjfasdf",
-      price: 598,
-      calories: 198,
-    },
-  ];
 
-  const item = testOrderData.map((item) => {
+  const item = props.productDetails.map((item) => {
     return (
-      <ProductListItem
-        key={item.id}
+
+      <ProductListItem 
+        key={item.id} 
         id={item.id}
-        name={item.name}
+        name={item.name} 
         img_url={item.img_url}
         description={item.description}
         price={item.price}

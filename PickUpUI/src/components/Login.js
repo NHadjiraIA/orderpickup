@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './LoginStyle.js'
 import { postLogin, getUserDetails } from "../services";
-import { RESTAURANT, SIGNUP } from '../navigation/CONSTANTS.js';
+import { RESTAURANT, SIGNUP, VENDOR_DASHBOARD } from '../navigation/CONSTANTS.js';
 import { useHistory} from "react-router-dom";
 
 function Copyright() {
@@ -55,6 +55,16 @@ export default function Login() {
         }
       });
     }
+    const goToVondor = (path) => {
+      history.push({
+        pathname: VENDOR_DASHBOARD,
+        state: { 
+          userId: userInfo?.id,
+          userName: userInfo?.name,
+          phoneNumber: userInfo?.phone
+        }
+      });
+    }
     const goToLongin = ()=>{
         if(isNaN(phone)){
           setErrors('Phone must be a number value');
@@ -74,6 +84,7 @@ export default function Login() {
             if (userInfo.role == true){
               console.log('navigate to backoffice');
             // redirect to back office
+            goToVondor();
             } else if ( userInfo.role == false){
               goToRestaurant();
             }
