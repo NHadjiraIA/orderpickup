@@ -4,7 +4,6 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useHistory, useLocation } from "react-router-dom";
 import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
-
 const useOptions = () => {
   const fontSize = useResponsiveFontSize();
   const options = useMemo(
@@ -16,13 +15,13 @@ const useOptions = () => {
           letterSpacing: "0.025em",
           fontFamily: "Source Code Pro, monospace",
           "::placeholder": {
-            color: "#aab7c4"
-          }
+            color: "#aab7c4",
+          },
         },
         invalid: {
-          color: "#9e2146"
-        }
-      }
+          color: "#9e2146",
+        },
+      },
     }),
     [fontSize]
   );
@@ -35,9 +34,9 @@ const CardForm = () => {
   const elements = useElements();
   const options = useOptions();
   const location = useLocation();
-  
+
   const totalForPayment = location?.state?.total;
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -48,28 +47,29 @@ const CardForm = () => {
 
     const payload = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement)
+      card: elements.getElement(CardElement),
     });
 
     console.log("[PaymentMethod]", payload);
     let json_payload = {
-        "items": [
-            { 
-                "id": "xl-tshirt" ,
-                "total":totalForPayment
-            }
-            ]
-      }
-      console.log("in payement card ", json_payload)
-    axios.post("http://localhost:3002/api/v1/payments", json_payload.total)
-    .then(data=>{
-        
-        stripe.confirmCardPayment(data.data.clientSecret, {
+      items: [
+        {
+          id: "xl-tshirt",
+          total: totalForPayment,
+        },
+      ],
+    };
+    console.log("in payement card ", json_payload);
+    axios
+      .post("http://localhost:3002/api/v1/payments", json_payload.total)
+      .then((data) => {
+        stripe
+          .confirmCardPayment(data.data.clientSecret, {
             payment_method: {
-              card: elements.getElement(CardElement)
-            }
+              card: elements.getElement(CardElement),
+            },
           })
-          .then(function(result) {
+          .then(function (result) {
             if (result.error) {
               // Show error to your customer
               //showError(result.error.message);
@@ -77,11 +77,11 @@ const CardForm = () => {
             } else {
               // The payment succeeded!
               //orderComplete(result.paymentIntent.id);
-             alert(`successful payment `);
-             //done
+              alert(`successful payment `);
+              //done
             }
           });
-    })
+      });
   };
 
   return (
@@ -93,7 +93,7 @@ const CardForm = () => {
           onReady={() => {
             console.log("CardElement [ready]");
           }}
-          onChange={event => {
+          onChange={(event) => {
             console.log("CardElement [change]", event);
           }}
           onBlur={() => {
