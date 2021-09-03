@@ -83,6 +83,9 @@ const CardForm = () => {
               });
               //done
 
+              alert(`successful payment `);
+              //done
+
               history.push({
                 pathname: ORDERS,
               });
