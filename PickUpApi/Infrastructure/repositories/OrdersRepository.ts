@@ -1,5 +1,5 @@
-import { BaseRepository } from "../contracts/BaseRepository"
 import  {OrderEntity} from "../db/models/order"
+import {Model} from 'sequelize-typescript';
 
 export class OrdersRepository{
     constructor(){
@@ -19,6 +19,10 @@ export class OrdersRepository{
             include: {all:true, nested: true}
         });
         return orders;
+    }
+
+    public async Create(model: Model<OrderEntity>){
+        return model.save();
     }
  
 }
