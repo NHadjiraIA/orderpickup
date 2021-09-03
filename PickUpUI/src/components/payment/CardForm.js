@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-
+import { ORDERS} from "../../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
 import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
@@ -31,6 +31,7 @@ const useOptions = () => {
 };
 
 const CardForm = () => {
+  const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
   const options = useOptions();
@@ -39,7 +40,7 @@ const CardForm = () => {
   const totalForPayment = location?.state?.total;
   const handleSubmit = async event => {
     event.preventDefault();
-
+   
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -78,7 +79,11 @@ const CardForm = () => {
               // The payment succeeded!
               //orderComplete(result.paymentIntent.id);
              alert(`successful payment `);
-             //done
+             //done 
+            
+             history.push({
+              pathname: ORDERS
+            });
             }
           });
     })

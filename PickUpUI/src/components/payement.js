@@ -58,10 +58,8 @@ export default function Payment() {
  
   
   return (
-    <BrowserRouter>
       <Elements stripe={stripePromise}>
         <ElementD payments={payments} />
       </Elements>
-    </BrowserRouter>
   );
 };
