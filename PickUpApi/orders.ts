@@ -5,6 +5,7 @@ import {toEntity as orderDetailToEntity} from './application/mappers/orderDetail
 import { OrderDetailsRepository } from "./Infrastructure/repositories/OrderDetailsRepository";
 import { OrderDto } from "./domain/dtos/OrderDto";
 import { OrderDetailDto } from "./domain/dtos/OrderDetailDto";
+import {orderReceivedNotice} from './twilio'
 
 export class OrdersApi{
     private _ordersRepository:any;
@@ -32,6 +33,7 @@ export class OrdersApi{
             orderDto.Details.forEach(detail => {
                 this._orderDetailsRepository.Create(orderDetailToEntity(detail, createdOrder.id));
             });
+            orderReceivedNotice();
             return res.status(201).json(createdOrder);
         }else{
             return res.status(400).send("The order could not be created. Please check the provided data.")
