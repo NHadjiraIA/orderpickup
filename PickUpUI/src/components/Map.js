@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "./map.css";
 import mapStyles from "./mapStyles";
-import API from '../mapAPIKEY'
+import API from '../mapAPIKey'
 
 import {
   GoogleMap,

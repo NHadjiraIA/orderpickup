@@ -14,7 +14,6 @@ import {
 } from "sequelize";
 import {sequelize}  from '../config/sequelize'
 import { CommentEntity } from "./comment";
-import { DishEntity } from "./dish";
 import { OrderEntity } from "./order";
 import { RatingEntity } from "./rating";
 import { UserEntity } from "./user";

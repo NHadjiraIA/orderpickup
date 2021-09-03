@@ -6,31 +6,35 @@ import StarIcon from "@material-ui/icons/Star";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 import CommentList from "./CommentList.js";
 import Button from "@material-ui/core/Button";
-import { useLocation } from 'react-router-dom';
-import CallEndRoundedIcon from '@material-ui/icons/CallEndRounded';
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-import RoomIcon from '@material-ui/icons/Room';
+import { useLocation } from "react-router-dom";
+import CallEndRoundedIcon from "@material-ui/icons/CallEndRounded";
+import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
+import RoomIcon from "@material-ui/icons/Room";
 
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 function Restaurant() {
   // console.log("propssss", props);
   const location = useLocation();
   const classes = useStyles();
 
+  const restaurantDetails = location.state.restaurantInfo;
+  const durationTime = location.state.duration;
+  // const productDetails = props.product;
+  // console.log("detailsssssss", restaurantDetails);
 
-const restaurantDetails = location.state.restaurantInfo;
-const durationTime = location.state.duration;
-// const productDetails = props.product;
-// console.log("detailsssssss", restaurantDetails);
-
-  const [activeState, setActiveState] = useState({menu:true, comments: false})
+  const [activeState, setActiveState] = useState({
+    menu: true,
+    comments: false,
+  });
 
   const [dishes, setDishes] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/api/v1/restaurant/${restaurantDetails.id}/dishes`)
+      .get(
+        `http://localhost:3002/api/v1/restaurant/${restaurantDetails.id}/dishes`
+      )
       .then((res) => {
         console.log("Dishes", res.data);
 
@@ -48,43 +52,43 @@ const durationTime = location.state.duration;
     }
   };
 
-  function DishSelection(){
-    const dishesList = dishes.map((dish)=>{
-      let output = "";
-      if (dish.vegan) {
-       output += "<p>#Vegan</p>";
-      }
-      if(dish.gluten){
-        output+="<p>#Gluten free</p>";
-      }
-      if(dish.halal){
-        output+="<p>#Halal</p>";
-      }
-      if(dish.dairy){
-        output+="<p>#Dairy free</p>";
-      }
-      if(dish.nuts){
-        output+="<p>#Contains nuts</p>";
-      }
-      if(dish.marijuana){
-        output+="<p>#Contains cannabis</p>";
-      }
-      
-    
-      console.log('DISHESES', dish);
-      console.log(output);
-      return parse(output);
-    })
-    return dishesList;
-  }
+  /***********Dont delete it yettttttt ************/
+  // function DishSelection() {
+  //   const dishesList = dishes.map((dish) => {
+  //     let output = "";
+  //     if (dish.vegan) {
+  //       output += "<p>#Vegan</p>";
+  //     }
+  //     if (dish.gluten) {
+  //       output += "<p>#Gluten free</p>";
+  //     }
+  //     if (dish.halal) {
+  //       output += "<p>#Halal</p>";
+  //     }
+  //     if (dish.dairy) {
+  //       output += "<p>#Dairy free</p>";
+  //     }
+  //     if (dish.nuts) {
+  //       output += "<p>#Contains nuts</p>";
+  //     }
+  //     if (dish.marijuana) {
+  //       output += "<p>#Contains cannabis</p>";
+  //     }
+
+  //     console.log("DISHESES", dish);
+  //     console.log(output);
+  //     return parse(output);
+  //   });
+  //   return dishesList;
+  // }
+
+   /***********Dont delete it yettttttt ************/
 
   return (
     <>
       <hero className={classes.heroroot}>
         <div className={classes.restaurantcard}>
-          <img src="alt"/>
-
-          {/* <img src={props.restaurant.img} alt="thumbnail"/> */}
+          <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
             <h2>{restaurantDetails.title}</h2>
             {/* <div class="rating-send">
@@ -111,8 +115,7 @@ const durationTime = location.state.duration;
             <>6.5k</>
             <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
-                
-              <DishSelection/>
+                {/* <DishSelection /> Dont Delete thisss yet*/}
                 <p>#halal</p>
                 <p>#thebest</p>
               </div>
@@ -125,12 +128,24 @@ const durationTime = location.state.duration;
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
         <div className={classes.contactinfo}>
-          <h3><RoomIcon/>{restaurantDetails.address}</h3>
-          <h3>{restaurantDetails.city} , {restaurantDetails.prov_state}</h3>
-          <div >
-          <h3> <CallEndRoundedIcon/>{restaurantDetails.phone}</h3></div>
-        
-          <h3><EmailOutlinedIcon/> {restaurantDetails.email}</h3>
+          <h3>
+            <RoomIcon />
+            {restaurantDetails.address}
+          </h3>
+          <h3>
+            {restaurantDetails.city} | {restaurantDetails.prov_state}
+          </h3>
+          <div>
+            <h3>
+              {" "}
+              <CallEndRoundedIcon />
+              {restaurantDetails.phone}
+            </h3>
+          </div>
+
+          <h3>
+            <EmailOutlinedIcon /> {restaurantDetails.email}
+          </h3>
         </div>
       </hero>
       <div className={classes.heroMenu}>
@@ -139,9 +154,7 @@ const durationTime = location.state.duration;
       </div>
       {activeState.menu && (
         <div className={classes.menu}>
-          <ProductList 
-          productDetails={dishes}
-          />
+          <ProductList productDetails={dishes} />
         </div>
       )}
       {activeState.comment && (

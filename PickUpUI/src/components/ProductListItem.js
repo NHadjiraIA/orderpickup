@@ -142,12 +142,9 @@ export default function ProductListItemDemo(props) {
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       {/* <br /> */}
       <div className={classes.productIntro}>
-        <Typography onClick={handleClickOpen}><h3>{props.itemName}</h3></Typography>
+        <Typography onClick={handleClickOpen}><h3>{props.name}</h3></Typography>
         <Typography onClick={handleClickOpen}>
           <p>{props.description} </p>
-        </Typography>
-        <Typography onClick={handleClickOpen}>
-          <p>{props.description}</p>
         </Typography>
         <br />
         <br />
