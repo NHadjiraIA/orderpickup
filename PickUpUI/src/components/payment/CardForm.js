@@ -78,6 +78,7 @@ const CardForm = () => {
             } else {
               // The payment succeeded!
               //orderComplete(result.paymentIntent.id);
+
               alert(`successful payment `);
               //done
 
