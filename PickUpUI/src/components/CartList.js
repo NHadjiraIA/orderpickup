@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import { PAYMENT } from "../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
 import { useCart } from "../context/cart";
-import {postOrder} from "../services/orderService"
+import { postOrder } from "../services/orderService";
 
 const TAX_RATE = 0.13;
 
@@ -49,11 +49,9 @@ function CartList(props) {
   const [total, setTotal] = useState(0);
   const cart = useCart();
   const cartList = Object.values(cart.cart);
-  console.log(cartList)
+  console.log(cartList);
   const classes = useStyles();
-  
 
-  
   const quantity = location?.state?.quantity;
   //const dishId = location?.state?.id;
   const description = location?.state?.description;
@@ -78,43 +76,41 @@ function CartList(props) {
   };
 
   const calculateTotal = (items) => {
-  const calculatedTotal = subtotal(items);
+    const calculatedTotal = subtotal(items);
     setTotal(calculatedTotal);
   };
   const pay = () => {
-
-    let restaurantId =1;
+    let restaurantId = 1;
     let userId = 1;
-    let orderId =8;
+    let orderId = 8;
     let dishId = 2;
     var requestDto = {
-        "userId": userId,
-        "restaurantId": restaurantId, 
-        "done": true,
-         "details":[
-           {
-           "dishId": dishId,
-           "orderId": orderId ,
-           "quantity": quantity
-          }
-         ]
-      };
+      userId: userId,
+      restaurantId: restaurantId,
+      done: true,
+      details: [
+        {
+          dishId: dishId,
+          orderId: orderId,
+          quantity: quantity,
+        },
+      ],
+    };
     postOrder(requestDto)
-   .then(result =>{
-      }).catch(err =>{
-        console.log(err)
-        if(err.response.status == 404){
-          setErrors('No comment found!');
-        }
-        else{
-          if(err.response.status == 400){
-            setErrors('restaurantId is not valid!');
-          }else{
-            setErrors('Unknow error!');
+      .then((result) => {})
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 404) {
+          setErrors("No comment found!");
+        } else {
+          if (err.response.status == 400) {
+            setErrors("restaurantId is not valid!");
+          } else {
+            setErrors("Unknow error!");
           }
         }
       });
-    
+
     history.push({
       pathname: PAYMENT,
       state: {

@@ -4,31 +4,31 @@ import {
   useElements,
   CardNumberElement,
   CardCvcElement,
-  CardExpiryElement
+  CardExpiryElement,
 } from "@stripe/react-stripe-js";
 
-import useResponsiveFontSize from "../useResponsiveFontSize";
+// import useResponsiveFontSize from "../useResponsiveFontSize";
 
 const useOptions = () => {
-  const fontSize = useResponsiveFontSize();
+  // const fontSize = useResponsiveFontSize();
   const options = useMemo(
     () => ({
       style: {
         base: {
-          fontSize,
+          // fontSize,
           color: "#424770",
           letterSpacing: "0.025em",
           fontFamily: "Source Code Pro, monospace",
           "::placeholder": {
-            color: "#aab7c4"
-          }
+            color: "#aab7c4",
+          },
         },
         invalid: {
-          color: "#9e2146"
-        }
-      }
-    }),
-    [fontSize]
+          color: "#9e2146",
+        },
+      },
+    })
+    // [fontSize]
   );
 
   return options;
@@ -39,7 +39,7 @@ const SplitForm = () => {
   const elements = useElements();
   const options = useOptions();
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -50,7 +50,7 @@ const SplitForm = () => {
 
     const payload = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardNumberElement)
+      card: elements.getElement(CardNumberElement),
     });
     console.log("[PaymentMethod]", payload);
   };
@@ -64,7 +64,7 @@ const SplitForm = () => {
           onReady={() => {
             console.log("CardNumberElement [ready]");
           }}
-          onChange={event => {
+          onChange={(event) => {
             console.log("CardNumberElement [change]", event);
           }}
           onBlur={() => {
@@ -82,7 +82,7 @@ const SplitForm = () => {
           onReady={() => {
             console.log("CardNumberElement [ready]");
           }}
-          onChange={event => {
+          onChange={(event) => {
             console.log("CardNumberElement [change]", event);
           }}
           onBlur={() => {
@@ -100,7 +100,7 @@ const SplitForm = () => {
           onReady={() => {
             console.log("CardNumberElement [ready]");
           }}
-          onChange={event => {
+          onChange={(event) => {
             console.log("CardNumberElement [change]", event);
           }}
           onBlur={() => {

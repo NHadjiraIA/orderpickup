@@ -156,12 +156,13 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Welcome to NoshFeast!
+
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            {/* <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
-            </Badge>
+            </Badge> */}
           </IconButton>
         </Toolbar>
       </AppBar>
