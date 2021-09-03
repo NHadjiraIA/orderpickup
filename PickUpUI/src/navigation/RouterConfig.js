@@ -15,7 +15,6 @@ import { orderList } from "../pages/Vendors/orderList";
 import { Mapping } from "../pages/Map";
 import { commentList } from "../pages/Vendors/commentList.js";
 import { NotFound } from "./NotFound";
-import CartProvider from "../context/cart";
 import {
   ROOT,
   MAP,
@@ -36,33 +35,31 @@ export const RouterConfig = (props) => {
   console.log("Routerrrrrr", props);
   const restaurants = props.restaurants;
   return (
-    <CartProvider>
-      <Switch>
-        List all public routes here
-        <Route exact path={VENDOR_COMMENTS} component={commentList} />
-        <Route exact path={PAYMENT} component={payement} />
-        <Route exact path={ROOT} component={landing} />
-        <Route exact path={MAP}>
-          <Mapping restaurants={restaurants} />
-        </Route>
-        <Route exact path={DISH} component={dish} />
-        <Route exact path={RESTAURANT}>
-          <RestaurantPage />
-        </Route>
-        <Route exact path={ORDERS} component={Orders} />
-        <Route exact path={CART}>
-          <Cart />
-        </Route>
-        <Route exact path={LOGIN} component={login} />
-        <Route exact path={SIGNUP} component={signup} />
-        <Route exact path={VENDOR_DASHBOARD} component={dashboard} />
-        <Route exact path={VENDOR_MENU} component={vendorMenu} />
-        <Route exact path={VENDOR_ORDERS} component={orderList} />
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
-    </CartProvider>
+    <Switch>
+      List all public routes here
+      <Route exact path={VENDOR_COMMENTS} component={commentList} />
+      <Route exact path={PAYMENT} component={payement} />
+      <Route exact path={ROOT} component={landing} />
+      <Route exact path={MAP}>
+        <Mapping restaurants={restaurants} />
+      </Route>
+      <Route exact path={DISH} component={dish} />
+      <Route exact path={RESTAURANT}>
+        <RestaurantPage />
+      </Route>
+      <Route exact path={ORDERS} component={Orders} />
+      <Route exact path={CART}>
+        <Cart />
+      </Route>
+      <Route exact path={LOGIN} component={login} />
+      <Route exact path={SIGNUP} component={signup} />
+      <Route exact path={VENDOR_DASHBOARD} component={dashboard} />
+      <Route exact path={VENDOR_MENU} component={vendorMenu} />
+      <Route exact path={VENDOR_ORDERS} component={orderList} />
+      <Route path="*">
+        <NotFound />
+      </Route>
+    </Switch>
   );
 };
 

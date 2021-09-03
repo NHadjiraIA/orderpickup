@@ -1,8 +1,10 @@
 import { RouterConfig } from "../navigation/RouterConfig";
+import { Route, useRouteMatch } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CartProvider from "../context/cart";
 
 export default function WrapperComponent(props) {
   const [restaurants, setRestaurants] = useState([]);
@@ -18,12 +20,19 @@ export default function WrapperComponent(props) {
       .catch((err) => {});
   }, []);
   console.log("RESTAURANTEESSSS", restaurants);
+  const matched = useRouteMatch("/vendors/");
 
   return (
     <div>
-      <Navigation />
-      <RouterConfig restaurants={restaurants} />
-      <Footer />
+      <CartProvider>
+        <Route
+          path={"/"}
+          render={() => (!matched ? <Navigation /> : <mainListItems />)}
+        />
+
+        <RouterConfig restaurants={restaurants} />
+        <Footer />
+      </CartProvider>
     </div>
   );
 }

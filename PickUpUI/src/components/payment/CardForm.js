@@ -2,15 +2,15 @@ import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 import { useHistory, useLocation } from "react-router-dom";
-import useResponsiveFontSize from "../useResponsiveFontSize";
+// import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
 const useOptions = () => {
-  const fontSize = useResponsiveFontSize();
+  // const fontSize = useResponsiveFontSize();
   const options = useMemo(
     () => ({
       style: {
         base: {
-          fontSize,
+          // fontSize,
           color: "#424770",
           letterSpacing: "0.025em",
           fontFamily: "Source Code Pro, monospace",
@@ -22,8 +22,8 @@ const useOptions = () => {
           color: "#9e2146",
         },
       },
-    }),
-    [fontSize]
+    })
+    // [fontSize]
   );
 
   return options;
