@@ -237,7 +237,7 @@ function CartList(props) {
         className={classes.checkoutButton}
         onClick={() => pay()}
       >
-        Checkout
+        Proceed to Checkout
       </Button>
     </div>
   );
