@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-
+import { ORDERS } from "../../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
 // import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
@@ -30,6 +30,7 @@ const useOptions = () => {
 };
 
 const CardForm = () => {
+  const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
   const options = useOptions();
@@ -79,6 +80,10 @@ const CardForm = () => {
               //orderComplete(result.paymentIntent.id);
               alert(`successful payment `);
               //done
+
+              history.push({
+                pathname: ORDERS,
+              });
             }
           });
       });
