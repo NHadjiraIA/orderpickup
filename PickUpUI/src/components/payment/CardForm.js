@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { ORDERS} from "../../navigation/CONSTANTS";
+import { ORDERS } from "../../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
 // import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
@@ -39,7 +39,7 @@ const CardForm = () => {
   const totalForPayment = location?.state?.total;
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
+
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -78,18 +78,28 @@ const CardForm = () => {
             } else {
               // The payment succeeded!
               //orderComplete(result.paymentIntent.id);
+              sendMessage().then(() => {
+                alert(`successful payment `);
+              });
+              //done
 
-             alert(`successful payment `);
-             //done 
-            
-             history.push({
-              pathname: ORDERS
-            });
+              alert(`successful payment `);
+              //done
+
+              history.push({
+                pathname: ORDERS,
+              });
             }
           });
       });
   };
-
+  const sendMessage = () => {
+    return axios
+      .post("http://localhost:3002/api/v1/sendMessage", {})
+      .then(() => {
+        console.log("MESSAGE SENT");
+      });
+  };
   return (
     <form onSubmit={handleSubmit}>
       <label>
