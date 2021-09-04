@@ -12,13 +12,14 @@ import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 // import parse from "html-react-parser";
 import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   heroroot: {
     display: "flex",
     flexDirection: "row",
 
-    height: "17em",
+    height: "18em",
     // backgroundColor: "#6b78be",
     backgroundColor: "#57cc99",
 
@@ -38,9 +39,10 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "1em",
     marginTop: "1em",
     marginBottom: "1em",
+    paddingTop: "1em",
     // border: "red 2px solid",
   },
-  restaurantName: { paddingLeft: "1.6em" },
+  restaurantName: { paddingLeft: "1em" },
 
   tagsAndDistance: {
     display: "flex",
@@ -174,9 +176,13 @@ function Restaurant() {
         <div className={classes.restaurantcard}>
           <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
-            <h2 className={classes.restaurantName}>
+            <Typography
+              className={classes.restaurantName}
+              variant="h5"
+              align="left"
+            >
               {restaurantDetails.title}
-            </h2>
+            </Typography>
             <Box component="fieldset" mb={-2} borderColor="transparent">
               <Rating name="read-only" value={4} readOnly />
             </Box>
