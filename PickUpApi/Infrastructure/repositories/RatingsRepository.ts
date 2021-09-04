@@ -12,6 +12,13 @@ export class RatingsRepository{
         let ratings  = await RatingEntity.findAll();
         return ratings;
     }
+    
+    public async GetById(id: number): Promise<RatingEntity | null>{
+        return RatingEntity.findByPk(id);
+    }
+    public async update(rating: RatingEntity): Promise<RatingEntity>{
+        return rating.save();
+    }
 
     public async getByFilter(filter: any): Promise<RatingEntity[]>{
         let ratings  = await RatingEntity.findAll({

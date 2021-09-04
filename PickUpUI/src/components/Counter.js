@@ -38,7 +38,12 @@ const Counter = (props) => {
         aria-label="minus-item"
         onClick={props.decrement}
         className={classes.changeQuant}
-        style={{ color: "black", backgroundColor: "none" }}
+        style={{
+          color: "black",
+          backgroundColor: "none",
+          boxShadow: "none",
+          elevation: 0,
+        }}
       >
         <RemoveCircleIcon fontSize="large" />
       </IconButton>
@@ -46,7 +51,12 @@ const Counter = (props) => {
       <IconButton
         aria-label="add-item"
         onClick={props.increment}
-        style={{ color: "black", backgroundColor: "none" }}
+        style={{
+          color: "black",
+          backgroundColor: "none",
+          boxShadow: "none",
+          elevation: 0,
+        }}
       >
         <AddCircleIcon fontSize="large" />
       </IconButton>
