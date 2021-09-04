@@ -17,11 +17,10 @@ const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
-    height: "15.5em",
-    width: "45em",
+    height: "17em",
+    width: "47em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
-
     display: "flex",
     // justifyContent: 'row',
     justifyContent: "center",
@@ -249,18 +248,18 @@ export default function ProductListItemDemo(props) {
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       {/* <br /> */}
       <div className={classes.productIntro}>
-        <Typography onClick={handleClickOpen}>
+        <Typography onClick={handleClickOpen} align="left">
           <h3>{props.name}</h3>
         </Typography>
-        <Typography onClick={handleClickOpen}>
+        <Typography align="left" onClick={handleClickOpen}>
           <p>{props.description} </p>
         </Typography>
-        <Typography> #halal</Typography>
-        <Typography> #thebest</Typography>
+        <Typography align="left"> #halal #thebest</Typography>
+        <br></br>
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>
           <Typography onClick={handleClickOpen} className={classes.calories}>
-            {props.calories}Cals.
+            {props.calories} Cals.
           </Typography>
         </div>
         {/* <br/> */}
