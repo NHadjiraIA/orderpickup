@@ -9,11 +9,11 @@ import { OrderDetailDto } from "./domain/dtos/OrderDetailDto";
 
 
 export class OrdersApi{
-    accountSid = process.env.TWILIO_ACCOUNT_SID;
-    authToken = process.env.TWILIO_AUTH_TOKEN;
+    accountSid = "AC566b1c96067e796bc9e1b0ba97f86632";
+    authToken = "47cce62bb4cc315f6c049ef36dbd72fd";
     client = require("twilio")(this.accountSid, this.authToken);
-    myNumber = "+16478719181";
-    twilioNumber = "+12393120406";
+    myNumber = "+3439616170";
+    twilioNumber = "+16788548016";
 
     private _ordersRepository:any;
     private _orderDetailsRepository:any;

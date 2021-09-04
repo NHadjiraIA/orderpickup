@@ -103,8 +103,19 @@ app.use('/api/v1', ordersRouter)
  
 //################RATINGS END POINT ###################
 ratingsRouter.get("/ratings", 
- (req, res) => ratingsApi.getAll(req, res)
+  (req, res) => {
+    if(req.query.restaurantId){
+      ratingsApi.getByRestaurantId(req, res);
+    } else{
+      ratingsApi.getAll(req, res);
+    }
+  }
 );
+
+commentRouter.post('/ratings',
+  (req, res) => ratingsApi.create(req, res)
+)
+ 
 app.use('/api/v1', ratingsRouter);
 
 //################DISH END POINT ###################

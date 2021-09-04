@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import { dish } from "../pages/Dish";
 import { Orders } from "../pages/Orders";
 import { Cart } from "../pages/Cart";
-import { login } from "../pages/Login";
+import  { Loginpage }  from "../pages/Login";
 import RestaurantPage from "../pages/Restaurant";
 import { signup } from "../pages/Signup";
 import { landing } from "../pages/Landing";
@@ -35,6 +35,7 @@ import {
 export const RouterConfig = (props) => {
   console.log("Routerrrrrr", props);
   const restaurants = props.restaurants;
+  const setUserName = props.setUserName;
   return (
     <Switch>
       List all public routes here
@@ -52,7 +53,9 @@ export const RouterConfig = (props) => {
       <Route exact path={CART}>
         <Cart />
       </Route>
-      <Route exact path={LOGIN} component={login} />
+      <Route exact path={LOGIN} >
+      <Loginpage setUserName={setUserName} />
+       </Route>
       <Route exact path={SIGNUP} component={signup} />
       {/* <Route exact path={VENDOR_DASHBOARD} component={dashboard} /> */}
       <Route exact path={VENDOR_DASHBOARD}>
