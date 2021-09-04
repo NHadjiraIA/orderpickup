@@ -117,7 +117,7 @@ export const Navigation = (props) => {
           {userName ? (
             <div className={classes.logout}>
               <Typography style={{ paddingRight: "0.5em" }}>
-                Welcome {userName}
+                Welcome, {userName}!
               </Typography>
               <Link
                 to={LOGOUT}
