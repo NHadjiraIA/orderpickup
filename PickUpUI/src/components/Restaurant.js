@@ -18,12 +18,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
 
-    height: "15em",
+    height: "17em",
     // backgroundColor: "#6b78be",
     backgroundColor: "#57cc99",
 
     paddingLeft: "11.5em",
     paddingRight: "10em",
+    paddingTop: "90px",
   },
   restaurantcard: {
     width: "70%",

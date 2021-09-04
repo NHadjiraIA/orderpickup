@@ -162,16 +162,17 @@ export const Navigation = (props) => {
               </Link>
             </Badge>
           </IconButton>
-          {userName ? 
+          {userName ? (
             <div>
-              <label> welcome {userName} </label>
+              <Typography>Welcome {userName}</Typography>
               <Link
                 to={LOGOUT}
                 style={{ textDecoration: "none", color: "white" }}
               >
                 <Typography>LogOut</Typography>
               </Link>
-            </div>: 
+            </div>
+          ) : (
             <div>
               <Link
                 to={LOGIN}
@@ -180,7 +181,7 @@ export const Navigation = (props) => {
                 <Typography>LogIn</Typography>
               </Link>
             </div>
-          }
+          )}
         </div>
       </Toolbar>
     </AppBar>

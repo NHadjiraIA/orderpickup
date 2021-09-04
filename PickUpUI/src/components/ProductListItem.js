@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     width: "47em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
-
     display: "flex",
     // justifyContent: 'row',
     justifyContent: "center",
@@ -255,8 +254,7 @@ export default function ProductListItemDemo(props) {
         <Typography align="left" onClick={handleClickOpen}>
           <p>{props.description} </p>
         </Typography>
-        <Typography align="left"> #halal</Typography>
-        <Typography align="left"> #thebest</Typography>
+        <Typography align="left"> #halal #thebest</Typography>
         <br></br>
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>
