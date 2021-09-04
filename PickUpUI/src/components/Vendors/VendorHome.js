@@ -48,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: "#22577A",
+    padding: "1em",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -69,6 +71,8 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: "#38A3A5",
+    color: "white",
   },
   drawerHeader: {
     display: "flex",
@@ -77,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
+    backgroundColor: "#38A3A5",
   },
   content: {
     flexGrow: 1,
@@ -165,7 +170,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h5" noWrap>
             Welcome to NoshFeast!
           </Typography>
         </Toolbar>
