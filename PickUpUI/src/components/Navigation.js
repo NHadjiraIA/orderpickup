@@ -150,7 +150,7 @@ export const Navigation = (props) => {
         </div>
         <div className={classes.cartAndLogin}>
           <IconButton color="inherit">
-            <Badge badgeContent={cartQuantitySum} style={{}}>
+            <Badge badgeContent={cartQuantitySum} color="secondary">
               <Link
                 to={CART}
                 style={{ textDecoration: "none", color: "white" }}
