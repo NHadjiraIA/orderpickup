@@ -50,13 +50,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     color: "white",
-    width: "25%",
-    paddingRight: "4em",
+    width: "20%",
+    paddingRight: "3em",
   },
   logout: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
   },
   // links: {
   //   flex: "1",
@@ -97,10 +97,10 @@ export const Navigation = (props) => {
         </Link>
         <div className={classes.mapAndOrders}>
           <Link to={MAP} style={{ textDecoration: "none", color: "white" }}>
-            <Typography>Find Restaurants</Typography>
+            <Typography variant="h6">Find Restaurants</Typography>
           </Link>
           <Link to={ORDERS} style={{ textDecoration: "none", color: "white" }}>
-            <Typography>Orders</Typography>
+            <Typography variant="h6">Orders</Typography>
           </Link>
         </div>
         <div className={classes.cartAndLogin}>
@@ -136,7 +136,7 @@ export const Navigation = (props) => {
                 to={LOGIN}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <Typography>LogIn</Typography>
+                <Typography variant="h6">LogIn</Typography>
               </Link>
             </div>
           )}
