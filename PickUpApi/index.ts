@@ -16,6 +16,8 @@ import { CommentsApi } from "./comment";
 import { PaymentApi } from "./payments";
 export {UserApi} from "./users";
 import twilioMessage from './twilio'
+import { or } from "sequelize/types";
+import {filtersHelper} from './application/helpers/filtersHelper'
 
 const app = express();
 
@@ -59,7 +61,6 @@ userRouter.get('/users',
     else{
       userApi.getAll(req, res);
     }
-    
   }
 )
 userRouter.post('/users',
@@ -83,16 +84,10 @@ app.use('/api/v1', restaurantRouter)
 
 //################ORDER END POINT ###################
 ordersRouter.get("/orders", 
- (req, res) => ordersApi.getAll(req, res)
-);
-
-ordersRouter.get("/user/:userId/orders", 
- (req, res) => ordersApi.getByUserId(req, res)
-);
-
-ordersRouter.get("/user/:userId/:done/orders", 
- (req, res) => ordersApi.getDoneOrdersByUserId(req, res)
-);
+  (req, res) => {
+    let filter  = filtersHelper.getFiltersFromRequestQuery(req)
+    ordersApi.getByFilter(req, res, filter);
+});
 
 ordersRouter.post("/orders", 
  (req, res) => ordersApi.create(req, res)
@@ -105,11 +100,14 @@ ratingsRouter.get("/ratings",
   (req, res) => {
     if(req.query.restaurantId){
       ratingsApi.getByRestaurantId(req, res);
+    } else if (req.query.userId){
+      ratingsApi.getByUserId(req, res);
     } else{
       ratingsApi.getAll(req, res);
     }
   }
 );
+
 
 commentRouter.post('/ratings',
   (req, res) => ratingsApi.create(req, res)

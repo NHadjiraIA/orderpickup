@@ -134,7 +134,7 @@ export const Navigation = (props) => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const history = useHistory();
   return (
     <AppBar position="static" className={classes.wholenav}>
       <Toolbar disableGutters={true} className={classes.toolbar}>
@@ -162,17 +162,16 @@ export const Navigation = (props) => {
               </Link>
             </Badge>
           </IconButton>
-          {userName ? (
+          {userName ? 
             <div>
               <label> welcome {userName} </label>
               <Link
-                to={ROOT}
+                to={LOGOUT}
                 style={{ textDecoration: "none", color: "white" }}
               >
                 <Typography>LogOut</Typography>
               </Link>
-            </div>
-          ) : (
+            </div>: 
             <div>
               <Link
                 to={LOGIN}
@@ -181,7 +180,7 @@ export const Navigation = (props) => {
                 <Typography>LogIn</Typography>
               </Link>
             </div>
-          )}
+          }
         </div>
       </Toolbar>
     </AppBar>
