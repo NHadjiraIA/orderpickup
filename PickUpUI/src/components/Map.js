@@ -44,7 +44,7 @@ function Map(props) {
       props.handleUserPosition(coordinates);
     });
   }
-
+ 
   const [searchBox, setSearchBox] = useState(null);
 
   const markers = props.restaurants;
@@ -70,6 +70,7 @@ function Map(props) {
       googleMapsApiKey={API}
       libraries={libraries}
     >
+     
       <GoogleMap
         id="searchbox"
         mapContainerStyle={containerStyle}

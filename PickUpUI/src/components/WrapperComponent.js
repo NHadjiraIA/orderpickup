@@ -19,13 +19,16 @@ export default function WrapperComponent(props) {
       .catch((err) => {});
   }, []);
   const matched = useRouteMatch("/vendors/");
-
+  const [userName, setUserName]= useState("");
+  useEffect(()=>{
+    console.log("this is the user in wrapperComp",userName)
+  })
   return (
     <div>
       <CartProvider>
-        <Route path={"/"} render={() => (!matched ? <Navigation /> : null)} />
+        <Route path={"/"} render={() => (!matched ? <Navigation  userName={userName}/> : null)} />
 
-        <RouterConfig restaurants={restaurants} />
+        <RouterConfig restaurants={restaurants}  setUserName={setUserName}/>
         <Footer />
       </CartProvider>
     </div>

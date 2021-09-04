@@ -8,17 +8,19 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { LOGIN, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
+import { LOGIN,LOGOUT, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
 import { Link } from "react-router-dom";
 import useStyles from "./NavigationStyle.js";
 import { useCart } from "../context/cart";
-
+import { useHistory, useLocation } from "react-router-dom";
 export const Navigation = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const cart = useCart();
-
+  const location = useLocation();
+  const name = location?.state?.userName;
+  const userName = props.userName;
   const cartArray = Object.values(cart.cart);
   const cartQuantity = cartArray.map((objectInArray) => {
     return objectInArray.quantity;
@@ -41,7 +43,7 @@ export const Navigation = (props) => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  
   // const menuId = "primary-search-account-menu";
   // const renderMenu = (
   //   <Menu
@@ -81,7 +83,7 @@ export const Navigation = (props) => {
   //     </MenuItem>
   //   </Menu>
   // );
-
+  
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.wholenav}>
@@ -97,6 +99,7 @@ export const Navigation = (props) => {
             </Link>
             <Link to={ORDERS}>
               <Typography>Orders</Typography>
+              {console.log("in nav bar",name)}
             </Link>
           </Typography>
           <div className={classes.grow} />
@@ -108,11 +111,25 @@ export const Navigation = (props) => {
                 </Link>
               </Badge>
             </IconButton>
-            <div>
-              <Link to={LOGIN}>
-                <Typography>LogIn</Typography>
-              </Link>
-            </div>
+               { userName ? 
+                 <div>
+                  <label> welcome {userName} 
+          
+                  </label> 
+                  <Link to={ROOT}>
+
+                  <Typography>LogOut</Typography>
+                  </Link>
+                 </div>: 
+                 <div>
+                <Link to={LOGIN}>
+
+                  <Typography>LogIn</Typography>
+                </Link>
+
+              </div>
+               }
+           
           </div>
           {/* <div className={classes.sectionMobile}>
             <IconButton
