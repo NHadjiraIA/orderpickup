@@ -8,6 +8,7 @@ export const toEntity = (orderDto: OrderDto): OrderEntity => {
     orderEntity.userId = orderDto.UserId;
     orderEntity.restaurantId = orderDto.RestaurantId;
     orderEntity.done = orderDto.Done;
+    orderEntity.completed = orderDto.Completed;
     orderEntity.createdAt = orderDto.CreatedAt;
     orderEntity.updatedAt = orderDto.UpdatedAt;
     return orderEntity;

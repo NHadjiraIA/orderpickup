@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { LOGIN,LOGOUT, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
@@ -13,13 +11,13 @@ import { Link } from "react-router-dom";
 import useStyles from "./NavigationStyle.js";
 import { useCart } from "../context/cart";
 import { useHistory, useLocation } from "react-router-dom";
+
+
 export const Navigation = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const cart = useCart();
-  const location = useLocation();
-  const name = location?.state?.userName;
   const userName = props.userName;
   const cartArray = Object.values(cart.cart);
   const cartQuantity = cartArray.map((objectInArray) => {
@@ -27,10 +25,11 @@ export const Navigation = (props) => {
   });
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const cartQuantitySum = cartQuantity.reduce(reducer, 0);
+  const history = useHistory();
+   
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -43,47 +42,17 @@ export const Navigation = (props) => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  
-  // const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMenuOpen}
-  //     // onClose={handleMenuClose}
-  //   >
-  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-  //   </Menu>
-  // );
-
-  // const mobileMenuId = "primary-search-account-menu-mobile";
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMobileMenuOpen}
-  //     // onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem>
-  //       <IconButton aria-label="show 4 new mails" color="inherit">
-  //         <Badge badgeContent={2} color="secondary">
-  //           <ShoppingCart />
-  //         </Badge>
-  //       </IconButton>
-  //       <Link to={LOGIN}>
-  //         <Typography>LogIn</Typography>
-  //       </Link>
-  //     </MenuItem>
-  //   </Menu>
-  // );
-  
+  const goToLogOut = (path) => {
+    
+    history.push({
+      pathname: ROOT,
+      // state: { 
+      //   userId: userInfo?.id,
+      //   userName: userInfo?.name,
+      //   phoneNumber: userInfo?.phone
+      // }
+    });
+  }
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.wholenav}>
@@ -99,7 +68,7 @@ export const Navigation = (props) => {
             </Link>
             <Link to={ORDERS}>
               <Typography>Orders</Typography>
-              {console.log("in nav bar",name)}
+               
             </Link>
           </Typography>
           <div className={classes.grow} />
@@ -113,23 +82,18 @@ export const Navigation = (props) => {
             </IconButton>
                { userName ? 
                  <div>
-                  <label> welcome {userName} 
-          
+                  <label> welcome {userName} ß
                   </label> 
-                  <Link to={ROOT}>
-
-                  <Typography>LogOut</Typography>
+                  <Link to={LOGOUT}>
+                    <Typography>LogOut</Typography>
                   </Link>
                  </div>: 
                  <div>
                 <Link to={LOGIN}>
-
                   <Typography>LogIn</Typography>
                 </Link>
-
               </div>
                }
-           
           </div>
           {/* <div className={classes.sectionMobile}>
             <IconButton
@@ -149,3 +113,4 @@ export const Navigation = (props) => {
     </div>
   );
 };
+
