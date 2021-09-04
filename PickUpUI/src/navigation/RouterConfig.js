@@ -1,6 +1,5 @@
-import React, { useState, useReducer } from "react";
-import { Switch, BrowserRouter, Route, Link } from "react-router-dom";
-import Home from "../pages/Home";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import { dish } from "../pages/Dish";
 import { Orders } from "../pages/Orders";
 import { Cart } from "../pages/Cart";
@@ -8,7 +7,6 @@ import  { Loginpage }  from "../pages/Login";
 import RestaurantPage from "../pages/Restaurant";
 import { signup } from "../pages/Signup";
 import { landing } from "../pages/Landing";
-import { dashboard } from "../pages/Vendors/index.js";
 import { vendorMenu } from "../pages/Vendors/vendorMenu.js";
 import { payement } from "../pages/Payment";
 import { orderList } from "../pages/Vendors/orderList";
@@ -30,10 +28,11 @@ import {
   VENDOR_COMMENTS,
   PAYMENT,
   VENDOR_ORDERS,
+  LOGOUT,
 } from "./CONSTANTS";
+import Logout from "../components/Logout";
 
 export const RouterConfig = (props) => {
-  console.log("Routerrrrrr", props);
   const restaurants = props.restaurants;
   const setUserName = props.setUserName;
   return (
@@ -54,8 +53,11 @@ export const RouterConfig = (props) => {
         <Cart />
       </Route>
       <Route exact path={LOGIN} >
-      <Loginpage setUserName={setUserName} />
-       </Route>
+        <Loginpage setUserName={setUserName} />
+      </Route>
+      <Route exact path={LOGOUT} >
+        <Logout setUserName={setUserName}/>
+      </Route>
       <Route exact path={SIGNUP} component={signup} />
       {/* <Route exact path={VENDOR_DASHBOARD} component={dashboard} /> */}
       <Route exact path={VENDOR_DASHBOARD}>

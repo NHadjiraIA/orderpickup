@@ -20,6 +20,7 @@ interface OrderAttributes {
   id: number;
   userId: number;
   restaurantId: number;
+  completed: boolean
   done: boolean;
   createdAt: Date;
   updatedAt: Date | null;
@@ -32,6 +33,7 @@ export class OrderEntity extends Model<OrderAttributes, OrderCreationAttributes>
   public userId!: number;
   public restaurantId!: number;
   public done!: boolean;
+  public completed!: boolean;
   public createdAt!: Date;
   public updatedAt!: Date | null;
 
@@ -60,6 +62,10 @@ OrderEntity.init(
       allowNull: false,
     },
     done: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
