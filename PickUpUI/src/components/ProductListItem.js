@@ -257,6 +257,7 @@ export default function ProductListItemDemo(props) {
         </Typography>
         <Typography> #halal</Typography>
         <Typography> #thebest</Typography>
+        <br></br>
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>
           <Typography onClick={handleClickOpen} className={classes.calories}>
