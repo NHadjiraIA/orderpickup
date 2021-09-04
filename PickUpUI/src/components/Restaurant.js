@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
 
-    height: "15em",
+    height: "17em",
     // backgroundColor: "#6b78be",
     backgroundColor: "#57cc99",
 
-    paddingLeft: "5em",
-    paddingRight: "5em",
+    paddingLeft: "11.5em",
+    paddingRight: "10em",
+    paddingTop: "90px",
   },
   restaurantcard: {
     width: "70%",
@@ -35,16 +36,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   restaurantinfo: {
-    paddingLeft: "1em",
     paddingRight: "1em",
     marginTop: "1em",
     marginBottom: "1em",
+    // border: "red 2px solid",
   },
+  restaurantName: { paddingLeft: "1.6em" },
 
   tagsAndDistance: {
     display: "flex",
     flexDirection: "row",
     marginTop: "0.4em",
+    // border: "solid blue 2px",
   },
 
   tags: {
@@ -52,18 +55,19 @@ const useStyles = makeStyles((theme) => ({
   },
 
   distance: {
-    width: "30%",
+    width: "70%",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    paddingLeft: "0.5em",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    paddingLeft: "1.8em",
   },
 
   contactinfo: {
     width: "30%",
     paddingLeft: "1em",
     paddingRight: "1em",
-    borderLeft: "black solid 2px",
+    borderLeft: "white solid 2px",
     marginTop: "1em",
     marginBottom: "1em",
   },
@@ -73,13 +77,15 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
 
     display: "flex",
+    height: "3em",
 
-    paddingLeft: "1em",
+    paddingLeft: "11em",
     paddingRight: "2em",
     "& button": {
       paddingLeft: "2em",
       paddingRight: "2em",
       color: "white",
+      textDecoration: "none",
     },
   },
 
@@ -171,25 +177,37 @@ function Restaurant() {
         <div className={classes.restaurantcard}>
           <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
-            <h2>{restaurantDetails.title}</h2>
+            <h2 className={classes.restaurantName}>
+              {restaurantDetails.title}
+            </h2>
             <Box component="fieldset" mb={-2} borderColor="transparent">
               <Rating name="read-only" value={4} readOnly />
             </Box>
             <div className={classes.tagsAndDistance}>
-              <div className={classes.tags}>
-                {/* <DishSelection /> Dont Delete thisss yet*/}
-              </div>
+              {/* <div className={classes.tags}>
+                <DishSelection /> Dont Delete thisss yet
+              </div> */}
               <div className={classes.distance}>
                 <DriveEtaIcon />
                 <p>{durationTime}</p>
               </div>
             </div>
           </div>
-          {/* <hr className={classes.linedivider}></hr> */}
-          <div className={classes.contactinfo}>
+        </div>
+        {/* <hr className={classes.linedivider}></hr> */}
+        <div className={classes.contactinfo}>
+          <h3>
+            <RoomIcon />
+            {restaurantDetails.address}
+          </h3>
+          <h3>
+            {restaurantDetails.city} | {restaurantDetails.prov_state}
+          </h3>
+          <br></br>
+          <div>
             <h3>
-              <RoomIcon />
-              {restaurantDetails.address}
+              <CallEndRoundedIcon />
+              {restaurantDetails.phone}
             </h3>
             <h3>
               {restaurantDetails.city} | {restaurantDetails.prov_state}
@@ -209,8 +227,12 @@ function Restaurant() {
         </div>
       </hero>
       <div className={classes.heroMenu}>
-        <Button onClick={() => toggleActive("menu")}>Menu</Button>
-        <Button onClick={() => toggleActive("comments")}>Comments</Button>
+        <Button onClick={() => toggleActive("menu")} disableElevation>
+          Menu
+        </Button>
+        <Button onClick={() => toggleActive("comments")} disableElevation>
+          Comments
+        </Button>
       </div>
       {activeState.menu && (
         <div className={classes.menu}>

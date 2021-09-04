@@ -1,34 +1,33 @@
-import React, {useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 import useStyles from "./SignUpStyle.js";
-import {LOGIN} from "../navigation/CONSTANTS"
-import {postUser } from "../services";
-import { Input } from '@material-ui/core';
+import { LOGIN } from "../navigation/CONSTANTS";
+import { postUser } from "../services";
+import { Input } from "@material-ui/core";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
-
 
 export default function SignUp() {
   const classes = useStyles();
@@ -38,32 +37,30 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [phone, setPhone] = useState("");
-  const goToCreateUser = ()=>{
+  const goToCreateUser = () => {
     var userDto = {
-      "name":name,
-      "role": role,
-      "password": password,
-      "email": email,
-      "phone": phone
-      
+      name: name,
+      role: role,
+      password: password,
+      email: email,
+      phone: phone,
     };
-    console.log(userDto)
-    postUser(userDto)
-    setConfirmation("your account is created successfully")
-    
-   }
-   const emailTextHandleChange = (event)=>{
+    console.log(userDto);
+    postUser(userDto);
+    setConfirmation("your account is created successfully");
+  };
+  const emailTextHandleChange = (event) => {
     setEmail(event.target.value);
-  }
-  const nameTextHandleChange = (event)=>{
+  };
+  const nameTextHandleChange = (event) => {
     setName(event.target.value);
-  }
-  const phoneTextHandleChange = (event)=>{
+  };
+  const phoneTextHandleChange = (event) => {
     setPhone(event.target.value);
-  }
-  const passwordTextHandleChange = (event)=>{
+  };
+  const passwordTextHandleChange = (event) => {
     setPassword(event.target.value);
-  }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -86,7 +83,8 @@ export default function SignUp() {
                 id="Name"
                 label="User Name"
                 autoFocus
-                onChange={nameTextHandleChange} value={name} 
+                onChange={nameTextHandleChange}
+                value={name}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -98,7 +96,8 @@ export default function SignUp() {
                 label="Phone"
                 name="phone"
                 autoComplete="lname"
-                onChange={phoneTextHandleChange} value={phone} 
+                onChange={phoneTextHandleChange}
+                value={phone}
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,7 +109,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={emailTextHandleChange} value={email} 
+                onChange={emailTextHandleChange}
+                value={email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -123,16 +123,21 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={passwordTextHandleChange} value={password} 
+                onChange={passwordTextHandleChange}
+                value={password}
               />
             </Grid>
             <Grid item xs={12}>
-               <label for="cars">Choose a role:</label>
-            
-                  <select name="roles" id="roles" onSelect={(e)=>setRole(e.options[e.selectedIndex].text) } >
-                    <option value="Manager">manager</option>
-                    <option value="Client">client</option>
-                  </select> 
+              <label for="cars">Choose a role:</label>
+
+              <select
+                name="roles"
+                id="roles"
+                onSelect={(e) => setRole(e.options[e.selectedIndex].text)}
+              >
+                <option value="Manager">manager</option>
+                <option value="Client">client</option>
+              </select>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
@@ -147,11 +152,17 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=> goToCreateUser()}
+            onClick={() => goToCreateUser()}
           >
             Sign Up
           </Button>
-          <button type="submit" class="waves-effect waves-light btn green" onClick={()=>goToCreateUser()}>Create Account </button> 
+          <button
+            type="submit"
+            class="waves-effect waves-light btn green"
+            onClick={() => goToCreateUser()}
+          >
+            Create Account{" "}
+          </button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href={LOGIN} variant="body2">

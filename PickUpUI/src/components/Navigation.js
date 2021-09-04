@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#22577A",
     padding: "1em",
     textDecoration: "none",
+
+    position: "fixed" /* Set the navbar to fixed position */,
+    top: "0",
   },
   toolbar: {
     width: "100%",
@@ -150,7 +153,7 @@ export const Navigation = (props) => {
         </div>
         <div className={classes.cartAndLogin}>
           <IconButton color="inherit">
-            <Badge badgeContent={cartQuantitySum}>
+            <Badge badgeContent={cartQuantitySum} color="secondary">
               <Link
                 to={CART}
                 style={{ textDecoration: "none", color: "white" }}
@@ -159,16 +162,17 @@ export const Navigation = (props) => {
               </Link>
             </Badge>
           </IconButton>
-          {userName ? 
+          {userName ? (
             <div>
-              <label> welcome {userName} </label>
+              <Typography>Welcome {userName}</Typography>
               <Link
                 to={LOGOUT}
                 style={{ textDecoration: "none", color: "white" }}
               >
                 <Typography>LogOut</Typography>
               </Link>
-            </div>: 
+            </div>
+          ) : (
             <div>
               <Link
                 to={LOGIN}
@@ -177,7 +181,7 @@ export const Navigation = (props) => {
                 <Typography>LogIn</Typography>
               </Link>
             </div>
-          }
+          )}
         </div>
       </Toolbar>
     </AppBar>
