@@ -13,6 +13,14 @@ export class RatingsRepository{
         return ratings;
     }
 
+    public async getByFilter(filter: any): Promise<RatingEntity[]>{
+        let ratings  = await RatingEntity.findAll({
+            where: filter,
+            include: {all:true, nested: true}
+        });
+        return ratings;
+    }
+
     public async GetByRestaurantId(restaurantId: number): Promise<RestaurantRatingsResponseDto>{
         let ratings  = await RatingEntity.findAll({ 
             where: {restaurantId: `${restaurantId}`}
@@ -26,7 +34,19 @@ export class RatingsRepository{
          let ratingResponse = new RestaurantRatingsResponseDto(ratings, avgRatings, best, worst);
         return ratingResponse;
     }
-    
+    public async GetByUserId(userId: number): Promise<RestaurantRatingsResponseDto>{
+        let ratings  = await RatingEntity.findAll({ 
+            where: {userId: `${userId}`}
+         });
+         //Calculate the average of ratings of the user 
+         let sumRatings = ratings.map(r => r.rating, 0).reduce((a, b) => a + b, 0);
+         let avgRatings = sumRatings / ratings.length
+         let best = ratings.map(r => r.rating, 0).reduce((a, b) => a < b? b: a, 0);
+         let worst = ratings.map(r => r.rating).reduce((a, b) => a < b? a: b);
+         // Create the response DTO
+         let ratingResponse = new RestaurantRatingsResponseDto(ratings, avgRatings, best, worst);
+        return ratingResponse;
+    }
     public async Create(model: Model<RatingEntity>){
         return model.save();
     }
