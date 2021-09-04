@@ -10,7 +10,6 @@ import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import RoomIcon from "@material-ui/icons/Room";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-// import parse from "html-react-parser";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
 
     height: "14em",
-    // backgroundColor: "#6b78be",
     backgroundColor: "#57cc99",
 
     paddingLeft: "11.5em",
@@ -28,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "90px",
   },
   restaurantcard: {
-    width: "70%",
+    width: "50%",
     display: "flex",
     flexDirection: "row",
     "& img": {
@@ -40,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1em",
     marginBottom: "1em",
     paddingTop: "1em",
-    // border: "red 2px solid",
   },
   restaurantName: { paddingLeft: "1em" },
 
@@ -48,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     marginTop: "0.4em",
-    // border: "solid blue 2px",
   },
 
   tags: {
@@ -97,14 +93,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Restaurant() {
-  // console.log("propssss", props);
   const location = useLocation();
   const classes = useStyles();
 
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
-  // const productDetails = props.product;
-  // console.log("detailsssssss", restaurantDetails);
+
   const [value, setValue] = useState(2);
   const [activeState, setActiveState] = useState({
     menu: true,
