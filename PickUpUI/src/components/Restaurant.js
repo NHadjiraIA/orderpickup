@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   heroMenu: {
-    backgroundColor: "black",
+    backgroundColor: "#22577A",
     color: "white",
 
     display: "flex",
@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "10%",
   },
 }));
+
 function Restaurant() {
   // console.log("propssss", props);
   const location = useLocation();
@@ -174,8 +175,6 @@ function Restaurant() {
             <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
                 {/* <DishSelection /> Dont Delete thisss yet*/}
-                <p>#halal</p>
-                <p>#thebest</p>
               </div>
               <div className={classes.distance}>
                 <DriveEtaIcon />

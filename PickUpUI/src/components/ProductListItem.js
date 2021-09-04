@@ -1,6 +1,5 @@
 // import logo from './logo.svg';
 import React, { useState } from "react";
-import useStyles from "./ProductListItemStyle.js";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -11,17 +10,111 @@ import TextField from "@material-ui/core/TextField";
 import { CART } from "../navigation/CONSTANTS";
 import { useHistory } from "react-router-dom";
 import { useCart } from "../context/cart";
+import { makeStyles } from "@material-ui/core/styles";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
+
+const useStyles = makeStyles((theme) => ({
+  //for entire box that holds product info
+  entireProduct: {
+    height: "15.5em",
+    width: "45em",
+    backgroundColor: "#e9ebf0",
+    marginBottom: "1em",
+
+    display: "flex",
+    // justifyContent: 'row',
+    justifyContent: "center",
+    margin: "1em",
+
+    "& img": {
+      width: "35%",
+      height: "100%",
+    },
+  },
+  productIntro: {
+    paddingTop: "1em",
+    width: "65%",
+    paddingLeft: "1.5em",
+    paddingRight: "1.5em",
+  },
+
+  //for just the price and calories
+  priceAndCalories: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "30%",
+  },
+
+  calories: {
+    paddingLeft: "0.5em",
+    borderLeft: "black solid 2px",
+  },
+
+  //for popup
+  entireDialog: {
+    display: "flex",
+    flexDirection: "row",
+    overflow: "scroll",
+    height: "27em",
+
+    "& img": {
+      height: "100%",
+      width: "40%",
+      padding: "1.5em",
+    },
+  },
+
+  dialogDetail: {
+    width: "70%",
+    padding: "1.5em",
+  },
+  //for the buttons in the dialogue box
+  finishingOrder: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // position: 'fixed',
+    "& p": {
+      fontSize: "35px",
+    },
+  },
+
+  cartButton: {
+    backgroundColor: "black",
+    color: "white",
+    width: "30%",
+    height: "30%",
+    alignItems: "baseline",
+    "&:hover": {
+      backgroundColor: "black",
+    },
+  },
+  numberOfItem: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  RemoveCircleIcon: {
+    backgroundColor: "black",
+    color: "white",
+  },
+
+  AddCircleIcon: {
+    backgroundColor: "white",
+    color: "black",
+  },
+}));
 
 function ProductListItem(props) {
   let history = useHistory();
   const cart = useCart();
   const clickToCart = () => {
-   
     history.push({
       pathname: CART,
-      state: { 
+      state: {
         id: props.id,
         name: props.name,
         quantity: quantity,
@@ -29,8 +122,8 @@ function ProductListItem(props) {
         description: props.description,
         price: props.price,
         calories: props.calories,
-      }
-    });  
+      },
+    });
   };
 
   const classes = useStyles();
@@ -77,14 +170,16 @@ function ProductListItem(props) {
         <img src={props.img_url} />
 
         <div className={classes.dialogDetail}>
-          <DialogTitle id="simple-dialog-title">{props.name}</DialogTitle>
+          <DialogTitle id="simple-dialog-title"></DialogTitle>
+          <Typography variant="h4"> {props.name}</Typography>
           <p>{props.description}</p>
           <h4>${props.price}</h4>
           <h4>{props.calories} Cals.</h4>
 
           <div>
-            <h3>Special Requests</h3>
-            <form className={classes.root} noValidate autoComplete="off">
+            <Typography variant="h5">Special Requests</Typography>
+            <br></br>
+            <form noValidate autoComplete="off">
               <TextField
                 id="outlined-basic"
                 label="Tell us what you'd like!"
@@ -154,22 +249,19 @@ export default function ProductListItemDemo(props) {
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       {/* <br /> */}
       <div className={classes.productIntro}>
-        <Typography onClick={handleClickOpen}><h3>{props.name}</h3></Typography>
+        <Typography onClick={handleClickOpen}>
+          <h3>{props.name}</h3>
+        </Typography>
         <Typography onClick={handleClickOpen}>
           <p>{props.description} </p>
         </Typography>
-        <br />
-        <br />
-        <br />
-        <br />
+        <Typography> #halal</Typography>
+        <Typography> #thebest</Typography>
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>
-          <Typography 
-            onClick={handleClickOpen}
-            className={classes.calories}
-            >
-              {props.calories}Cals.
-            </Typography>
+          <Typography onClick={handleClickOpen} className={classes.calories}>
+            {props.calories}Cals.
+          </Typography>
         </div>
         {/* <br/> */}
         {/* <Button variant="outlined" color="primary">Add to Cart</Button> */}
