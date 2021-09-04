@@ -108,11 +108,13 @@ ratingsRouter.get("/ratings",
   }
 );
 
-
-commentRouter.post('/ratings',
+ratingsRouter.post('/ratings',
   (req, res) => ratingsApi.create(req, res)
 )
- 
+
+ratingsRouter.put('/ratings',
+  (req, res) => ratingsApi.update(req, res)
+)
 app.use('/api/v1', ratingsRouter);
 
 //################DISH END POINT ###################
