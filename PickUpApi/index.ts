@@ -15,7 +15,7 @@ import { CommentEntity } from "./Infrastructure/db/models/comment";
 import { CommentsApi } from "./comment";
 import { PaymentApi } from "./payments";
 export {UserApi} from "./users";
-
+import twilioMessage from './twilio'
 
 const app = express();
 
@@ -34,7 +34,6 @@ const ratingsRouter = express.Router();
 const dishisRouter = express.Router();
 const commentRouter = express.Router();
 const paymentRouter = express.Router();
-
 
 const origin = {
   origin: '*',
@@ -152,5 +151,14 @@ paymentRouter.post('/payments',
 app.use('/api/v1', paymentRouter);
 
 const port = process.env.PORT || 3002;
+//################TWILIO MESSAGING ###################
+paymentRouter.post('/sendMessage',
+  (req, res) => {
+    twilioMessage()  
+    res.send('SUCCESS')
+  }
+)
+app.use('/api/v1', paymentRouter);
 
 app.listen(port, () => console.log(`App listening on PORT ${port}`));
+

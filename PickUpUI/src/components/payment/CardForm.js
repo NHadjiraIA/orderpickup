@@ -78,8 +78,9 @@ const CardForm = () => {
             } else {
               // The payment succeeded!
               //orderComplete(result.paymentIntent.id);
-
-              alert(`successful payment `);
+              sendMessage().then(() => {
+                alert(`successful payment `);
+              });
               //done
 
               history.push({
@@ -89,7 +90,13 @@ const CardForm = () => {
           });
       });
   };
-
+  const sendMessage = () => {
+    return axios
+      .post("http://localhost:3002/api/v1/sendMessage", {})
+      .then(() => {
+        console.log("MESSAGE SENT");
+      });
+  };
   return (
     <form onSubmit={handleSubmit}>
       <label>
