@@ -1,29 +1,29 @@
 import "./restaurantContainer.css";
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import RestaurantListItem from "./RestaurantListItem";
 
-export default function RestaurantContainer(props){
+export default function RestaurantContainer(props) {
   let item = props.restaurants.map((restaurant) => {
-    
-return(
-<RestaurantListItem
-restaurant = {restaurant}
-handleActiveMarker={props.handleActiveMarker}
-userPosition={props.userPosition}
-restaurantPosition={{lat:Number(restaurant.lat), lng:Number(restaurant.lng)}}
-/>
-  );
-});
+    return (
+      <RestaurantListItem
+        restaurant={restaurant}
+        handleActiveMarker={props.handleActiveMarker}
+        userPosition={props.userPosition}
+        restaurantPosition={{
+          lat: Number(restaurant.lat),
+          lng: Number(restaurant.lng),
+        }}
+      />
+    );
+  });
 
-return(
-  <section className="items">
-    <nav>
-  <ul className="itemsList">
-    {item}
-    </ul>
-    </nav>
-  </section>
+  return (
+    <section className="items">
+      <nav>
+        <ul className="itemsList">{item}</ul>
+      </nav>
+    </section>
   );
-};
+}
 
 // export default RestaurantContainer;

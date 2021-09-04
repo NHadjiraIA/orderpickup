@@ -9,7 +9,6 @@ import { OrderDetailDto } from "./domain/dtos/OrderDetailDto";
 
 
 export class OrdersApi{
-
     private _ordersRepository:any;
     private _orderDetailsRepository:any;
     constructor(){

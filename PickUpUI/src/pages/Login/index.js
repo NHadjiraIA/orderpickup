@@ -1,10 +1,12 @@
 import React from 'react' 
 import Login from '../../components/Login'
 
-export const login = () => {
+export const Loginpage = (props) => {
     return (
         <div>
-            <Login/>
+            <Login 
+             {...props}
+            />
         </div>
     )
 }

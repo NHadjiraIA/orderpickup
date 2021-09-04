@@ -13,9 +13,58 @@ import {
   getCommentByRestaurant,
 } from "../services/commentService";
 
-// left this in here in case we want to do proper accounts with avatars
-// const imgLink =
-// "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  commentPage: {
+    padding: "10%",
+    display: "flex",
+    flexDirection: "row",
+    marginLeft: "4em",
+    marginRight: "4em",
+  },
+
+  filters: {
+    width: "40%",
+    height: "30%",
+    backgroundColor: "#e9ebf0",
+    marginRight: "1.5em",
+    display: "flex",
+    flexDirection: "column",
+    padding: "1em",
+
+    "& button": {
+      backgroundColor: "black",
+      color: "white",
+      marginBottom: "1em",
+      "&:hover": {
+        backgroundColor: "black",
+      },
+    },
+  },
+
+  postAndPostedComments: {
+    flexDirection: "column",
+    width: "60%",
+  },
+
+  postComment: {
+    backgroundColor: "#e9ebf0",
+    padding: "1em",
+  },
+
+  commentForm: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  postButton: {
+    marginTop: "1em",
+    backgroundColor: "black",
+    color: "white",
+    width: "20%",
+  },
+}));
 
 function Comment() {
   const location = useLocation();
