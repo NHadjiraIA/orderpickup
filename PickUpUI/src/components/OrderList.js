@@ -1,9 +1,16 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import OrderListItem from "./OrderListItem.js";
-import useStyles from "./OrderListStyle.js";
 import { useHistory, useLocation } from "react-router-dom";
-import {getOrdersDoneByUserId} from "../services/orderService"
+import { getOrdersDoneByUserId } from "../services/orderService";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  page: {
+    marginLeft: "5em",
+    marginRight: "5em",
+    minHeight: "900px",
+  },
+}));
 function OrderList() {
   const location = useLocation();
   const classes = useStyles();
@@ -13,11 +20,10 @@ function OrderList() {
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
-        userId =1;
-        getOrdersDoneByUserId(userId, true)
-          .then(result=>{
-            setOrderListData(result);
-          });
+        userId = 1;
+        getOrdersDoneByUserId(userId, true).then((result) => {
+          setOrderListData(result);
+        });
       } catch (error) {
         console.error("signin error!==", error);
         reject("signin error!");
@@ -25,16 +31,20 @@ function OrderList() {
     });
   }, [setOrderListData]);
 
-
   const item = orderListData.map((item) => {
     return (
-      <OrderListItem 
-        key={item.id} 
+      <OrderListItem
+        key={item.id}
         date={item.createdAt}
         restaurantName={item.restaurantName}
-        products={item.orderdetails.map(a => ({image:a.dish.img_url, name: a.dish.name, price:a.dish.price, quantity:a.quantity}))}
-        numberOfItems={item.orderdetails.map(a => a.quantity)}
-        totalCost={item.orderdetails.map(a=>a.dish.price * a.quantity) } 
+        products={item.orderdetails.map((a) => ({
+          image: a.dish.img_url,
+          name: a.dish.name,
+          price: a.dish.price,
+          quantity: a.quantity,
+        }))}
+        numberOfItems={item.orderdetails.map((a) => a.quantity)}
+        totalCost={item.orderdetails.map((a) => a.dish.price * a.quantity)}
       />
     );
   });
