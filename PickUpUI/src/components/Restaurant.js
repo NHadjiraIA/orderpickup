@@ -249,10 +249,10 @@ function Restaurant() {
       </hero>
       <div className={classes.heroMenu}>
         <Button onClick={() => toggleActive("menu")} disableElevation>
-          Menu
+          <Typography variant="h6">Menu</Typography>
         </Button>
         <Button onClick={() => toggleActive("comments")} disableElevation>
-          Comments
+          <Typography variant="h6">Comments</Typography>
         </Button>
       </div>
       {activeState.menu && (
