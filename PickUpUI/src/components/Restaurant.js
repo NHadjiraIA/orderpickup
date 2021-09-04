@@ -95,12 +95,12 @@ function Restaurant() {
   const classes = useStyles();
 
   const [value, setValue] = useState(2);
-  
+
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
   // const productDetails = props.product;
   // console.log("detailsssssss", restaurantDetails);
-  const [value, setValue] = useState(2);
+  // const [value, setValue] = useState(2);
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
@@ -185,28 +185,27 @@ function Restaurant() {
               </div>
             </div>
           </div>
-        </div>
-        {/* <hr className={classes.linedivider}></hr> */}
-        <div className={classes.contactinfo}>
-          <h3>
-            <RoomIcon />
-            {restaurantDetails.address}
-          </h3>
-          <h3>
-            {restaurantDetails.city} | {restaurantDetails.prov_state}
-          </h3>
-          <div>
+          {/* <hr className={classes.linedivider}></hr> */}
+          <div className={classes.contactinfo}>
             <h3>
-              {" "}
-              <CallEndRoundedIcon />
-              {restaurantDetails.phone}
+              <RoomIcon />
+              {restaurantDetails.address}
+            </h3>
+            <h3>
+              {restaurantDetails.city} | {restaurantDetails.prov_state}
+            </h3>
+            <div>
+              <h3>
+                {" "}
+                <CallEndRoundedIcon />
+                {restaurantDetails.phone}
+              </h3>
+            </div>
+
+            <h3>
+              <EmailOutlinedIcon /> {restaurantDetails.email}
             </h3>
           </div>
-
-          <h3>
-            <EmailOutlinedIcon /> {restaurantDetails.email}
-          </h3>
-        </div>
         </div>
       </hero>
       <div className={classes.heroMenu}>

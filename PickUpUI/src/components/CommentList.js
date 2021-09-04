@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import useStyles from "./CommentListStyle";
 import TextField from "@material-ui/core/TextField";
 import StarIcon from "@material-ui/icons/Star";
 import Button from "@material-ui/core/Button";
