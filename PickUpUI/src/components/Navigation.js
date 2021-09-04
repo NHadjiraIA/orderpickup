@@ -4,14 +4,108 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
+
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { LOGIN,LOGOUT, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
 import { Link } from "react-router-dom";
-import useStyles from "./NavigationStyle.js";
 import { useCart } from "../context/cart";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  wholenav: {
+    paddingLeft: "3em",
+    paddingRight: "1em",
+    backgroundColor: "#22577A",
+    padding: "1em",
+    textDecoration: "none",
+  },
+  toolbar: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    overflowX: "hidden",
+    color: "red",
+  },
+  // grow: {
+  //   flexGrow: 1,
+  //   // width: '100%',
+  // },
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
+  // title: {
+  //   display: "none",
+  //   [theme.breakpoints.up("sm")]: {
+  //     display: "block",
+  //   },
+  //   flex: "1",
+  //   // marginLeft: '0.5em',
+  //   color: "white",
+  //   textDecoration: "none",
+  //   paddingTop: "1em",
+  // },
+  // inputRoot: {
+  //   color: "inherit",
+  // },
+  // inputInput: {
+  //   padding: theme.spacing(1, 1, 1, 0),
+  //   // vertical padding + font size from searchIcon
+  //   paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+  //   transition: theme.transitions.create("width"),
+  //   width: "100%",
+  //   [theme.breakpoints.up("md")]: {
+  //     width: "20ch",
+  //   },
+  // },
+  // sectionDesktop: {
+  //   display: "none",
+  //   [theme.breakpoints.up("md")]: {
+  //     display: "flex",
+  //     flex: "1",
+  //     justifyContent: "space-evenly",
+  //     alignItems: "center",
+  //   },
+  //   "& a": {
+  //     color: "inherit",
+  //     textDecoration: "none",
+  //   },
+  //   "&:hover": {
+  //     backgroundColor: "transparent",
+  //   },
+  // },
+  // sectionMobile: {
+  //   display: "flex",
+  //   [theme.breakpoints.up("md")]: {
+  //     display: "none",
+  //   },
+  // },
+  title: { paddingLeft: "0.5em" },
+  mapAndOrders: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "30%",
+  },
+  cartAndLogin: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    color: "white",
+    width: "15%",
+    paddingRight: "4em",
+  },
+  // links: {
+  //   flex: "1",
+  //   display: "flex",
+  //   justifyContent: "space-between",
+  //   "& a": {
+  //     color: "inherit",
+  //     textDecoration: "none",
+  //     paddingTop: "1em",
+  //   },
+  // },
+}));
 import { useHistory, useLocation } from "react-router-dom";
 export const Navigation = (props) => {
   const classes = useStyles();
@@ -31,98 +125,57 @@ export const Navigation = (props) => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-  
-  // const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMenuOpen}
-  //     // onClose={handleMenuClose}
-  //   >
-  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-  //   </Menu>
-  // );
-
-  // const mobileMenuId = "primary-search-account-menu-mobile";
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMobileMenuOpen}
-  //     // onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem>
-  //       <IconButton aria-label="show 4 new mails" color="inherit">
-  //         <Badge badgeContent={2} color="secondary">
-  //           <ShoppingCart />
-  //         </Badge>
-  //       </IconButton>
-  //       <Link to={LOGIN}>
-  //         <Typography>LogIn</Typography>
-  //       </Link>
-  //     </MenuItem>
-  //   </Menu>
-  // );
-  
   return (
-    <div className={classes.grow}>
-      <AppBar position="static" className={classes.wholenav}>
-        <Toolbar disableGutters={true} className={classes.toolbar}>
-          <Link to={ROOT}>
-            <Typography className={classes.title} variant="h6" noWrap>
-              NoshFeast
-            </Typography>
-          </Link>
-          <Typography className={classes.links}>
-            <Link to={MAP}>
-              <Typography>Find Restaurants</Typography>
-            </Link>
-            <Link to={ORDERS}>
-              <Typography>Orders</Typography>
-              {console.log("in nav bar",name)}
-            </Link>
+    <AppBar position="static" className={classes.wholenav}>
+      <Toolbar disableGutters={true} className={classes.toolbar}>
+        <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
+          <Typography className={classes.title} variant="h4" noWrap>
+            NoshFeast
           </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton color="inherit">
-              <Badge badgeContent={cartQuantitySum} color="secondary">
-                <Link to={CART}>
-                  <ShoppingCart />
-                </Link>
-              </Badge>
-            </IconButton>
+        </Link>
+        <div className={classes.mapAndOrders}>
+          <Link to={MAP} style={{ textDecoration: "none", color: "white" }}>
+            <Typography>Find Restaurants</Typography>
+          </Link>
+          <Link to={ORDERS} style={{ textDecoration: "none", color: "white" }}>
+            <Typography>Orders</Typography>
+          </Link>
+        </div>
+        <div className={classes.cartAndLogin}>
+          
+                      
+          
+          
+          
+          
+          
+          
+          
+          
+          <IconButton color="inherit">
+            <Badge badgeContent={cartQuantitySum}>
+              <Link
+                to={CART}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <ShoppingCart />
+              </Link>
+            </Badge>
+     
+
+</IconButton>
                { userName ? 
                  <div>
                   <label> welcome {userName} 
           
                   </label> 
-                  <Link to={ROOT}>
+                  <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
 
                   <Typography>LogOut</Typography>
                   </Link>
                  </div>: 
                  <div>
-                <Link to={LOGIN}>
+                <Link to={LOGIN} style={{ textDecoration: "none", color: "white" }}>
 
                   <Typography>LogIn</Typography>
                 </Link>
@@ -133,19 +186,13 @@ export const Navigation = (props) => {
           </div>
           {/* <div className={classes.sectionMobile}>
             <IconButton
-              aria-label="show more"
-              // aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div> */}
-        </Toolbar>
-      </AppBar>
-      {/* {renderMobileMenu} */}
-      {/* {renderMenu} */}
-    </div>
+
+
+
+
+        </div>
+      </Toolbar>
+    </AppBar>
+
   );
 };

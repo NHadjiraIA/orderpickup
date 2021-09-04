@@ -3,7 +3,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { ORDERS } from "../../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
-import useResponsiveFontSize from "./useResponsiveFontSize";
+// import useResponsiveFontSize from "./useResponsiveFontSize";
 const stripe = loadStripe(
   "pk_test_51JSifWJSoqVYwO4CuQy0pHIspSXCcL7gbLjBw9UPL9kUAMUzqt21gTdZAZOLtj5s5etLP4iImTV89X0AKvKeUYgI003NwwzsAt"
 );
