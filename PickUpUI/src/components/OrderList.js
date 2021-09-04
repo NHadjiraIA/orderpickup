@@ -20,6 +20,7 @@ function OrderList(props) {
 
   const [orderListData, setOrderListData] = useState([]);
   console.log("ORDERLIST DATA", orderListData);
+  console.log("PROPS FROM ORDERLIST", props);
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
