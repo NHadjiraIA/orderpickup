@@ -17,8 +17,8 @@ const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
-    height: "15.5em",
-    width: "45em",
+    height: "17em",
+    width: "47em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
 
