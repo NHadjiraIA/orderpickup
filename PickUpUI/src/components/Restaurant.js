@@ -1,17 +1,92 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useStyles from "./RestaurantStyle.js";
 import ProductList from "./ProductList.js";
-import StarIcon from "@material-ui/icons/Star";
-import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import CommentList from "./CommentList.js";
 import Button from "@material-ui/core/Button";
 import { useLocation } from "react-router-dom";
 import CallEndRoundedIcon from "@material-ui/icons/CallEndRounded";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import RoomIcon from "@material-ui/icons/Room";
+import Box from "@material-ui/core/Box";
+import Rating from "@material-ui/lab/Rating";
+// import parse from "html-react-parser";
+import { makeStyles } from "@material-ui/core/styles";
 
-import parse from "html-react-parser";
+const useStyles = makeStyles((theme) => ({
+  heroroot: {
+    display: "flex",
+    flexDirection: "row",
+
+    height: "15em",
+    // backgroundColor: "#6b78be",
+    backgroundColor: "#57cc99",
+
+    paddingLeft: "5em",
+    paddingRight: "5em",
+  },
+  restaurantcard: {
+    width: "70%",
+    display: "flex",
+    flexDirection: "row",
+    "& img": {
+      padding: "1em",
+    },
+  },
+  restaurantinfo: {
+    paddingLeft: "1em",
+    paddingRight: "1em",
+    marginTop: "1em",
+    marginBottom: "1em",
+  },
+
+  tagsAndDistance: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "0.4em",
+  },
+
+  tags: {
+    width: "70%",
+  },
+
+  distance: {
+    width: "30%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    paddingLeft: "0.5em",
+  },
+
+  contactinfo: {
+    width: "30%",
+    paddingLeft: "1em",
+    paddingRight: "1em",
+    borderLeft: "black solid 2px",
+    marginTop: "1em",
+    marginBottom: "1em",
+  },
+
+  heroMenu: {
+    backgroundColor: "#22577A",
+    color: "white",
+
+    display: "flex",
+
+    paddingLeft: "1em",
+    paddingRight: "2em",
+    "& button": {
+      paddingLeft: "2em",
+      paddingRight: "2em",
+      color: "white",
+    },
+  },
+
+  menu: {
+    marginLeft: "10%",
+    marginRight: "10%",
+  },
+}));
 
 function Restaurant() {
   // console.log("propssss", props);
@@ -22,7 +97,7 @@ function Restaurant() {
   const durationTime = location.state.duration;
   // const productDetails = props.product;
   // console.log("detailsssssss", restaurantDetails);
-
+  const [value, setValue] = useState(2);
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
@@ -82,45 +157,27 @@ function Restaurant() {
   //   return dishesList;
   // }
 
-   /***********Dont delete it yettttttt ************/
+  /***********Dont delete it yettttttt ************/
 
   return (
     <>
-      <hero className={classes.heroroot}>
+      <hero
+        className={classes.heroroot}
+        style={{ backgroundColor: "#38A3A5", color: "white" }}
+      >
         <div className={classes.restaurantcard}>
           <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
             <h2>{restaurantDetails.title}</h2>
-            {/* <div class="rating-send">
-              <div class="star-buttons">
-                <div class="star-rating">
-                  <div class="rating">
-                    <span class="rating__result">{rating}
-                      {for (let i = 0; i < rating; i++) {
-                        <i class="rating__star fas fa-star"></i>
-                      } for (let i = rating; i < 5; i++) {
-                        <i class="rating__star far fa-star"></i>
-                      }
-                      }
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <>6.5k</>
+            <Box component="fieldset" mb={-2} borderColor="transparent">
+              <Rating name="read-only" value={4} readOnly />
+            </Box>
             <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
                 {/* <DishSelection /> Dont Delete thisss yet*/}
-                <p>#halal</p>
-                <p>#thebest</p>
               </div>
               <div className={classes.distance}>
-                <DirectionsWalkIcon></DirectionsWalkIcon>
+                <DriveEtaIcon />
                 <p>{durationTime}</p>
               </div>
             </div>

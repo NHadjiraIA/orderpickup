@@ -13,7 +13,10 @@ export default function RestaurantListItem(props) {
   const history = useHistory();
   const restaurantInfo = props.restaurant;
   function handleClick() {
-    history.push(RESTAURANT, {restaurantInfo:restaurantInfo, duration:duration});
+    history.push(RESTAURANT, {
+      restaurantInfo: restaurantInfo,
+      duration: duration,
+    });
   }
 
   const [duration, setDuration] = useState("loading");
@@ -37,11 +40,11 @@ export default function RestaurantListItem(props) {
           <div className="card-text">
             <h3 className="card-title"> {props.restaurant.title}</h3>
             <div className="foodtype">
-              <h4> {props.restaurant.description}</h4>
+              <h5> {props.restaurant.description}</h5>
             </div>
 
             <div className="availability">
-              <h3>Unavailable Now</h3>
+              <h4>Unavailable Now</h4>
             </div>
 
             <div className="time">
