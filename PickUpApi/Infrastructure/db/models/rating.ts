@@ -17,8 +17,8 @@ import {
   
   interface RatingAttributes {
     id: number;
-    userId: string;
-    restaurantId: string;
+    userId: number;
+    restaurantId: number;
     rating: number;
     createdAt: Date;
     updatedAt: Date | null;
@@ -28,8 +28,8 @@ import {
   
   export class RatingEntity extends Model<RatingAttributes, RatingCreationAttributes>  implements RatingAttributes {
     public id!: number;
-    public userId!: string;
-    public restaurantId!: string;
+    public userId!: number;
+    public restaurantId!: number;
     public rating!: number;
     public createdAt!: Date;
     public updatedAt!: Date | null;

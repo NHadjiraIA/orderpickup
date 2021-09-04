@@ -5,7 +5,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import { LOGIN, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
+
+import MoreIcon from "@material-ui/icons/MoreVert";
+import { LOGIN,LOGOUT, ORDERS, CART, MAP, ROOT } from "../navigation/CONSTANTS";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/cart";
 import { makeStyles } from "@material-ui/core/styles";
@@ -104,12 +106,15 @@ const useStyles = makeStyles((theme) => ({
   //   },
   // },
 }));
+import { useHistory, useLocation } from "react-router-dom";
 export const Navigation = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const cart = useCart();
-
+  const location = useLocation();
+  const name = location?.state?.userName;
+  const userName = props.userName;
   const cartArray = Object.values(cart.cart);
   const cartQuantity = cartArray.map((objectInArray) => {
     return objectInArray.quantity;
@@ -137,6 +142,16 @@ export const Navigation = (props) => {
           </Link>
         </div>
         <div className={classes.cartAndLogin}>
+          
+                      
+          
+          
+          
+          
+          
+          
+          
+          
           <IconButton color="inherit">
             <Badge badgeContent={cartQuantitySum}>
               <Link
@@ -146,12 +161,38 @@ export const Navigation = (props) => {
                 <ShoppingCart />
               </Link>
             </Badge>
-          </IconButton>
-          <Link to={LOGIN} style={{ textDecoration: "none", color: "white" }}>
-            <Typography>LogIn</Typography>
-          </Link>
+     
+
+</IconButton>
+               { userName ? 
+                 <div>
+                  <label> welcome {userName} 
+          
+                  </label> 
+                  <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
+
+                  <Typography>LogOut</Typography>
+                  </Link>
+                 </div>: 
+                 <div>
+                <Link to={LOGIN} style={{ textDecoration: "none", color: "white" }}>
+
+                  <Typography>LogIn</Typography>
+                </Link>
+
+              </div>
+               }
+           
+          </div>
+          {/* <div className={classes.sectionMobile}>
+            <IconButton
+
+
+
+
         </div>
       </Toolbar>
     </AppBar>
+
   );
 };

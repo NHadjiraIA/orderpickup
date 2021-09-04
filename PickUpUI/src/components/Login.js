@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './LoginStyle.js'
 import { postLogin, getUserDetails } from "../services";
-import { RESTAURANT, SIGNUP, VENDOR_DASHBOARD } from '../navigation/CONSTANTS.js';
+import { MAP, SIGNUP, VENDOR_DASHBOARD } from '../navigation/CONSTANTS.js';
 import { useHistory} from "react-router-dom";
 
 function Copyright() {
@@ -30,13 +30,14 @@ function Copyright() {
 }
 
 
-export default function Login() {
+export default function Login(props) {
   const history = useHistory();
   const classes = useStyles();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [Id, setId] = useState("");
   const [errors, setErrors] = useState("");
+  const setUserName = props.setUserName;
   const userInfo = {
       "id" : undefined,
       "name": undefined,
@@ -47,7 +48,7 @@ export default function Login() {
 
     const goToRestaurant = (path) => {
       history.push({
-        pathname: RESTAURANT,
+        pathname: MAP,         
         state: { 
           userId: userInfo?.id,
           userName: userInfo?.name,
@@ -76,6 +77,7 @@ export default function Login() {
           };
        postLogin(requestDto)
        .then(result =>{
+            setUserName(result.data.name)
             setId(result.data.id);
             userInfo.name = result.data.name;
             userInfo.email = result.data.email;
