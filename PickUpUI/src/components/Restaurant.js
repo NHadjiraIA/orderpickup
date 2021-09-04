@@ -100,7 +100,7 @@ function Restaurant() {
   const durationTime = location.state.duration;
   // const productDetails = props.product;
   // console.log("detailsssssss", restaurantDetails);
-  // const [value, setValue] = useState(2);
+ 
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
