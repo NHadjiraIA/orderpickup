@@ -11,12 +11,14 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "900px",
   },
 }));
-function OrderList() {
+
+function OrderList(props) {
   const location = useLocation();
   const classes = useStyles();
   let userId = location?.state?.userId;
 
   const [orderListData, setOrderListData] = useState([]);
+
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {

@@ -114,6 +114,10 @@ function OrderListItem(props) {
   const [data, setData] = useState([]);
   const classes = useStyles();
   const products = props.products;
+  const d = new Date(props.date);
+  const dateFormatted = d.toDateString();
+
+  console.log("RESTAURANT NAME", props.restaurantName);
 
   useEffect(() => {
     console.log(products);
@@ -134,7 +138,8 @@ function OrderListItem(props) {
                 {props.img}
                 {props.restaurantName}
                 <br></br>
-                {props.date}
+                {/* {props.date} */}
+                {dateFormatted}
               </Typography>
               <div className={classes.accordionButtons}>
                 <Button size="medium">
