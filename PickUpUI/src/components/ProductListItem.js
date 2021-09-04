@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
     height: "17em",
-    width: "47em",
+    width: "45em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
     display: "flex",
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   priceAndCalories: {
     display: "flex",
     justifyContent: "space-between",
-    width: "30%",
+    width: "34%",
   },
 
   calories: {
