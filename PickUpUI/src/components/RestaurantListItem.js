@@ -52,6 +52,7 @@ export default function RestaurantListItem(props) {
               {props.restaurant.open_time} AM to {props.restaurant.close_time}{" "}
               PM{" "}
             </div>
+            <br></br>
             <div className="card-distance">
               <DriveEtaIcon />
               <LoadScript
