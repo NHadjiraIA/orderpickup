@@ -10,14 +10,18 @@ import { useLocation } from "react-router-dom";
 import CallEndRoundedIcon from "@material-ui/icons/CallEndRounded";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import RoomIcon from "@material-ui/icons/Room";
-
-import parse from "html-react-parser";
+import Box from '@material-ui/core/Box';
+import Rating from '@material-ui/lab/Rating';
+import { Typography } from "@material-ui/core";
+// import parse from "html-react-parser";
 
 function Restaurant() {
   // console.log("propssss", props);
   const location = useLocation();
   const classes = useStyles();
 
+  const [value, setValue] = useState(2);
+  
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
   // const productDetails = props.product;
@@ -91,28 +95,10 @@ function Restaurant() {
           <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
           <div className={classes.restaurantinfo}>
             <h2>{restaurantDetails.title}</h2>
-            {/* <div class="rating-send">
-              <div class="star-buttons">
-                <div class="star-rating">
-                  <div class="rating">
-                    <span class="rating__result">{rating}
-                      {for (let i = 0; i < rating; i++) {
-                        <i class="rating__star fas fa-star"></i>
-                      } for (let i = rating; i < 5; i++) {
-                        <i class="rating__star far fa-star"></i>
-                      }
-                      }
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <StarIcon fontSize="large" />
-            <>6.5k</>
+             <div>
+             <Box component="fieldset" mb={-4} borderColor="transparent">
+        <Rating name="read-only" value={4} readOnly />
+      </Box>
             <div className={classes.tagsAndDistance}>
               <div className={classes.tags}>
                 {/* <DishSelection /> Dont Delete thisss yet*/}
@@ -147,6 +133,7 @@ function Restaurant() {
           <h3>
             <EmailOutlinedIcon /> {restaurantDetails.email}
           </h3>
+        </div>
         </div>
       </hero>
       <div className={classes.heroMenu}>
