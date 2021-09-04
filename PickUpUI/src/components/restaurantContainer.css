@@ -11,7 +11,8 @@ body {
 
 .card-content {
   /* background-color: #f3f2c9; */
-  background-color: #57cc99;
+  /* background-color: #57cc99; */
+  background-color: #0e3046;
 
   overflow: hidden;
   /* padding:  */
@@ -25,7 +26,7 @@ body {
 }
 .items {
   /* background-color: #e2e0e0; */
-  background-color: #57cc99;
+  background-color: #0e3046;
 }
 .items :hover {
   box-shadow: 2px;

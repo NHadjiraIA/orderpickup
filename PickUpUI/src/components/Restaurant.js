@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
 
-    height: "18em",
+    height: "14em",
     // backgroundColor: "#6b78be",
     backgroundColor: "#57cc99",
 
@@ -199,24 +199,58 @@ function Restaurant() {
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
         <div className={classes.contactinfo}>
-          <h3>
-            <RoomIcon />
-            {restaurantDetails.address}
-          </h3>
-          <h3>
-            {restaurantDetails.city} | {restaurantDetails.prov_state}
-          </h3>
-          <br></br>
-          <div>
-            <h3>
-              <CallEndRoundedIcon />
-              {restaurantDetails.phone}
-            </h3>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <RoomIcon fontSize="large" style={{ paddingRight: "0.3em" }} />
+            <Typography align="left" variant="h6">
+              {restaurantDetails.address}
+            </Typography>
           </div>
 
-          <h3>
-            <EmailOutlinedIcon /> {restaurantDetails.email}
-          </h3>
+          <Typography
+            align="left"
+            variant="h6"
+            style={{ paddingLeft: "2.3em" }}
+          >
+            {restaurantDetails.city} | {restaurantDetails.prov_state}
+          </Typography>
+
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <CallEndRoundedIcon
+              fontSize="large"
+              style={{ paddingRight: "0.3em" }}
+            />
+            <Typography align="left" variant="h6">
+              {restaurantDetails.phone}
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <EmailOutlinedIcon
+              fontSize="large"
+              style={{ paddingRight: "0.3em" }}
+            />
+            <Typography align="left" variant="h6">
+              {restaurantDetails.email}
+            </Typography>
+          </div>
         </div>
       </hero>
       <div className={classes.heroMenu}>
