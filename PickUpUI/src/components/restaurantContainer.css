@@ -78,9 +78,11 @@ h4 {
 .itemsList {
   margin: 0;
   padding-left: 0;
+  height: 90px;
 }
 
 nav {
+  padding-top: 100px;
   height: 100vh;
   overflow: hidden;
   overflow-y: scroll;

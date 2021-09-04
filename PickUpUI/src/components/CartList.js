@@ -22,6 +22,7 @@ const useStyles = makeStyles({
     typography: "50px",
     fontSize: "18px",
     height: "100vh",
+    paddingTop: "100px",
   },
   table: {
     minWidth: 700,

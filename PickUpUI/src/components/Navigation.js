@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#22577A",
     padding: "1em",
     textDecoration: "none",
+
+    position: "fixed" /* Set the navbar to fixed position */,
+    top: "0",
   },
   toolbar: {
     width: "100%",
