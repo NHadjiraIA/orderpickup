@@ -13,12 +13,21 @@ export class RatingsApi{
         return  res.status(200).json(ratings);
     };
 
+    async getByFilter(req: express.Request, res: express.Response, filter: any){
+        let ratings = await this._ratingRepository.getByFilter(filter);
+        return res.status(200).json(ratings)
+    }
+
     async getByRestaurantId(req: express.Request, res: express.Response){
         let restaurantId = Number(req.query.restaurantId);
         let ratings = await this._ratingRepository.GetByRestaurantId(restaurantId);
         return  res.status(200).json(ratings);
     };
-
+    async getByUserId(req: express.Request, res: express.Response){
+        let userId = Number(req.query.userId);
+        let ratings = await this._ratingRepository.GetByUserId(userId);
+        return  res.status(200).json(ratings);
+    };
     async create(req: express.Request, res: express.Response){
         const ratingDto = this.getDtoFromRequest(req);
         

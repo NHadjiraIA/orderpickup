@@ -22,21 +22,32 @@ export class OrdersApi{
     };
 
     async getByUserId(req: express.Request, res: express.Response){
-        let userId = req.params.userId;
+        let userId = req.query.userId;
         let userOrders = await this._ordersRepository.GetByUserId(userId);
         return res.status(200).json(userOrders)
     }
     
+    async getByRestaurantId(req: express.Request, res: express.Response){
+        let restaurantId = req.query.userId;
+        let restaurantOrders = await this._ordersRepository.getByRestaurantId(restaurantId);
+        return res.status(200).json(restaurantOrders)
+    }
+
     async getDoneOrdersByUserId(req: express.Request, res: express.Response){
-        let userId = req.params.userId;
-        let done = req.params.done;
+        let userId = req.query.userId;
+        let done = req.query.done;
         let userOrdersDone = await this._ordersRepository.getDoneOrdersByUserId(userId,done);
         return res.status(200).json(userOrdersDone)
     }
 
+    async getNotCompletedOrdersByUserId(req: express.Request, res: express.Response){
+        let userId = req.query.userId;
+        let completed = req.query.completed;
+        let userOrdersNotCompleted = await this._ordersRepository.getNotCompletedOrdersByUserId(userId,completed);
+        return res.status(200).json(userOrdersNotCompleted)
+    }
+
     async create(req: express.Request, res: express.Response){
-
-
         const orderDto = this.getDtoFromRequest(req);
         let createdOrder = await this._ordersRepository.Create(orderToEntity(orderDto))
         console.log("CREATED ORDER", createdOrder)
@@ -50,9 +61,14 @@ export class OrdersApi{
         }
     }
 
+    async getByFilter(req: express.Request, res: express.Response, filter: any){
+        let orders = await this._ordersRepository.getByFilter(filter);
+        return res.status(200).json(orders)
+    }
+
     getDtoFromRequest(req: express.Request): OrderDto{
         let orderDto = new OrderDto(req.body.id, new Date(), req.body.userId, 
-        req.body.restaurantId,req.body.done);
+        req.body.restaurantId,req.body.done, req.body.completed);
         req.body.details.forEach(detail => {
             orderDto.Details.push(this.getOrderDetailDto(detail));
         });
