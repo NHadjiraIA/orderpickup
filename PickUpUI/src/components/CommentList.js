@@ -74,6 +74,7 @@ function Comment(props) {
   let userId= props.userId;
   let restaurantId = props.restaurantId;
 
+  console.log("restauranttttttidddddd", restaurantId);
   const classes = useStyles();
 
   const [value, setValue] = useState(2);

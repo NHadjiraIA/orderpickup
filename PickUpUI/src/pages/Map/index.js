@@ -18,7 +18,7 @@ export const Mapping = (props) => {
  /*********************************** */
 // Storing userId as a global variable to fix some bugs for now; to keep the app working
  const user_id = window.userId;
-console.log("kfkvnjkfvkfjnvk", user_id);
+// console.log("kfkvnjkfvkfjnvk", user_id);
 /************************************** */
     const [activeMarker, setActiveMarker] = useState(null);
     const [center, setCenter] = useState(defaultCenter);
