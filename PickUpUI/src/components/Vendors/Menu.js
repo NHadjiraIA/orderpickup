@@ -72,7 +72,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Menu() {
+function Menu(props) {
 
   const classes = useStyles();
   const [age, setAge] = useState("");
@@ -81,7 +81,6 @@ function Menu() {
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
-        let userId = 1;
         let restaurantId = 1;
         getDishByRestaurant(restaurantId)
         .then((result) => {

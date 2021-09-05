@@ -16,7 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
+import { useHistory, useLocation} from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import clsx from "clsx";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -103,7 +103,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 function ResponsiveDrawer(props) {
   const classes = useStyles();
-
+  const location = useLocation();
+  //const name = location?.state?.userName;
+ 
+  
+   
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const { window } = props;
@@ -153,6 +157,7 @@ function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
+    
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -160,7 +165,9 @@ function ResponsiveDrawer(props) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+       
       >
+       
         <Toolbar>
           <IconButton
             color="inherit"
