@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   heroroot: {
     display: "flex",
     flexDirection: "row",
-
-    height: "14em",
+    height: "280px !important",
+    // width: "100%",
     backgroundColor: "#57cc99",
 
     paddingLeft: "11.5em",
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     "& img": {
       padding: "1em",
     },
+    height: "100%",
   },
   restaurantinfo: {
     paddingRight: "1em",
@@ -61,12 +62,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contactinfo: {
-    width: "30%",
+    width: "50%",
     paddingLeft: "1em",
     paddingRight: "1em",
     borderLeft: "white solid 2px",
     marginTop: "1em",
     marginBottom: "1em",
+    // height: "100%",
   },
 
   heroMenu: {
@@ -162,13 +164,20 @@ function Restaurant() {
   /***********Dont delete it yettttttt ************/
 
   return (
-    <>
+    <div>
       <hero
         className={classes.heroroot}
-        style={{ backgroundColor: "#38A3A5", color: "white" }}
+        style={{
+          backgroundColor: "#38A3A5",
+          color: "white",
+        }}
       >
         <div className={classes.restaurantcard}>
-          <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
+          <img
+            src={restaurantDetails.thumbnail_url}
+            alt="thumbnail"
+            // style={{ height: "100px", width: "100px" }}
+          />
           <div className={classes.restaurantinfo}>
             <Typography
               className={classes.restaurantName}
@@ -265,7 +274,7 @@ function Restaurant() {
           <CommentList />
         </div>
       )}
-    </>
+    </div>
   );
 }
 
