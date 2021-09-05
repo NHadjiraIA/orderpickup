@@ -270,7 +270,7 @@ function Restaurant() {
         </div>
       )}
       {activeState.comment && (
-        <div>
+        <div style={{ paddingBottom: "1em" }}>
           <CommentList />
         </div>
       )}
