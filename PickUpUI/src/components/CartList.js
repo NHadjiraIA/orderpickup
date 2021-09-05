@@ -21,15 +21,15 @@ const useStyles = makeStyles({
     margin: "4em",
     typography: "50px",
     fontSize: "18px",
-    height: "100vh",
+    height: "100%",
     paddingTop: "100px",
   },
   table: {
     minWidth: 700,
   },
   productImg: {
-    height: "60%",
-    width: "50%",
+    height: "150px",
+    width: "150px",
     marginBottom: "1em",
   },
   imgColumn: {
