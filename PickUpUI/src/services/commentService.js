@@ -30,6 +30,7 @@ export const getCommentByRestaurant = (restaurantId) => {
         .get(GET_COMMENT_BY_RESTAURANT(restaurantId))
         .then(res => {
             resolve(res.data);
+            
         })
         .catch((err) => {
           console.log("getcommentbyrestaurant > axios err=", err);

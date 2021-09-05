@@ -13,6 +13,7 @@ import {
 } from "../services/commentService";
 
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   commentPage: {
@@ -82,6 +83,19 @@ function Comment(props) {
   const [errors, setErrors] = useState("");
   const [commentsListData, setCommentsListData] = useState([]);
 
+const postRating = () => {
+axios.post(("http://localhost:3002/api/v1/ratings"),{
+userId:userId,
+restaurantId:restaurantId,
+rating:value
+})
+
+}
+
+const updateRating = () => {
+axios.put("http://localhost:3002/api/v1/ratings")
+}
+
   //TODO: remove the sample data that was used for test
   // userId = 1;
   // restaurantId = 1;
@@ -121,6 +135,7 @@ function Comment(props) {
           getCommentByRestaurant(restaurantId).then((result) => {
             setCommentsListData(result);
           });
+          postRating();
         })
         .catch((err) => {
           console.log(err);
@@ -148,7 +163,7 @@ function Comment(props) {
       <section className={classes.postAndPostedComments}>
         <div className={classes.postComment}>
           <h2>Post a Review</h2>
-          <h3>Rating</h3>
+          <h3>Give your rating</h3>
           <Box component="fieldset" mb={1} borderColor="transparent">
             <Rating
               name="simple-controlled"
@@ -180,12 +195,14 @@ function Comment(props) {
         <section className={classes.postedComments}>
           {commentsListData &&
             commentsListData.map((item) => {
+              console.log("itemmmmmm", item);
               return (
                 <CommentListItem
                   key={item.id}
                   comment={item.Comment}
                   username={item.commenter.name}
-                  
+                  userId={item.userId}
+                  restaurantId={item.restaurantId}
                 />
               );
             })}

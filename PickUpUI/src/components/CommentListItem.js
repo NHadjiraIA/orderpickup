@@ -3,6 +3,8 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import StarIcon from "@material-ui/icons/Star";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import Rating from "@material-ui/lab/Rating";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -65,6 +67,9 @@ function CommentListItem(props) {
         {/* <Avatar alt="Remy Sharp" src={imgLink} /> */}
         {/* </Grid> */}
         <Grid justifyContent="left" item xs zeroMinWidth>
+        <Box component="fieldset" mb={-2} borderColor="transparent">
+              <Rating name="read-only" value={props.rating} readOnly />
+            </Box>
           <h4 style={{ margin: 0, textAlign: "left" }}>{props.username}</h4>
           <br />
           {/* <div className={classes.commentText}> */}
