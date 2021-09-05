@@ -40,6 +40,19 @@ export class RatingsApi{
         }
     }
 
+    async update(req: express.Request, res: express.Response){
+        let ratingId = req.body.id;
+         let existingRating = await this._ratingRepository.GetById(ratingId);
+        if (existingRating){
+            existingRating.rating = req.body.rating;
+            existingRating.updatedAt = new Date();
+            let updatedRating = await this._ratingRepository.update(existingRating)
+            return res.status(200).json(updatedRating)
+        } else{
+            return res.status(404).send("The rating does not exist.")
+        }
+    }
+
     getDtoFromRequest(req: express.Request){
         return new RatingDto(req.body.id, new Date(), req.body.userId, 
         req.body.restaurantId,req.body.rating);
