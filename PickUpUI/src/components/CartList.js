@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     margin: "4em",
     typography: "50px",
     fontSize: "18px",
-    height: "100%",
+    height: "100vh",
     paddingTop: "100px",
   },
   table: {
