@@ -5,6 +5,7 @@ import { DistanceMatrixService, LoadScript } from "@react-google-maps/api";
 import API from "../mapAPIKey";
 import { useHistory } from "react-router-dom";
 import { RESTAURANT } from "../navigation/CONSTANTS";
+import date from "date-and-time";
 
 const libraries = ["places"];
 
@@ -55,24 +56,26 @@ export default function RestaurantListItem(props) {
   // console.log("TODAYDATETIME", todayDateTime);
 
   let today = new Date();
+  const todayConverted = date.format(today, "hh:mm A");
+
+  // console.log("TODAY", todayConverted);
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   const yyyy = today.getFullYear();
 
   today = `${mm} ${dd} ${yyyy}`;
-  // console.log("TODAY", today);
 
   const myTime = new Date().getTime();
-  const openingTime = new Date(
-    `${today} ${props.restaurant.open_time}:00 GMT-04:00`
-  );
-  // console.log("OPENING TIME", openingTime);
-  const closingTime = new Date(
+  const open = new Date(`${today} ${props.restaurant.open_time}:00 GMT-04:00`);
+  const close = new Date(
     `${today} ${props.restaurant.close_time}:00 GMT-04:00`
   );
+  const openingTime = date.format(open, "hh:mm A");
+  const closingTime = date.format(close, "hh:mm A");
+
   // console.log("OPENING TIME", closingTime);
-  const openingTimeConverted = openingTime.getTime();
-  const closingTimeConverted = closingTime.getTime();
+  const openingTimeConverted = open.getTime();
+  const closingTimeConverted = close.getTime();
   // console.log("MY TIME", myTime);
   // console.log("OPENING TIME", openingTimeConverted);
   // console.log("CLOSING TIME", closingTimeConverted);
@@ -119,9 +122,7 @@ export default function RestaurantListItem(props) {
             </div>
 
             <div className="time">
-              {" "}
-              {props.restaurant.open_time} AM to {props.restaurant.close_time}{" "}
-              PM{" "}
+              {openingTime} to {closingTime}
             </div>
             <br></br>
             <div className="card-distance">
