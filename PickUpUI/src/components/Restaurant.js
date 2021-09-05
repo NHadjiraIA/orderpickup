@@ -10,16 +10,15 @@ import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import RoomIcon from "@material-ui/icons/Room";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-// import parse from "html-react-parser";
 import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   heroroot: {
     display: "flex",
     flexDirection: "row",
-
-    height: "17em",
-    // backgroundColor: "#6b78be",
+    height: "280px !important",
+    // width: "100%",
     backgroundColor: "#57cc99",
 
     paddingLeft: "11.5em",
@@ -27,26 +26,26 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "90px",
   },
   restaurantcard: {
-    width: "70%",
+    width: "50%",
     display: "flex",
     flexDirection: "row",
     "& img": {
       padding: "1em",
     },
+    height: "100%",
   },
   restaurantinfo: {
     paddingRight: "1em",
     marginTop: "1em",
     marginBottom: "1em",
-    // border: "red 2px solid",
+    paddingTop: "1em",
   },
-  restaurantName: { paddingLeft: "1.6em" },
+  restaurantName: { paddingLeft: "1em" },
 
   tagsAndDistance: {
     display: "flex",
     flexDirection: "row",
     marginTop: "0.4em",
-    // border: "solid blue 2px",
   },
 
   tags: {
@@ -63,12 +62,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contactinfo: {
-    width: "30%",
+    width: "50%",
     paddingLeft: "1em",
     paddingRight: "1em",
     borderLeft: "white solid 2px",
     marginTop: "1em",
     marginBottom: "1em",
+    // height: "100%",
   },
 
   heroMenu: {
@@ -95,14 +95,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Restaurant() {
-  // console.log("propssss", props);
   const location = useLocation();
   const classes = useStyles();
 
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
-  // const productDetails = props.product;
-  // console.log("detailsssssss", restaurantDetails);
+
   const [value, setValue] = useState(2);
   const [activeState, setActiveState] = useState({
     menu: true,
@@ -166,17 +164,28 @@ function Restaurant() {
   /***********Dont delete it yettttttt ************/
 
   return (
-    <>
+    <div>
       <hero
         className={classes.heroroot}
-        style={{ backgroundColor: "#38A3A5", color: "white" }}
+        style={{
+          backgroundColor: "#38A3A5",
+          color: "white",
+        }}
       >
         <div className={classes.restaurantcard}>
-          <img src={restaurantDetails.thumbnail_url} alt="thumbnail" />
+          <img
+            src={restaurantDetails.thumbnail_url}
+            alt="thumbnail"
+            // style={{ height: "100px", width: "100px" }}
+          />
           <div className={classes.restaurantinfo}>
-            <h2 className={classes.restaurantName}>
+            <Typography
+              className={classes.restaurantName}
+              variant="h5"
+              align="left"
+            >
               {restaurantDetails.title}
-            </h2>
+            </Typography>
             <Box component="fieldset" mb={-2} borderColor="transparent">
               <Rating name="read-only" value={4} readOnly />
             </Box>
@@ -193,32 +202,66 @@ function Restaurant() {
         </div>
         {/* <hr className={classes.linedivider}></hr> */}
         <div className={classes.contactinfo}>
-          <h3>
-            <RoomIcon />
-            {restaurantDetails.address}
-          </h3>
-          <h3>
-            {restaurantDetails.city} | {restaurantDetails.prov_state}
-          </h3>
-          <br></br>
-          <div>
-            <h3>
-              <CallEndRoundedIcon />
-              {restaurantDetails.phone}
-            </h3>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <RoomIcon fontSize="large" style={{ paddingRight: "0.3em" }} />
+            <Typography align="left" variant="h6">
+              {restaurantDetails.address}
+            </Typography>
           </div>
 
-          <h3>
-            <EmailOutlinedIcon /> {restaurantDetails.email}
-          </h3>
+          <Typography
+            align="left"
+            variant="h6"
+            style={{ paddingLeft: "2.3em" }}
+          >
+            {restaurantDetails.city} | {restaurantDetails.prov_state}
+          </Typography>
+
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <CallEndRoundedIcon
+              fontSize="large"
+              style={{ paddingRight: "0.3em" }}
+            />
+            <Typography align="left" variant="h6">
+              {restaurantDetails.phone}
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <EmailOutlinedIcon
+              fontSize="large"
+              style={{ paddingRight: "0.3em" }}
+            />
+            <Typography align="left" variant="h6">
+              {restaurantDetails.email}
+            </Typography>
+          </div>
         </div>
       </hero>
       <div className={classes.heroMenu}>
         <Button onClick={() => toggleActive("menu")} disableElevation>
-          Menu
+          <Typography variant="h6">Menu</Typography>
         </Button>
         <Button onClick={() => toggleActive("comments")} disableElevation>
-          Comments
+          <Typography variant="h6">Comments</Typography>
         </Button>
       </div>
       {activeState.menu && (
@@ -231,7 +274,7 @@ function Restaurant() {
           <CommentList />
         </div>
       )}
-    </>
+    </div>
   );
 }
 

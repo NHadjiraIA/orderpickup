@@ -59,7 +59,13 @@ function CommentListItem(props) {
   const classes = useStyles();
 
   return (
-    <Paper style={{ padding: "40px 20px", marginTop: 100 }}>
+    <Paper
+      style={{
+        padding: "40px 20px",
+        marginTop: 100,
+        backgroundColor: "rgb(141 215 216)",
+      }}
+    >
       <Grid container wrap="nowrap" spacing={2}>
         {/* <Grid item> */}
         {/* <Avatar alt="Remy Sharp" src={imgLink} /> */}
@@ -68,7 +74,7 @@ function CommentListItem(props) {
           <h4 style={{ margin: 0, textAlign: "left" }}>{props.username}</h4>
           <br />
           {/* <div className={classes.commentText}> */}
-          <Typography>{props.comment} </Typography>
+          <Typography align="left">{props.comment} </Typography>
           {/* </div> */}
 
           <br />

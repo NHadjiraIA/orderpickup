@@ -38,59 +38,6 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "hidden",
     color: "red",
   },
-  // grow: {
-  //   flexGrow: 1,
-  //   // width: '100%',
-  // },
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  // },
-  // title: {
-  //   display: "none",
-  //   [theme.breakpoints.up("sm")]: {
-  //     display: "block",
-  //   },
-  //   flex: "1",
-  //   // marginLeft: '0.5em',
-  //   color: "white",
-  //   textDecoration: "none",
-  //   paddingTop: "1em",
-  // },
-  // inputRoot: {
-  //   color: "inherit",
-  // },
-  // inputInput: {
-  //   padding: theme.spacing(1, 1, 1, 0),
-  //   // vertical padding + font size from searchIcon
-  //   paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-  //   transition: theme.transitions.create("width"),
-  //   width: "100%",
-  //   [theme.breakpoints.up("md")]: {
-  //     width: "20ch",
-  //   },
-  // },
-  // sectionDesktop: {
-  //   display: "none",
-  //   [theme.breakpoints.up("md")]: {
-  //     display: "flex",
-  //     flex: "1",
-  //     justifyContent: "space-evenly",
-  //     alignItems: "center",
-  //   },
-  //   "& a": {
-  //     color: "inherit",
-  //     textDecoration: "none",
-  //   },
-  //   "&:hover": {
-  //     backgroundColor: "transparent",
-  //   },
-  // },
-  // sectionMobile: {
-  //   display: "flex",
-  //   [theme.breakpoints.up("md")]: {
-  //     display: "none",
-  //   },
-  // },
   title: { paddingLeft: "0.5em" },
   mapAndOrders: {
     display: "flex",
@@ -103,8 +50,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     color: "white",
-    width: "15%",
-    paddingRight: "4em",
+    width: "20%",
+    paddingRight: "3em",
+  },
+  logout: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   // links: {
   //   flex: "1",
@@ -145,10 +97,10 @@ export const Navigation = (props) => {
         </Link>
         <div className={classes.mapAndOrders}>
           <Link to={MAP} style={{ textDecoration: "none", color: "white" }}>
-            <Typography>Find Restaurants</Typography>
+            <Typography variant="h6">Find Restaurants</Typography>
           </Link>
           <Link to={ORDERS} style={{ textDecoration: "none", color: "white" }}>
-            <Typography>Orders</Typography>
+            <Typography variant="h6">Orders</Typography>
           </Link>
         </div>
         <div className={classes.cartAndLogin}>
@@ -163,13 +115,19 @@ export const Navigation = (props) => {
             </Badge>
           </IconButton>
           {userName ? (
-            <div>
-              <Typography>Welcome {userName}</Typography>
+            <div className={classes.logout}>
+              <Typography style={{ paddingRight: "0.5em" }}>
+                Welcome, {userName}!
+              </Typography>
               <Link
                 to={LOGOUT}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <Typography>LogOut</Typography>
+                <Typography
+                  style={{ borderLeft: "2px white solid", paddingLeft: "1em" }}
+                >
+                  LogOut
+                </Typography>
               </Link>
             </div>
           ) : (
@@ -178,7 +136,7 @@ export const Navigation = (props) => {
                 to={LOGIN}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <Typography>LogIn</Typography>
+                <Typography variant="h6">LogIn</Typography>
               </Link>
             </div>
           )}

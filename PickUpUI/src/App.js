@@ -2,7 +2,6 @@ import "./App.css";
 import WrapperComponent from "./components/WrapperComponent";
 import { BrowserRouter } from "react-router-dom";
 
-
 function App() {
   return (
     <div

@@ -17,8 +17,8 @@ const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
-    height: "17em",
-    width: "47em",
+    height: "18em",
+    width: "50em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
     display: "flex",
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   priceAndCalories: {
     display: "flex",
     justifyContent: "space-between",
-    width: "30%",
+    width: "40%",
   },
 
   calories: {
