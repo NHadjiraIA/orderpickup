@@ -19,6 +19,69 @@ export default function RestaurantListItem(props) {
     });
   }
 
+  //-------------COMPARING YOUR TIME WITH HOURS OF OPERATION-------
+
+  // For todays date;
+  Date.prototype.today = function () {
+    return (
+      (this.getDate() < 10 ? "0" : "") +
+      this.getDate() +
+      "/" +
+      (this.getMonth() + 1 < 10 ? "0" : "") +
+      (this.getMonth() + 1) +
+      "/" +
+      this.getFullYear()
+    );
+  };
+
+  // For the time now
+  Date.prototype.timeNow = function () {
+    return (
+      (this.getHours() < 10 ? "0" : "") +
+      this.getHours() +
+      ":" +
+      (this.getMinutes() < 10 ? "0" : "") +
+      this.getMinutes() +
+      ":" +
+      (this.getSeconds() < 10 ? "0" : "") +
+      this.getSeconds()
+    );
+  };
+
+  // console.log("LOGS START HERE");
+  // const todayDate = new Date();
+  // console.log("TODAYDATE", todayDate);
+  // const todayDateTime = todayDate.today();
+  // console.log("TODAYDATETIME", todayDateTime);
+
+  let today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+
+  today = `${mm} ${dd} ${yyyy}`;
+  // console.log("TODAY", today);
+
+  const myTime = new Date().getTime();
+  const openingTime = new Date(`${today} 01:00:00 GMT-04:00`);
+  // console.log("OPENING TIME", openingTime);
+  const closingTime = new Date(`${today} 10:50:01 GMT-04:00`);
+  // console.log("OPENING TIME", closingTime);
+  const openingTimeConverted = openingTime.getTime();
+  const closingTimeConverted = closingTime.getTime();
+  // console.log("MY TIME", myTime);
+  // console.log("OPENING TIME", openingTimeConverted);
+  // console.log("CLOSING TIME", closingTimeConverted);
+
+  //conditional: available or not:
+  if (myTime > openingTimeConverted && myTime < closingTimeConverted)
+    console.log("available");
+  else {
+    console.log("unavailable");
+  }
+
+  //------------------------------------------------------------------------
+
   const [duration, setDuration] = useState("loading");
 
   return (
