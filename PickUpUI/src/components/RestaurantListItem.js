@@ -64,11 +64,11 @@ export default function RestaurantListItem(props) {
 
   const myTime = new Date().getTime();
   const openingTime = new Date(
-    `${today} ${props.restaurant.open_time} GMT-04:00`
+    `${today} ${props.restaurant.open_time}:00 GMT-04:00`
   );
   // console.log("OPENING TIME", openingTime);
   const closingTime = new Date(
-    `${today} ${props.restaurant.close_time} GMT-04:00`
+    `${today} ${props.restaurant.close_time}:00 GMT-04:00`
   );
   // console.log("OPENING TIME", closingTime);
   const openingTimeConverted = openingTime.getTime();
