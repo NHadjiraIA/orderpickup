@@ -63,9 +63,13 @@ export default function RestaurantListItem(props) {
   // console.log("TODAY", today);
 
   const myTime = new Date().getTime();
-  const openingTime = new Date(`${today} 01:00:00 GMT-04:00`);
+  const openingTime = new Date(
+    `${today} ${props.restaurant.open_time} GMT-04:00`
+  );
   // console.log("OPENING TIME", openingTime);
-  const closingTime = new Date(`${today} 10:50:01 GMT-04:00`);
+  const closingTime = new Date(
+    `${today} ${props.restaurant.close_time} GMT-04:00`
+  );
   // console.log("OPENING TIME", closingTime);
   const openingTimeConverted = openingTime.getTime();
   const closingTimeConverted = closingTime.getTime();
@@ -74,11 +78,11 @@ export default function RestaurantListItem(props) {
   // console.log("CLOSING TIME", closingTimeConverted);
 
   //conditional: available or not:
-  if (myTime > openingTimeConverted && myTime < closingTimeConverted)
-    console.log("available");
-  else {
-    console.log("unavailable");
-  }
+  // if (myTime > openingTimeConverted && myTime < closingTimeConverted)
+  //   console.log("available");
+  // else {
+  //   console.log("unavailable");
+  // }
 
   //------------------------------------------------------------------------
 
@@ -107,7 +111,11 @@ export default function RestaurantListItem(props) {
             </div>
 
             <div className="availability">
-              <h4>Unavailable Now</h4>
+              <h4>
+                {myTime > openingTimeConverted && myTime < closingTimeConverted
+                  ? "Available Now"
+                  : "Unavailable Now"}
+              </h4>
             </div>
 
             <div className="time">
