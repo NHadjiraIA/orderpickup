@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "./map.css";
 import mapStyles from "./mapStyles";
-import API from '../mapAPIKey'
+import API from "../mapAPIKey";
 
 import {
   GoogleMap,
@@ -16,8 +16,10 @@ import {
 const libraries = ["places"];
 
 const containerStyle = {
-  width: "70%",
-  height: "800px",
+  width: "75%",
+  // height: "800px",
+  height: "100vh",
+
   // display: "flex",
   float: "right",
 };
@@ -36,7 +38,6 @@ const options = {
 function Map(props) {
   function handleOnLoad() {
     navigator.geolocation.getCurrentPosition(function (position) {
-
       const coordinates = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
@@ -44,7 +45,7 @@ function Map(props) {
       props.handleUserPosition(coordinates);
     });
   }
- 
+
   const [searchBox, setSearchBox] = useState(null);
 
   const markers = props.restaurants;
@@ -65,12 +66,7 @@ function Map(props) {
   }, [searchBox]);
 
   return (
-    <LoadScript
-      id="script-loader"
-      googleMapsApiKey={API}
-      libraries={libraries}
-    >
-     
+    <LoadScript id="script-loader" googleMapsApiKey={API} libraries={libraries}>
       <GoogleMap
         id="searchbox"
         mapContainerStyle={containerStyle}

@@ -1,6 +1,11 @@
 #all_restaurants {
   list-style: none;
-  padding-left: 0;
+  padding: 0.1em 1em;
+}
+.card-distance {
+  width: 70%;
+  color: white;
+  align-items: center;
 }
 
 .card-distance :hover {
@@ -8,10 +13,13 @@
   /* color: #da0037; */
   color: #80ed99;
 }
-
+.mapped_restaurant :hover {
+  box-shadow: 5px 5px white;
+}
 .card-content {
   /* background-color: #f3f2c9; */
   background-color: #38a3a5;
+  box-shadow: "none";
 
   overflow: hidden;
   /* padding:  */
@@ -25,8 +33,31 @@
   margin: 0.5em;
 }
 
+.card-content :hover {
+  box-shadow: none;
+}
+
 /* .mapped_restaurant :hover{
   box-shadow: 2px 5px;
   color: #DA0037;
   #008891
 } */
+
+.imagebox :hover {
+  box-shadow: none;
+}
+.card-text :hover {
+  box-shadow: none;
+}
+.card-title :hover {
+  box-shadow: none;
+}
+.foodtype :hover {
+  box-shadow: none;
+}
+.availability :hover {
+  box-shadow: none;
+}
+.time :hover {
+  box-shadow: none;
+}

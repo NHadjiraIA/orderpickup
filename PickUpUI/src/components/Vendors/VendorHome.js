@@ -26,6 +26,11 @@ import OrderList from "./OrderList";
 import Menu from "./Menu";
 import CommentList from "./CommentList";
 import LogOut from "./LogOut"
+import BugReportIcon from "@material-ui/icons/BugReport";
+import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
+import SmsIcon from "@material-ui/icons/Sms";
+import ListIcon from "@material-ui/icons/List";
+import HomeIcon from "@material-ui/icons/Home";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -101,6 +106,23 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
+
+const iconPicker = (index) => {
+  if (index === 0) {
+    return <HomeIcon />;
+  }
+  if (index === 1) {
+    return <ListIcon />;
+  }
+  if (index === 2) {
+    return <RestaurantMenuIcon />;
+  }
+  if (index === 3) {
+    return <SmsIcon />;
+  }
+  return <BugReportIcon />;
+};
+
 function ResponsiveDrawer(props) {
   const classes = useStyles();
   const location = useLocation();
@@ -206,7 +228,8 @@ function ResponsiveDrawer(props) {
           {["Dashboard", "Orders", "Menu", "Comments","LogOut"].map((text, index) => (
             <ListItem button key={text} onClick={() => handleStatus(text)}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {/* {index % 2 === 0 ? <InboxIcon /> : <BugReportIcon />} */}
+                {iconPicker(index)}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

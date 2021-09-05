@@ -21,13 +21,15 @@ const useStyles = makeStyles({
     margin: "4em",
     typography: "50px",
     fontSize: "18px",
+    height: "100vh",
+    paddingTop: "100px",
   },
   table: {
     minWidth: 700,
   },
   productImg: {
-    height: "60%",
-    width: "50%",
+    height: "150px",
+    width: "150px",
     marginBottom: "1em",
   },
   imgColumn: {
@@ -44,11 +46,14 @@ const useStyles = makeStyles({
 });
 
 function CartList(props) {
-  const history = useHistory();
-  const location = useLocation();
-  const [total, setTotal] = useState(0);
   const cart = useCart();
   const cartList = Object.values(cart.cart);
+  const reducer = (accumulator, currentValue) => {
+    return accumulator + currentValue.price * currentValue.quantity;
+  };
+  const history = useHistory();
+  const location = useLocation();
+  const total = cartList.reduce(reducer, 0);
   console.log(cartList);
   const classes = useStyles();
 
@@ -75,10 +80,6 @@ function CartList(props) {
     return (cartList[index].quantity * cartList[index].price).toFixed(2);
   };
 
-  const calculateTotal = (items) => {
-    const calculatedTotal = subtotal(items);
-    setTotal(calculatedTotal);
-  };
   const pay = () => {
     let restaurantId = 1;
     let userId = 1;
@@ -170,19 +171,19 @@ function CartList(props) {
                   <Button
                     fullWidth
                     variant="contained"
-                    color="primary"
+                    style={{ backgroundColor: "#FD7F20" }}
                     onClick={() => cart.removeItem(row.id)}
                   >
                     Delete
                   </Button>
-                  <Button
+                  {/* <Button
                     fullWidth
                     variant="contained"
-                    color="primary"
+                    style={{ backgroundColor: "#FD7F20" }}
                     onClick={() => calculateTotal(cartList)}
                   >
                     Add to total
-                  </Button>
+                  </Button> */}
                 </TableCell>
               </TableRow>
             ))}
@@ -200,6 +201,7 @@ function CartList(props) {
               <TableCell></TableCell>
               <TableCell align="right">
                 <h2>${total.toFixed(2)}</h2>
+                {/* <h2>${cartList.reduce(reducer, 0)}</h2> */}
               </TableCell>
               <TableCell></TableCell>
             </TableRow>
@@ -210,10 +212,10 @@ function CartList(props) {
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell align="right">
-                <h2>{`${(TAX_RATE * 100).toFixed(0)} %`}</h2>
+                <h2>{`${TAX_RATE * 100} %`}</h2>
               </TableCell>
               <TableCell align="right">
-                <h2>${invoiceTaxes}</h2>
+                <h2>${invoiceTaxes.toFixed(2)}</h2>
               </TableCell>
               <TableCell></TableCell>
             </TableRow>
@@ -224,7 +226,7 @@ function CartList(props) {
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell align="right">
-                <h2>${invoiceTotal.toFixed(2)}</h2>
+                <h2>${Math.round(invoiceTotal * 100) / 100}</h2>
               </TableCell>
               <TableCell></TableCell>
             </TableRow>

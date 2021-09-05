@@ -9,14 +9,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5em",
     marginRight: "5em",
     minHeight: "900px",
+    paddingTop: "100px",
   },
 }));
-function OrderList() {
+
+function OrderList(props) {
   const location = useLocation();
   const classes = useStyles();
   let userId = location?.state?.userId;
 
   const [orderListData, setOrderListData] = useState([]);
+  console.log("ORDERLIST DATA", orderListData);
+  console.log("PROPS FROM ORDERLIST", props);
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
@@ -36,7 +40,7 @@ function OrderList() {
       <OrderListItem
         key={item.id}
         date={item.createdAt}
-        restaurantName={item.restaurantName}
+        restaurantName={item.title}
         products={item.orderdetails.map((a) => ({
           image: a.dish.img_url,
           name: a.dish.name,
