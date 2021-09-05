@@ -65,11 +65,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Comment() {
+function Comment(props) {
   const location = useLocation();
 
-  let userId = location?.state?.userId;
-  let restaurantId = location?.state?.restaurantId;
+  // let userId = location?.state?.userId;
+  // let restaurantId = location?.state?.restaurantId;
+
+  let userId= props.userId;
+  let restaurantId = props.restaurantId;
 
   const classes = useStyles();
 
@@ -79,8 +82,8 @@ function Comment() {
   const [commentsListData, setCommentsListData] = useState([]);
 
   //TODO: remove the sample data that was used for test
-  userId = 1;
-  restaurantId = 1;
+  // userId = 1;
+  // restaurantId = 1;
   //END TODO
   const commentTextHandleChange = (event) => {
     setCommentText(event.target.value);
@@ -109,6 +112,7 @@ function Comment() {
         userId: userId,
         restaurantId: restaurantId,
         Comment: commentText,
+
       };
       postComment(requestDto)
         .then((result) => {
@@ -180,6 +184,7 @@ function Comment() {
                   key={item.id}
                   comment={item.Comment}
                   username={item.commenter.name}
+                  
                 />
               );
             })}

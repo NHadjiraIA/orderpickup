@@ -100,10 +100,10 @@ function Restaurant() {
   const location = useLocation();
   const classes = useStyles();
 
-  const [value, setValue] = useState(2);
 
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
+  const userId = location.state.userId;
   // const productDetails = props.product;
   // console.log("detailsssssss", restaurantDetails);
  
@@ -128,7 +128,7 @@ function Restaurant() {
       .catch((err) => {});
   }, []);
 
-
+// Get average ratings value for each restaurant
   useEffect(() => {
     axios
       .get(
@@ -256,7 +256,10 @@ function Restaurant() {
       )}
       {activeState.comment && (
         <div>
-          <CommentList />
+          <CommentList
+          restaurantId = {restaurantDetails.id}
+           userId= {userId}
+          />
         </div>
       )}
     </>

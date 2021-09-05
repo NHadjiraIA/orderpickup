@@ -31,6 +31,7 @@ function Copyright() {
 
 
 export default function Login(props) {
+  window.userId = -1;
   const history = useHistory();
   const classes = useStyles();
   const [phone, setPhone] = useState("");
@@ -83,6 +84,12 @@ export default function Login(props) {
             userInfo.email = result.data.email;
             userInfo.role = result.data.role;
             userInfo.phone = result.data.phone;
+            
+            /***************Getting user.id for the user*********/
+            userInfo.id=result.data.id
+            window.userId = result.data.id
+            // console.log("IDDDDD", result.data.id);
+            /************************************************ */
             if (userInfo.role == true){
               console.log('navigate to backoffice');
             // redirect to back office
