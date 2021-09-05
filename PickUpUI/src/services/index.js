@@ -10,5 +10,5 @@ export {getAllDishs} from './dishService';
 export {postLogin} from './loginService';
 export {postUser} from './signupService';
 export {postComment, getCommentByRestaurant} from './commentService';
-export {postOrder, getOrdersByUserId, getOrdersDoneByUserId} from './orderService';
-
+export {postOrder, getOrdersByUserId, getOrdersDoneByUserId,getOrdersNotCompletedByUserIdAndRestaurantId,putOrder} from './orderService';
+export {getDishByRestaurant} from './dishService'

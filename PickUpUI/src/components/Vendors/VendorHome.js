@@ -25,6 +25,7 @@ import Dashboard from "./Dashboard";
 import OrderList from "./OrderList";
 import Menu from "./Menu";
 import CommentList from "./CommentList";
+import LogOut from "./LogOut"
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -136,7 +137,7 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Dashboard", "Orders", "Menu", "Comments"].map((text, index) => (
+        {["Dashboard", "Orders", "Menu", "Comments","LogOut"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -195,7 +196,7 @@ function ResponsiveDrawer(props) {
         </div>
         <Divider />
         <List>
-          {["Dashboard", "Orders", "Menu", "Comments"].map((text, index) => (
+          {["Dashboard", "Orders", "Menu", "Comments","LogOut"].map((text, index) => (
             <ListItem button key={text} onClick={() => handleStatus(text)}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -216,6 +217,7 @@ function ResponsiveDrawer(props) {
         {status.current === "Menu" && <Menu />}
         {status.current === "Comments" && <CommentList />}
         {status.current === "Dashboard" && <Dashboard />}
+        {status.current === "LogOut" && <LogOut />}
       </main>
     </div>
   );

@@ -1,7 +1,8 @@
-import React from "react";
+
 import OrderListItem from "./OrderListItem.js";
 import { makeStyles } from '@material-ui/core/styles';
-
+import { getOrdersNotCompletedByUserIdAndRestaurantId } from "../../services/orderService";
+import React, { useState, useEffect } from "react";
 const useStyles = makeStyles((theme) => ({
   page: {
     marginLeft: '5em',
@@ -9,83 +10,44 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '900px',
   }
 }));
-const testProductData = {
-  1: {
-    id: 1, 
-    img: 'img',
-    name: 'prodName', 
-    specialRequest: 'sneeze on it', 
-    pricePer: '4.35', 
-    qty: '2', 
-  },
-  2: {
-    id: 2, 
-    img: 'img',
-    name: 'prodName2', 
-    specialRequest: 'sneezed on it', 
-    pricePer: '4.85', 
-    qty: '4',           
-
-  },
-  3: {
-    id: 3, 
-    img: 'img',
-    name: 'prodName2', 
-    specialRequest: 'sneezed on it', 
-    pricePer: '4.85', 
-    qty: '1',           
-  },
-}
-const testOrderData = [
-  { 
-    id: 1,
-    orderId: 25943,
-    date: 'aug, 30, 2021',
-    restaurantName: "Restaurant1", 
-    img:'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    products: [
-      1, 2, 3
-    ],
-    numberOfItems: 3,
-    totalCost: 23434,
-  },
-  { 
-    id: 2, 
-    orderId: 25923,
-    date: 'aug, 30, 2021',
-    restaurantName: "Restaurant2", 
-    img:'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    products: [
-      1, 2
-    ],
-    numberOfItems: 2,
-    totalCost: 23467,
-  },
-];
-
 function OrderList() {
   const classes = useStyles();
-
-  const item = testOrderData.map((item) => {
+  const [orderListData, setOrderListData] = useState([]);
+  console.log("in orders list item - before useEffect")
+  useEffect(() => {
+    return new Promise((resolve, reject) => {
+      try {
+        let userId = 1;
+        let restaurantId = 1;
+        getOrdersNotCompletedByUserIdAndRestaurantId(userId, restaurantId, false)
+        .then((result) => {
+          console.log(result);
+          setOrderListData(result);
+        });
+      } catch (error) {
+        console.error("signin error!==", error);
+        reject("signin error!");
+      }
+    });
+  }, [setOrderListData]);
+ const item = orderListData.map((item) => {
     return (
       <OrderListItem 
         key={item.id} 
-        orderId={item.orderId}
-        date={item.date}
-        products={item.products.map((id) => {
-          return (
-            testProductData[id]
-          )
+        orderId={item.id}
+        date={item.createdAt}
+        products={item.orderdetails.map((detail) => {
+          return (detail);
         })}
-        numberOfItems={item.numberOfItems}
-        totalCost={item.totalCost} 
+        numberOfItems={item.length}
+        totalCost={item.orderdetails.map(d=> d.quantity * d.dish.price).reduce((a, b) => a+b, 0)} 
       />
     );
   });
 
   return (
+   
     <div className={classes.page}>
-      <br></br>
       {item}
     </div>
   );
