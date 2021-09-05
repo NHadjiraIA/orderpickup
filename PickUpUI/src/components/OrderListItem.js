@@ -159,16 +159,13 @@ function OrderListItem(props) {
               <Table className={classes.table} aria-label="spanning table">
                 <TableHead>
                   <TableRow>
-                    {/* <TableCell align="left" colSpan={2}><h4>Img.</h4></TableCell> */}
                     <TableCell className={classes.imgColumn} align="left">
                       <h4>Img.</h4>
                     </TableCell>
                     <TableCell align="left">
-                      {" "}
                       <h4>Item Name.</h4>
                     </TableCell>
                     <TableCell align="left">
-                      {" "}
                       <h4>Price Per Item</h4>
                     </TableCell>
                     <TableCell align="center">
