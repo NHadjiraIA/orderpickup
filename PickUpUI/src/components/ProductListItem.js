@@ -11,7 +11,7 @@ import { CART } from "../navigation/CONSTANTS";
 import { useHistory } from "react-router-dom";
 import { useCart } from "../context/cart";
 import { makeStyles } from "@material-ui/core/styles";
-
+import parse from 'html-react-parser'
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
 const useStyles = makeStyles((theme) => ({
@@ -106,7 +106,31 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
 }));
+function DishSelection(dish) {
+  let output = "";
+  if (dish.vegan) {
+    output += "#Vegan";
+  }
+  if (dish.gluten) {
+    output += " #Gluten free";
+  }
+  if (dish.halal) {
+    output += " #Halal";
+  }
+  if (dish.dairy) {
+    output += " #Dairy free";
+  }
+  if (dish.nuts) {
+    output += " #Contains nuts";
+  }
+  if (dish.marijuana) {
+    output += " #Contains cannabis";
+  }
 
+  // console.log("DISHESES", dish);
+  // console.log(output);
+  return (parse(output));
+}
 function ProductListItem(props) {
   let history = useHistory();
   const cart = useCart();
@@ -124,6 +148,10 @@ function ProductListItem(props) {
       },
     });
   };
+
+ 
+
+
 
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
@@ -254,7 +282,11 @@ export default function ProductListItemDemo(props) {
         <Typography align="left" onClick={handleClickOpen}>
           <p>{props.description} </p>
         </Typography>
-        <Typography align="left"> #halal #thebest</Typography>
+        <Typography align="left"> 
+        <div className={classes.tags}>
+               {DishSelection(props.dish)}
+              </div>
+        </Typography>
         <br></br>
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>

@@ -20,6 +20,7 @@ function ProductList(props) {
   const classes = useStyles();
 
   const item = props.productDetails.map((item) => {
+    // console.log("itemmmmmmm", item);
     return (
       <ProductListItem
         key={item.id}
@@ -29,6 +30,7 @@ function ProductList(props) {
         description={item.description}
         price={item.price}
         calories={item.calories}
+        dish= {item}
       />
     );
   });
