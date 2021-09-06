@@ -13,6 +13,15 @@ export class OrdersRepository{
         return orders;
     }
 
+    public async GetById(id: number): Promise<OrderEntity | null>{
+        return OrderEntity.findByPk(id);
+         
+    }
+
+    public async update(order: OrderEntity): Promise<OrderEntity>{
+        return order.save();
+    }
+
     public async getByFilter(filter: any): Promise<OrderEntity[]>{
         let orders  = await OrderEntity.findAll({
             where: filter,

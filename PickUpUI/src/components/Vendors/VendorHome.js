@@ -16,7 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
+import { useHistory, useLocation} from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import clsx from "clsx";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -25,6 +25,7 @@ import Dashboard from "./Dashboard";
 import OrderList from "./OrderList";
 import Menu from "./Menu";
 import CommentList from "./CommentList";
+import LogOut from "./LogOut"
 import BugReportIcon from "@material-ui/icons/BugReport";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
 import SmsIcon from "@material-ui/icons/Sms";
@@ -124,7 +125,11 @@ const iconPicker = (index) => {
 
 function ResponsiveDrawer(props) {
   const classes = useStyles();
-
+  const location = useLocation();
+  //const name = location?.state?.userName;
+ 
+  
+   
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const { window } = props;
@@ -158,7 +163,7 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Dashboard", "Orders", "Menu", "Comments"].map((text, index) => (
+        {["Dashboard", "Orders", "Menu", "Comments","LogOut"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -174,6 +179,7 @@ function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
+    
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -181,7 +187,9 @@ function ResponsiveDrawer(props) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+       
       >
+       
         <Toolbar>
           <IconButton
             color="inherit"
@@ -217,7 +225,7 @@ function ResponsiveDrawer(props) {
         </div>
         <Divider />
         <List>
-          {["Dashboard", "Orders", "Menu", "Comments"].map((text, index) => (
+          {["Dashboard", "Orders", "Menu", "Comments","LogOut"].map((text, index) => (
             <ListItem button key={text} onClick={() => handleStatus(text)}>
               <ListItemIcon>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <BugReportIcon />} */}
@@ -239,6 +247,7 @@ function ResponsiveDrawer(props) {
         {status.current === "Menu" && <Menu />}
         {status.current === "Comments" && <CommentList />}
         {status.current === "Dashboard" && <Dashboard />}
+        {status.current === "LogOut" && <LogOut />}
       </main>
     </div>
   );
