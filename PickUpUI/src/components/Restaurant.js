@@ -100,8 +100,6 @@ function Restaurant(props) {
   const restaurantDetails = props.restaurantInfo;
   const classes = useStyles();
   const durationTime = location.state.duration;
-  // console.log('RESTAUXUXU', restaurantDetails);
-  const userId = location.state.userId;
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
