@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
@@ -11,7 +10,13 @@ import { CART } from "../navigation/CONSTANTS";
 import { useHistory } from "react-router-dom";
 import { useCart } from "../context/cart";
 import { makeStyles } from "@material-ui/core/styles";
-import parse from 'html-react-parser'
+import cannabis from "./images/cannabis.png";
+import containsNuts from "./images/nutRed.png";
+import dairyFree from "./images/dairyFree.png";
+import glutenFree from "./images/glutenFree.png";
+import halal from "./images/halal.png";
+import vegan from "./images/vegan.png";
+
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
 const useStyles = makeStyles((theme) => ({
@@ -107,29 +112,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function DishSelection(dish) {
-  let output = "";
+  const testArray = [];
   if (dish.vegan) {
-    output += "#Vegan";
+    testArray.push(
+      <img src={vegan} style={{ height: "45px", width: "45px" }} />
+    );
   }
   if (dish.gluten) {
-    output += " #Gluten free";
+    testArray.push(
+      <img src={glutenFree} style={{ height: "45px", width: "45px" }} />
+    );
   }
   if (dish.halal) {
-    output += " #Halal";
+    testArray.push(
+      <img src={halal} style={{ height: "45px", width: "45px" }} />
+    );
   }
   if (dish.dairy) {
-    output += " #Dairy free";
+    testArray.push(
+      <img src={dairyFree} style={{ height: "45px", width: "45px" }} />
+    );
   }
   if (dish.nuts) {
-    output += " #Contains nuts";
+    testArray.push(
+      <img src={containsNuts} style={{ height: "45px", width: "45px" }} />
+    );
   }
   if (dish.marijuana) {
-    output += " #Contains cannabis";
+    testArray.push(
+      <img src={cannabis} style={{ height: "45px", width: "45px" }} />
+    );
   }
 
-  // console.log("DISHESES", dish);
-  // console.log(output);
-  return (parse(output));
+  return testArray;
 }
 function ProductListItem(props) {
   let history = useHistory();
@@ -148,10 +163,6 @@ function ProductListItem(props) {
       },
     });
   };
-
- 
-
-
 
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
@@ -282,10 +293,8 @@ export default function ProductListItemDemo(props) {
         <Typography align="left" onClick={handleClickOpen}>
           <p>{props.description} </p>
         </Typography>
-        <Typography align="left"> 
-        <div className={classes.tags}>
-               {DishSelection(props.dish)}
-              </div>
+        <Typography align="left">
+          <div className={classes.tags}>{DishSelection(props.dish)}</div>
         </Typography>
         <br></br>
         <div className={classes.priceAndCalories}>

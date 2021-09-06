@@ -98,10 +98,9 @@ function Restaurant() {
   const location = useLocation();
   const classes = useStyles();
 
-
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
-// console.log('RESTAUXUXU', restaurantDetails);
+  // console.log('RESTAUXUXU', restaurantDetails);
   const userId = location.state.userId;
   const [activeState, setActiveState] = useState({
     menu: true,
@@ -124,7 +123,7 @@ function Restaurant() {
       .catch((err) => {});
   }, []);
 
-// Get average ratings value for each restaurant
+  // Get average ratings value for each restaurant
   useEffect(() => {
     axios
       .get(
@@ -253,8 +252,7 @@ function Restaurant() {
             />
             <Typography align="left" variant="h6">
               {restaurantDetails.phone}
-              </Typography>
-           
+            </Typography>
           </div>
           <div
             style={{
@@ -288,10 +286,7 @@ function Restaurant() {
       )}
       {activeState.comment && (
         <div style={{ paddingBottom: "1em" }}>
-          <CommentList
-          restaurantId = {restaurantDetails.id}
-           userId= {userId}
-           />
+          <CommentList restaurantId={restaurantDetails.id} userId={userId} />
         </div>
       )}
     </div>
