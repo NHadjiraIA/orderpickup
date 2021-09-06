@@ -95,11 +95,12 @@ export const Navigation = (props) => {
           style={{
             display: "flex",
             flexDirection: "row",
+            alignItems: "center",
             fontWeight: "bold",
             width: "200px",
           }}
         >
-          <FastfoodIcon style={{ fontSize: "35px" }}></FastfoodIcon>
+          <FastfoodIcon style={{ fontSize: "50px" }}></FastfoodIcon>
           <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
             <Typography className={classes.title} variant="h4" noWrap>
               NoshFeast
