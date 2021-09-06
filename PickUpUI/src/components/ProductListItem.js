@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     // justifyContent: 'row',
     justifyContent: "center",
     margin: "1em",
+    cursor: "pointer",
 
     "& img": {
       width: "35%",
