@@ -6,7 +6,7 @@ import axios from "axios";
 const RestaurantPage = () => {
   return (
     <div>
-      <Restaurant  />;
+      <Restaurant />
     </div>
   );
 };

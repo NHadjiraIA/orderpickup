@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     paddingBottom: "0.5em",
+    height: "95vh",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -125,120 +126,115 @@ function OrderListItem(props) {
   }, []);
 
   return (
-    <body>
-      <div className={classes.root}>
-        <Accordion className={classes.overallAccordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <div className={classes.accordion}>
-              <Typography className={classes.heading}>
-                {props.img}
-                {props.restaurantName}
-                <br></br>
-                {/* {props.date} */}
-                {dateFormatted}
-              </Typography>
-              <div className={classes.accordionButtons}>
-                <Button size="medium">
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={CART}
-                  >
-                    Go to Cart
-                  </Link>
-                </Button>
-              </div>
+    <div className={classes.root}>
+      <Accordion className={classes.overallAccordion}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <div className={classes.accordion}>
+            <Typography className={classes.heading}>
+              {props.img}
+              {props.restaurantName}
+              <br></br>
+              {/* {props.date} */}
+              {dateFormatted}
+            </Typography>
+            <div className={classes.accordionButtons}>
+              <Button size="medium">
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={CART}
+                >
+                  Go to Cart
+                </Link>
+              </Button>
             </div>
-          </AccordionSummary>
-          <AccordionDetails className={classes.perorder}>
-            <div className={classes.tableRoot}>
-              <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="spanning table">
-                  <TableHead>
+          </div>
+        </AccordionSummary>
+        <AccordionDetails className={classes.perorder}>
+          <div className={classes.tableRoot}>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="spanning table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.imgColumn} align="left">
+                      <h4>Img.</h4>
+                    </TableCell>
+                    <TableCell align="left">
+                      <h4>Item Name.</h4>
+                    </TableCell>
+                    <TableCell align="left">
+                      <h4>Price Per Item</h4>
+                    </TableCell>
+                    <TableCell align="center">
+                      <h4>Quantity.</h4>
+                    </TableCell>
+                    <TableCell align="right">
+                      <h4>Sum</h4>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((row, index) => (
                     <TableRow>
-                      {/* <TableCell align="left" colSpan={2}><h4>Img.</h4></TableCell> */}
-                      <TableCell className={classes.imgColumn} align="left">
-                        <h4>Img.</h4>
-                      </TableCell>
                       <TableCell align="left">
-                        {" "}
-                        <h4>Item Name.</h4>
+                        <img src={row.image} height="90px" width="90px" />
                       </TableCell>
+                      <TableCell>{row.name}</TableCell>
                       <TableCell align="left">
-                        {" "}
-                        <h4>Price Per Item</h4>
+                        <h4>${row.price}</h4>
                       </TableCell>
                       <TableCell align="center">
-                        <h4>Quantity.</h4>
+                        <h4>{row.quantity}</h4>
                       </TableCell>
                       <TableCell align="right">
-                        <h4>Sum</h4>
+                        <h4>${row.price * row.quantity}</h4>
                       </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row, index) => (
-                      <TableRow>
-                        <TableCell align="left">
-                          <img src={row.image} height="90px" width="90px" />
-                        </TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell align="left">
-                          <h4>${row.price}</h4>
-                        </TableCell>
-                        <TableCell align="center">
-                          <h4>{row.quantity}</h4>
-                        </TableCell>
-                        <TableCell align="right">
-                          <h4>${row.price * row.quantity}</h4>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                  ))}
+                </TableBody>
+              </Table>
 
-                <Table className={classes.table} aria-label="spanning table">
-                  <TableBody>
-                    <TableRow>
-                      <TableCell colSpan={2}>
-                        <h4>Pre-Tax</h4>
-                      </TableCell>
-                      <TableCell align="right">
-                        <h4>
-                          $
-                          {data
+              <Table className={classes.table} aria-label="spanning table">
+                <TableBody>
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      <h4>Pre-Tax</h4>
+                    </TableCell>
+                    <TableCell align="right">
+                      <h4>
+                        $
+                        {data
+                          .map((s) => s.quantity * s.price)
+                          .reduce((a, b) => a + b, 0)
+                          .toFixed(2)}
+                      </h4>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      <h4>Total</h4>
+                    </TableCell>
+                    <TableCell align="right">
+                      <h4>
+                        $
+                        {(
+                          data
                             .map((s) => s.quantity * s.price)
-                            .reduce((a, b) => a + b, 0)
-                            .toFixed(2)}
-                        </h4>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell colSpan={2}>
-                        <h4>Total</h4>
-                      </TableCell>
-                      <TableCell align="right">
-                        <h4>
-                          $
-                          {(
-                            data
-                              .map((s) => s.quantity * s.price)
-                              .reduce((a, b) => a + b, 0) * 1.13
-                          ).toFixed(2)}
-                        </h4>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-    </body>
+                            .reduce((a, b) => a + b, 0) * 1.13
+                        ).toFixed(2)}
+                      </h4>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </AccordionDetails>
+      </Accordion>
+    </div>
   );
 }
 
