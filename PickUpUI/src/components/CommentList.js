@@ -72,7 +72,7 @@ function Comment(props) {
   // let userId = location?.state?.userId;
   // let restaurantId = location?.state?.restaurantId;
 
-  let userId= props.userId;
+  let userId = props.userId;
   let restaurantId = props.restaurantId;
 
   console.log("restauranttttttidddddd", restaurantId);
@@ -83,18 +83,28 @@ function Comment(props) {
   const [errors, setErrors] = useState("");
   const [commentsListData, setCommentsListData] = useState([]);
 
-const postRating = () => {
-axios.post(("http://localhost:3002/api/v1/ratings"),{
-userId:userId,
-restaurantId:restaurantId,
-rating:value
-})
+  const postRating = () => {
+    axios.post("http://localhost:3002/api/v1/ratings", {
+      userId: userId,
+      restaurantId: restaurantId,
+      rating: value,
+    });
+  };
 
-}
+  // const updateRating = () => {
+  //   axios.put("http://localhost:3002/api/v1/ratings");
+  // };
 
-const updateRating = () => {
-axios.put("http://localhost:3002/api/v1/ratings")
-}
+  // const checkForRating = ()=>{
+  //   axios.get(`http://localhost:3002/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
+  //   .then((res) => {
+  //     // console.log('fuck@!',res.data);
+  //     for (const iterator of res.data.Ratings) {
+  //       if(iterator.userId === props.userId && iterator.restaurantId===props.restaurantId)
+  //       return true;
+  //     }
+  //     return false;
+  //   })
 
   //TODO: remove the sample data that was used for test
   // userId = 1;
@@ -127,7 +137,6 @@ axios.put("http://localhost:3002/api/v1/ratings")
         userId: userId,
         restaurantId: restaurantId,
         Comment: commentText,
-
       };
       postComment(requestDto)
         .then((result) => {
