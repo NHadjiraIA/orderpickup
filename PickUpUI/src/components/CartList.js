@@ -28,8 +28,8 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
   productImg: {
-    height: "60%",
-    width: "50%",
+    height: "150px",
+    width: "150px",
     marginBottom: "1em",
   },
   imgColumn: {

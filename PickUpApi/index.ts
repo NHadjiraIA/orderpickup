@@ -93,6 +93,10 @@ ordersRouter.post("/orders",
  (req, res) => ordersApi.create(req, res)
 );
 
+ordersRouter.put('/orders',
+  (req, res) => ordersApi.update(req, res)
+)
+
 app.use('/api/v1', ordersRouter)
  
 //################RATINGS END POINT ###################

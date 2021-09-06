@@ -17,9 +17,12 @@ import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   commentPage: {
-    padding: "10%",
+    paddingTop: "3%",
+    paddingLeft: "10%",
+    paddingRight: "10%",
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
     marginLeft: "4em",
     marginRight: "4em",
   },
@@ -50,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
   postComment: {
     backgroundColor: "#e9ebf0",
+    // backgroundColor: "#38A3A5",
+
     padding: "1em",
   },
 
@@ -163,11 +168,11 @@ function Comment(props) {
 
   return (
     <div className={classes.commentPage}>
-      <div className={classes.filters}>
+      {/* <div className={classes.filters}>
         <h3>Filters</h3>
         <Button>Newest to Oldest</Button>
         <Button>Oldest to Newest</Button>
-      </div>
+      </div> */}
 
       <section className={classes.postAndPostedComments}>
         <div className={classes.postComment}>

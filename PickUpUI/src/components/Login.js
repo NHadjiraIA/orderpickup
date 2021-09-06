@@ -1,34 +1,67 @@
-import React ,{ useEffect, useState}from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import useStyles from './LoginStyle.js'
+import React, { useEffect, useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+// import useStyles from "./LoginStyle.js";
 import { postLogin, getUserDetails } from "../services";
-import { MAP, SIGNUP, VENDOR_DASHBOARD } from '../navigation/CONSTANTS.js';
-import { useHistory} from "react-router-dom";
+import { MAP, SIGNUP, VENDOR_DASHBOARD } from "../navigation/CONSTANTS.js";
+import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    paddingTop: "95px",
+  },
+  image: {
+    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundRepeat: "no-repeat",
+    backgroundColor:
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  // submit: {
+  //   margin: theme.spacing(3, 0, 2),
+  // },
+}));
 
 export default function Login(props) {
   window.userId = -1;
@@ -40,12 +73,12 @@ export default function Login(props) {
   const [errors, setErrors] = useState("");
   const setUserName = props.setUserName;
   const userInfo = {
-      "id" : undefined,
-      "name": undefined,
-      "email": undefined,
-      "role": undefined,
-      "phone": undefined
-    }
+    id: undefined,
+    name: undefined,
+    email: undefined,
+    role: undefined,
+    phone: undefined,
+  };
 
     const goToRestaurant = (path) => {
       history.push({
@@ -94,22 +127,23 @@ export default function Login(props) {
               console.log('navigate to backoffice');
             // redirect to back office
             goToVondor();
-            } else if ( userInfo.role == false){
-              goToRestaurant();
+          } else if (userInfo.role == false) {
+            goToRestaurant();
+          }
+        })
+        .catch((err) => {
+          if (err.response.status == 401)
+            setErrors("User name or password not valid.");
+          else {
+            if (err.response.status == 404) {
+              setErrors("Unknown user");
+            } else {
+              setErrors("Unknow error!");
             }
-          }).catch(err =>{
-            if(err.response.status == 401)
-              setErrors('User name or password not valid.');
-            else{
-              if(err.response.status == 404){
-                setErrors('Unknown user');
-              }else{
-                setErrors('Unknow error!');
-              }
-            }
-          });
-        }
-       }
+          }
+        });
+    }
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -119,7 +153,9 @@ export default function Login(props) {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <span style={errors ? {visibility: "visible", color: "red"}: null} >{errors}</span>
+          <span style={errors ? { visibility: "visible", color: "red" } : null}>
+            {errors}
+          </span>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -134,7 +170,9 @@ export default function Login(props) {
               name="phone"
               autoComplete="phone"
               autoFocus
-              onChange={(e)=>{setPhone(e.target.value) }}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
             />
             <TextField
               variant="outlined"
@@ -146,7 +184,9 @@ export default function Login(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={(e)=>{setPassword(e.target.value)}}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -156,8 +196,7 @@ export default function Login(props) {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={()=>goToLongin()
-            }
+              onClick={() => goToLongin()}
             >
               Sign In
             </Button>
@@ -168,7 +207,7 @@ export default function Login(props) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={SIGNUP} variant="body2" >
+                <Link href={SIGNUP} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -182,4 +221,3 @@ export default function Login(props) {
     </Grid>
   );
 }
- 
