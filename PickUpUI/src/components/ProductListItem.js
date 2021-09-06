@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
     height: "18em",
-    width: "50em",
+    width: "45em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
     display: "flex",
