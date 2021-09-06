@@ -161,6 +161,8 @@ function ProductListItem(props) {
         description: props.description,
         price: props.price,
         calories: props.calories,
+        restaurantId: props.restaurantId,
+        userId: props.userId
       },
     });
   };
@@ -317,6 +319,8 @@ export default function ProductListItemDemo(props) {
           description={props.description}
           price={props.price}
           calories={props.calories}
+          restaurantId = {props.restaurantId}
+          userId = {props.userId}
         />
       </div>
       <img src={props.img_url} onClick={handleClickOpen} />

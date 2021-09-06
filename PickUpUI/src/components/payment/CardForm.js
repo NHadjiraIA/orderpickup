@@ -4,6 +4,7 @@ import { ORDERS } from "../../navigation/CONSTANTS";
 import { useHistory, useLocation } from "react-router-dom";
 // import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
+import { postPayment } from "../../services/paymentService";
 const useOptions = () => {
   // const fontSize = useResponsiveFontSize();
   const options = useMemo(
@@ -25,11 +26,10 @@ const useOptions = () => {
     })
     // [fontSize]
   );
-
   return options;
 };
 
-const CardForm = () => {
+const CardForm = (props) => {
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
@@ -39,7 +39,6 @@ const CardForm = () => {
   const totalForPayment = location?.state?.total;
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -52,20 +51,13 @@ const CardForm = () => {
     });
 
     console.log("[PaymentMethod]", payload);
-    let json_payload = {
-      items: [
-        {
-          id: "xl-tshirt",
-          total: totalForPayment,
-        },
-      ],
+    let payment = {
+      amount: props.amount.toFixed(2)
     };
-    console.log("in payement card ", json_payload);
-    axios
-      .post("http://localhost:3002/api/v1/payments", json_payload.total)
-      .then((data) => {
+    postPayment(payment)
+    .then((data) => {
         stripe
-          .confirmCardPayment(data.data.clientSecret, {
+          .confirmCardPayment(data.clientSecret, {
             payment_method: {
               card: elements.getElement(CardElement),
             },
@@ -73,21 +65,18 @@ const CardForm = () => {
           .then(function (result) {
             if (result.error) {
               // Show error to your customer
-              //showError(result.error.message);
               alert(result.error);
             } else {
               // The payment succeeded!
-              //orderComplete(result.paymentIntent.id);
               sendMessage().then(() => {
                 alert(`successful payment `);
               });
-              //done
-
               alert(`successful payment `);
-              //done
-
               history.push({
                 pathname: ORDERS,
+                state:{
+                  userId: props.userId
+                }
               });
             }
           });

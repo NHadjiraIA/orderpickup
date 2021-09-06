@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 function ProductList(props) {
   const classes = useStyles();
+  const restaurantInfo = props.restaurant;
+  const userId = props.userId;
 
   const item = props.productDetails.map((item) => {
     // console.log("itemmmmmmm", item);
@@ -30,6 +32,8 @@ function ProductList(props) {
         description={item.description}
         price={item.price}
         calories={item.calories}
+        userId={userId}
+        restaurantId = {restaurantInfo.id}
         dish= {item}
       />
     );

@@ -12,3 +12,4 @@
  export const GET_ORDERS_NOT_COMPLETED_BY_USER_ID = (userId,restaurantId,completed)=> `${BASE_ADDRESS()}/api/v1/orders?userId=${userId}&restaurantId=${restaurantId}&completed=${completed}`
  export const PUT_ORDER = () => `${BASE_ADDRESS()}/api/v1/orders`;
  export const GET_DISHS_BY_RESTAURANT = (restaurantId) => `${BASE_ADDRESS()}/api/v1/restaurant/${restaurantId}/dishes`
+ export const POST_PAYMENT = () => `${BASE_ADDRESS()}/api/v1/payments`;

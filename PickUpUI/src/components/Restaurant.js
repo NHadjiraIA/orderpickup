@@ -94,14 +94,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Restaurant() {
+function Restaurant(props) {
   const location = useLocation();
+  const userId = props.userId;
+  const restaurantDetails = props.restaurantInfo;
   const classes = useStyles();
-
-  const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
-  // console.log('RESTAUXUXU', restaurantDetails);
-  const userId = location.state.userId;
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
@@ -281,7 +279,7 @@ function Restaurant() {
       </div>
       {activeState.menu && (
         <div className={classes.menu}>
-          <ProductList productDetails={dishes} />
+          <ProductList productDetails={dishes} userId={userId} restaurant={restaurantDetails}/>
         </div>
       )}
       {activeState.comment && (
