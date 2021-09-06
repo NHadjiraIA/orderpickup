@@ -1,5 +1,5 @@
 import { ListItem, Typography } from "@material-ui/core";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -17,6 +17,7 @@ import Select from "@material-ui/core/Select";
 import List from "@material-ui/core/List";
 
 import mainListItems from "./listItems";
+import { getDishByRestaurant } from "../../services";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -48,20 +49,6 @@ function createData(img, name, calories, desc, size, type, price) {
   return { img, name, calories, desc, size, type, price };
 }
 
-const rows = [
-  createData(
-    "https://images.unsplash.com/photo-1543826173-70651703c5a4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=799&q=80",
-    "Frozen yoghurt",
-    159,
-    6,
-    0,
-    4.0
-  ),
-  createData("img", "Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("img", 262, 16.0, 24, 6.0),
-  createData("img", 305, 3.7, 67, 4.3),
-  createData("img", 356, 16.0, 49, 3.9),
-];
 
 const useStyles = makeStyles({
   root: {
@@ -85,10 +72,27 @@ const useStyles = makeStyles({
   },
 });
 
-function Menu() {
+function Menu(props) {
+
   const classes = useStyles();
   const [age, setAge] = useState("");
-
+  const [dishListData, setDishListData] = useState([]);
+  console.log("in orders list item - before useEffect")
+  useEffect(() => {
+    return new Promise((resolve, reject) => {
+      try {
+        let restaurantId = 1;
+        getDishByRestaurant(restaurantId)
+        .then((result) => {
+          console.log(result);
+          setDishListData(result);
+        });
+      } catch (error) {
+        console.error("signin error!==", error);
+        reject("signin error!");
+      }
+    });
+  }, [setDishListData]);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -116,17 +120,17 @@ function Menu() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+            {dishListData.map((dish) => (
+              <StyledTableRow key={dish.name}>
                 <StyledTableCell align="left" scope="row">
-                  <img className={classes.productImg} src={row.img} />
+                  <img height="90px" width="90px" src={dish.img_url} />
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.name}</StyledTableCell>
-                <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                <StyledTableCell align="right">{dish.name}</StyledTableCell>
+                <StyledTableCell align="right">{dish.calories}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {row.description}
+                  {dish.description}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.size}</StyledTableCell>
+                <StyledTableCell align="right">{dish.size}</StyledTableCell>
                 <StyledTableCell align="right">
                   <Select
                     labelId="demo-simple-select-label"
@@ -142,7 +146,7 @@ function Menu() {
                     <MenuItem value={false}>Others</MenuItem>
                   </Select>
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.price}</StyledTableCell>
+                <StyledTableCell align="right">{dish.price}</StyledTableCell>
                 <StyledTableCell align="right">
                   <Button variant="contained" color="primary" disableElevation>
                     DELETE

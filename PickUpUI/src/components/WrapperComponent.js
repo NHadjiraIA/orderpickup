@@ -9,7 +9,6 @@ import MainListItems from "./Vendors/listItems";
 
 export default function WrapperComponent(props) {
   const [restaurants, setRestaurants] = useState([]);
-
   useEffect(() => {
     axios
       .get("http://localhost:3002/api/v1/restaurants")

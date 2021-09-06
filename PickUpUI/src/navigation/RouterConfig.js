@@ -61,9 +61,11 @@ export const RouterConfig = (props) => {
       <Route exact path={SIGNUP} component={signup} />
       {/* <Route exact path={VENDOR_DASHBOARD} component={dashboard} /> */}
       <Route exact path={VENDOR_DASHBOARD}>
-        <ResponsiveDrawer />
+        <ResponsiveDrawer  />
       </Route>
-      <Route exact path={VENDOR_MENU} component={vendorMenu} />
+      <Route exact path={VENDOR_MENU} >
+        <vendorMenu  setUserName={setUserName}/>
+        </Route >
       <Route exact path={VENDOR_ORDERS} component={orderList} />
       <Route path="*">
         <NotFound />
