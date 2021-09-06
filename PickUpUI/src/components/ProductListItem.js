@@ -22,14 +22,15 @@ const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
-    height: "18em",
-    width: "50em",
+    height: "19em",
+    width: "53em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
     display: "flex",
     // justifyContent: 'row',
     justifyContent: "center",
     margin: "1em",
+    cursor: "pointer",
 
     "& img": {
       width: "35%",
@@ -290,7 +291,7 @@ export default function ProductListItemDemo(props) {
         <Typography onClick={handleClickOpen} align="left">
           <h3>{props.name}</h3>
         </Typography>
-        <Typography align="left" onClick={handleClickOpen}>
+        <Typography align="left" onClick={handleClickOpen} variant="body">
           <p>{props.description} </p>
         </Typography>
         <Typography align="left">

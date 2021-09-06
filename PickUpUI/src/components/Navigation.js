@@ -122,7 +122,7 @@ export const Navigation = (props) => {
                 to={CART}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <ShoppingCart />
+                <ShoppingCart size="large" />
               </Link>
             </Badge>
           </IconButton>

@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "95px",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage:
+      "url(https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -80,51 +81,50 @@ export default function Login(props) {
     phone: undefined,
   };
 
-    const goToRestaurant = (path) => {
-      history.push({
-        pathname: MAP,         
-        state: { 
-          userId: userInfo?.id,
-          userName: userInfo?.name,
-          phoneNumber: userInfo?.phone
-        }
-      });
-    }
-    const goToVondor = (path) => {
-      history.push({
-        pathname: VENDOR_DASHBOARD,
-        state: { 
-          userId: userInfo?.id,
-          userName: userInfo?.name,
-          phoneNumber: userInfo?.phone
-        }
-      });
-    }
-    const goToLongin = ()=>{
-        if(isNaN(phone)){
-          setErrors('Phone must be a number value');
-        }
-        else{
-          var requestDto = {
-            "phone": phone,
-            "password": password 
-          };
-       postLogin(requestDto)
-       .then(result =>{
-            setUserName(result.data.name)
-            setId(result.data.id);
-            userInfo.name = result.data.name;
-            userInfo.email = result.data.email;
-            userInfo.role = result.data.role;
-            userInfo.phone = result.data.phone;
-            
-            /***************Getting user.id for the user*********/
-            userInfo.id=result.data.id
-            window.userId = result.data.id
-            // console.log("IDDDDD", result.data.id);
-            /************************************************ */
-            if (userInfo.role == true){
-              console.log('navigate to backoffice');
+  const goToRestaurant = (path) => {
+    history.push({
+      pathname: MAP,
+      state: {
+        userId: userInfo?.id,
+        userName: userInfo?.name,
+        phoneNumber: userInfo?.phone,
+      },
+    });
+  };
+  const goToVondor = (path) => {
+    history.push({
+      pathname: VENDOR_DASHBOARD,
+      state: {
+        userId: userInfo?.id,
+        userName: userInfo?.name,
+        phoneNumber: userInfo?.phone,
+      },
+    });
+  };
+  const goToLongin = () => {
+    if (isNaN(phone)) {
+      setErrors("Phone must be a number value");
+    } else {
+      var requestDto = {
+        phone: phone,
+        password: password,
+      };
+      postLogin(requestDto)
+        .then((result) => {
+          setUserName(result.data.name);
+          setId(result.data.id);
+          userInfo.name = result.data.name;
+          userInfo.email = result.data.email;
+          userInfo.role = result.data.role;
+          userInfo.phone = result.data.phone;
+
+          /***************Getting user.id for the user*********/
+          userInfo.id = result.data.id;
+          window.userId = result.data.id;
+          // console.log("IDDDDD", result.data.id);
+          /************************************************ */
+          if (userInfo.role == true) {
+            console.log("navigate to backoffice");
             // redirect to back office
             goToVondor();
           } else if (userInfo.role == false) {
