@@ -22,15 +22,14 @@ const useStyles = makeStyles({
     typography: "50px",
     fontSize: "18px",
     height: "100vh",
-    paddingTop: "100px",
+    paddingTop: "50px",
   },
   table: {
     minWidth: 700,
   },
   productImg: {
-    height: "150px",
-    width: "150px",
-    marginBottom: "1em",
+    height: "100px",
+    width: "100px",
   },
   imgColumn: {
     width: "30%",
@@ -101,10 +100,10 @@ function CartList(props) {
       .then((result) => {})
       .catch((err) => {
         console.log(err);
-        if (err.response.status === 404) {
+        if (err.status === 404) {
           setErrors("No comment found!");
         } else {
-          if (err.response.status === 400) {
+          if (err.status === 400) {
             setErrors("restaurantId is not valid!");
           } else {
             setErrors("Unknow error!");
@@ -131,13 +130,13 @@ function CartList(props) {
               </TableCell>
               <TableCell align="left">
                 {" "}
-                <h2>Desc.</h2>
+                <h2>Name</h2>
               </TableCell>
               <TableCell align="left">
                 {" "}
                 <h2>Price Per Item</h2>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="left">
                 <h2>Qty.</h2>
               </TableCell>
               <TableCell align="center">
@@ -152,12 +151,12 @@ function CartList(props) {
                   <img className={classes.productImg} src={row.img_url} />
                 </TableCell>
                 <TableCell align="left">
-                  <h2>{row.description}</h2>
+                  <h2>{row.name}</h2>
                 </TableCell>
                 <TableCell>
                   <h2>${row.price}</h2>
                 </TableCell>
-                <TableCell>
+                <TableCell align="left">
                   <Counter
                     qty={row.quantity}
                     increment={() => cart.increaseQuantity(row.id)}
