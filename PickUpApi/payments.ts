@@ -9,13 +9,11 @@ export class PaymentApi{
     }
  
     async createPayment(req: express.Request, res: express.Response){
-        
-        const { items } = req.body;
-        console.log(req.body)
+        const amount = Number(req.body.amount);
         // Create a PaymentIntent with the order amount and currency
         const paymentIntent = await stripe.paymentIntents.create({
-          amount: this.calculateOrderAmount(items),
-          currency: "usd"
+          amount: this.calculateOrderAmount(amount),
+          currency: "cad"
         });
       
         return res.send({
@@ -23,11 +21,8 @@ export class PaymentApi{
         });
     }
     // #region payment private methods
-    calculateOrderAmount(items) {
-        // Replace this constant with a calculation of the order's amount
-        // Calculate the order total on the server to prevent
-        // people from directly manipulating the amount on the client
-        return 1222;
+    calculateOrderAmount(amount) {
+        return amount * 100;
       };
     //#endregion
 }

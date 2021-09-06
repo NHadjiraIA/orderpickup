@@ -89,7 +89,7 @@ export default function Login(props) {
       },
     });
   };
-  const goToVondor = (path) => {
+  const goToVendor = (path) => {
     history.push({
       pathname: VENDOR_DASHBOARD,
       state: {
@@ -109,17 +109,16 @@ export default function Login(props) {
       };
       postLogin(requestDto)
         .then((result) => {
-          setUserName(result.data.name);
           setId(result.data.id);
+          userInfo.id = result.data.id;
           userInfo.name = result.data.name;
           userInfo.email = result.data.email;
           userInfo.role = result.data.role;
           userInfo.phone = result.data.phone;
           if (userInfo.role == true) {
-            console.log("navigate to backoffice");
-            // redirect to back office
-            goToVondor();
+            goToVendor();
           } else if (userInfo.role == false) {
+            setUserName(result.data.name);
             goToRestaurant();
           }
         })

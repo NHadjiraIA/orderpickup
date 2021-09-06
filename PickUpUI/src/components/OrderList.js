@@ -24,7 +24,6 @@ function OrderList(props) {
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
-        userId = 1;
         getOrdersDoneByUserId(userId, true).then((result) => {
           setOrderListData(result);
         });

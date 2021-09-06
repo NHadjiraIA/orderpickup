@@ -8,14 +8,11 @@ import {
 } from "react-router-dom";
 import CardForm from "./CardForm";
 
-const ElementD = ({ payments }) => {
-  const location = useLocation();
-  const history = useHistory();
-
+const ElementD = (props) => {
   return (
     <div className="DemoWrapper">
             <div className="Demo">
-              <CardForm />
+              <CardForm {...props}/>
             </div>
     </div>
   );

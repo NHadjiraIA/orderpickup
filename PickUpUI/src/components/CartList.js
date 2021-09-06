@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import Counter from "./Counter";
 import Button from "@material-ui/core/Button";
 import { PAYMENT } from "../navigation/CONSTANTS";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useCart } from "../context/cart";
 import { postOrder } from "../services/orderService";
 
@@ -47,58 +47,51 @@ const useStyles = makeStyles({
 
 function CartList(props) {
   const cart = useCart();
+  const userId = props.userId;
+  const restaurantId = props.restaurantId;
+
+
   const cartList = Object.values(cart.cart);
   const reducer = (accumulator, currentValue) => {
     return accumulator + currentValue.price * currentValue.quantity;
   };
   const history = useHistory();
-  const location = useLocation();
   const total = cartList.reduce(reducer, 0);
-  console.log(cartList);
-  const classes = useStyles();
-
-  const quantity = location?.state?.quantity;
-  //const dishId = location?.state?.id;
-  const description = location?.state?.description;
-  const image = location?.state?.img_url;
-  const name = location?.state?.name;
-  function subtotal(data) {
-    let total = 0;
-    data.map((item) => {
-      let itemPrice = Number(item.price) * Number(item.quantity);
-      total += itemPrice;
+  let details = [];
+  cartList.map((item)=> {
+    details.push({
+      dishId: item.id,
+      orderId: 0,
+      quantity: item.quantity
     });
-    return total;
-  }
-
+  })
+  const classes = useStyles();
+  
   const invoiceTaxes = TAX_RATE * total;
   const invoiceTotal = invoiceTaxes + total;
   const [errors, setErrors] = useState("");
-  const [detailsOrderData, setdetailsOrderData] = useState([]);
 
   const sum = (index) => {
     return (cartList[index].quantity * cartList[index].price).toFixed(2);
   };
 
   const pay = () => {
-    let restaurantId = 1;
-    let userId = 1;
-    let orderId = 8;
-    let dishId = 2;
     var requestDto = {
       userId: userId,
       restaurantId: restaurantId,
       done: true,
-      details: [
-        {
-          dishId: dishId,
-          orderId: orderId,
-          quantity: quantity,
-        },
-      ],
+      details: details
     };
     postOrder(requestDto)
-      .then((result) => {})
+      .then((result) => {
+        history.push({
+          pathname: PAYMENT,
+          state: {
+            userId: userId,
+            total: invoiceTotal,
+          },
+        });
+      })
       .catch((err) => {
         console.log(err);
         if (err.response.status == 404) {
@@ -111,13 +104,6 @@ function CartList(props) {
           }
         }
       });
-
-    history.push({
-      pathname: PAYMENT,
-      state: {
-        total: invoiceTotal,
-      },
-    });
   };
 
   return (

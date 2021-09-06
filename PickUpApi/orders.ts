@@ -50,7 +50,6 @@ export class OrdersApi{
     async create(req: express.Request, res: express.Response){
         const orderDto = this.getDtoFromRequest(req);
         let createdOrder = await this._ordersRepository.Create(orderToEntity(orderDto))
-        console.log("CREATED ORDER", createdOrder)
         if(createdOrder){
             orderDto.Details.forEach(detail => {
                 this._orderDetailsRepository.Create(orderDetailToEntity(detail, createdOrder.id));
@@ -85,6 +84,7 @@ export class OrdersApi{
         req.body.details.forEach(detail => {
             orderDto.Details.push(this.getOrderDetailDto(detail));
         });
+        orderDto.Completed = false;
         return orderDto;
     }
     getOrderDetailDto(detail:any){

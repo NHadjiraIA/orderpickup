@@ -10,11 +10,12 @@ import date from "date-and-time";
 const libraries = ["places"];
 
 export default function RestaurantListItem(props) {
-  // console.log('BANMIN', props);
+  const userId = props.userId;
   const history = useHistory();
   const restaurantInfo = props.restaurant;
   function handleClick() {
     history.push(RESTAURANT, {
+      userId: userId,
       restaurantInfo: restaurantInfo,
       duration: duration,
     });
@@ -49,11 +50,6 @@ export default function RestaurantListItem(props) {
     );
   };
 
-  // console.log("LOGS START HERE");
-  // const todayDate = new Date();
-  // console.log("TODAYDATE", todayDate);
-  // const todayDateTime = todayDate.today();
-  // console.log("TODAYDATETIME", todayDateTime);
 
   let today = new Date();
   const todayConverted = date.format(today, "hh:mm A");
@@ -76,19 +72,7 @@ export default function RestaurantListItem(props) {
   // console.log("OPENING TIME", closingTime);
   const openingTimeConverted = open.getTime();
   const closingTimeConverted = close.getTime();
-  // console.log("MY TIME", myTime);
-  // console.log("OPENING TIME", openingTimeConverted);
-  // console.log("CLOSING TIME", closingTimeConverted);
-
-  //conditional: available or not:
-  // if (myTime > openingTimeConverted && myTime < closingTimeConverted)
-  //   console.log("available");
-  // else {
-  //   console.log("unavailable");
-  // }
-
-  //------------------------------------------------------------------------
-
+ 
   const [duration, setDuration] = useState("loading");
 
   return (

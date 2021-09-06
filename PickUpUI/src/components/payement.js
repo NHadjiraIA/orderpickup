@@ -12,8 +12,6 @@ import AfterpayClearpayMessage from "./payment/AfterpayClearpayMessage";
 import './payment.css';
 import ElementD from "./payment/ElementD";
 
-const stripePromise = loadStripe("pk_test_51JSifWJSoqVYwO4CuQy0pHIspSXCcL7gbLjBw9UPL9kUAMUzqt21gTdZAZOLtj5s5etLP4iImTV89X0AKvKeUYgI003NwwzsAt");
-
 const payments = [
   {
     path: "/card-element",
@@ -51,12 +49,11 @@ const payments = [
    component: AfterpayClearpayMessage
   }
 ];
-export default function Payment() {
- 
-  
+export default function Payment(props) {
+  const amount= props.amount;
   return (
-      <Elements stripe={stripePromise}>
-        <ElementD payments={payments} />
+      <Elements stripe={props.stripe}>
+        <ElementD payments={payments} userId={props.userId} amount={amount}/>
       </Elements>
   );
 };
