@@ -101,15 +101,15 @@ function CartList(props) {
       .then((result) => {})
       .catch((err) => {
         console.log(err);
-        // if (err.response.status === 404) {
-        //   setErrors("No comment found!");
-        // } else {
-        //   if (err.response.status === 400) {
-        //     setErrors("restaurantId is not valid!");
-        //   } else {
-        //     setErrors("Unknow error!");
-        //   }
-        // }
+        if (err.response.status === 404) {
+          setErrors("No comment found!");
+        } else {
+          if (err.response.status === 400) {
+            setErrors("restaurantId is not valid!");
+          } else {
+            setErrors("Unknow error!");
+          }
+        }
       });
 
     history.push({

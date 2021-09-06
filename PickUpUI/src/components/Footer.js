@@ -28,6 +28,16 @@ function Footer() {
   return (
     <footer className={classes.root}>
       <Typography>NoshFeast</Typography>
+      <div>
+        Icons made by{" "}
+        <a href="https://www.freepik.com" title="Freepik">
+          Freepik
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com
+        </a>
+      </div>
       <Typography>NoshFeast &copy; 2021</Typography>
     </footer>
   );
