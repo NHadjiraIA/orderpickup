@@ -26,7 +26,9 @@ export default function WrapperComponent(props) {
     <div>
       <CartProvider>
         <Route path={"/"} render={() => (!matched ? <Navigation userName={userName}/> : null)} />
-        <RouterConfig restaurants={restaurants}  setUserName={setUserName}/>
+        <RouterConfig restaurants={restaurants}  setUserName={setUserName}
+        
+        />
         <Footer />
       </CartProvider>
     </div>

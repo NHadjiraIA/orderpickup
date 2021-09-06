@@ -9,6 +9,7 @@ export default function RestaurantContainer(props) {
         restaurant={restaurant}
         handleActiveMarker={props.handleActiveMarker}
         userPosition={props.userPosition}
+        userId={props.userId}
         restaurantPosition={{
           lat: Number(restaurant.lat),
           lng: Number(restaurant.lng),

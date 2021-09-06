@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login(props) {
+  window.userId = -1;
   const history = useHistory();
   const classes = useStyles();
   const [phone, setPhone] = useState("");
@@ -79,44 +80,51 @@ export default function Login(props) {
     phone: undefined,
   };
 
-  const goToRestaurant = (path) => {
-    history.push({
-      pathname: MAP,
-      state: {
-        userId: userInfo?.id,
-        userName: userInfo?.name,
-        phoneNumber: userInfo?.phone,
-      },
-    });
-  };
-  const goToVondor = (path) => {
-    history.push({
-      pathname: VENDOR_DASHBOARD,
-      state: {
-        userId: userInfo?.id,
-        userName: userInfo?.name,
-        phoneNumber: userInfo?.phone,
-      },
-    });
-  };
-  const goToLongin = () => {
-    if (isNaN(phone)) {
-      setErrors("Phone must be a number value");
-    } else {
-      var requestDto = {
-        phone: phone,
-        password: password,
-      };
-      postLogin(requestDto)
-        .then((result) => {
-          setUserName(result.data.name);
-          setId(result.data.id);
-          userInfo.name = result.data.name;
-          userInfo.email = result.data.email;
-          userInfo.role = result.data.role;
-          userInfo.phone = result.data.phone;
-          if (userInfo.role == true) {
-            console.log("navigate to backoffice");
+    const goToRestaurant = (path) => {
+      history.push({
+        pathname: MAP,         
+        state: { 
+          userId: userInfo?.id,
+          userName: userInfo?.name,
+          phoneNumber: userInfo?.phone
+        }
+      });
+    }
+    const goToVondor = (path) => {
+      history.push({
+        pathname: VENDOR_DASHBOARD,
+        state: { 
+          userId: userInfo?.id,
+          userName: userInfo?.name,
+          phoneNumber: userInfo?.phone
+        }
+      });
+    }
+    const goToLongin = ()=>{
+        if(isNaN(phone)){
+          setErrors('Phone must be a number value');
+        }
+        else{
+          var requestDto = {
+            "phone": phone,
+            "password": password 
+          };
+       postLogin(requestDto)
+       .then(result =>{
+            setUserName(result.data.name)
+            setId(result.data.id);
+            userInfo.name = result.data.name;
+            userInfo.email = result.data.email;
+            userInfo.role = result.data.role;
+            userInfo.phone = result.data.phone;
+            
+            /***************Getting user.id for the user*********/
+            userInfo.id=result.data.id
+            window.userId = result.data.id
+            // console.log("IDDDDD", result.data.id);
+            /************************************************ */
+            if (userInfo.role == true){
+              console.log('navigate to backoffice');
             // redirect to back office
             goToVondor();
           } else if (userInfo.role == false) {

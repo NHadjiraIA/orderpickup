@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import StarIcon from "@material-ui/icons/Star";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import Rating from "@material-ui/lab/Rating";
+import { Typography } from "@material-ui/core";
 import CommentListItem from "./CommentListItem.js";
 import { useHistory, useLocation } from "react-router-dom";
 import {
@@ -10,6 +13,7 @@ import {
 } from "../services/commentService";
 
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   commentPage: {
@@ -67,19 +71,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Comment() {
+function Comment(props) {
   const location = useLocation();
-  let userId = location?.state?.userId;
-  let restaurantId = location?.state?.restaurantId;
+
+  // let userId = location?.state?.userId;
+  // let restaurantId = location?.state?.restaurantId;
+
+  let userId = props.userId;
+  let restaurantId = props.restaurantId;
+
+  // console.log("restauranttttttidddddd", restaurantId);
   const classes = useStyles();
+
+  const [value, setValue] = useState(2);
   const [commentText, setCommentText] = useState("");
   const [errors, setErrors] = useState("");
   const [commentsListData, setCommentsListData] = useState([]);
 
+  // const postRating = () => {
+  //   axios.post("http://localhost:3002/api/v1/ratings", {
+  //     userId: userId,
+  //     restaurantId: restaurantId,
+  //     rating: value,
+  //   });
+  // };
+
+  // const updateRating = () => {
+  //   axios.put("http://localhost:3002/api/v1/ratings");
+  // };
+
+  // const checkForRating= ()=>{
+  //   axios.get----(`http://----/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
+  //   .then((res) => {
+  //     // console.log('fuck@!',res.data);
+  //     for (const iterator of res.data.Ratings) {
+  //       if(iterator.userId === props.userId && iterator.restaurantId===props.restaurantId)
+  //       return true;
+  //     }
+  //     return false;
+  //   })
+
   //TODO: remove the sample data that was used for test
-  userId = 1;
-  restaurantId = 1;
+  // userId = 1;
+  // restaurantId = 1;
   //END TODO
+
+
   const commentTextHandleChange = (event) => {
     setCommentText(event.target.value);
   };
@@ -114,6 +151,7 @@ function Comment() {
           getCommentByRestaurant(restaurantId).then((result) => {
             setCommentsListData(result);
           });
+          
         })
         .catch((err) => {
           console.log(err);
@@ -141,12 +179,16 @@ function Comment() {
       <section className={classes.postAndPostedComments}>
         <div className={classes.postComment}>
           <h2>Post a Review</h2>
-          <h3>Rating</h3>
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
+          <h3>Give your rating</h3>
+          <Box component="fieldset" mb={1} borderColor="transparent">
+            <Rating
+              name="simple-controlled"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+            />
+          </Box>
           <h3>Comment</h3>
           <form className={classes.commentForm} noValidate autoComplete="off">
             <TextField
@@ -169,11 +211,14 @@ function Comment() {
         <section className={classes.postedComments}>
           {commentsListData &&
             commentsListData.map((item) => {
+              // console.log("itemmmmmm", item);
               return (
                 <CommentListItem
                   key={item.id}
                   comment={item.Comment}
                   username={item.commenter.name}
+                  userId={item.userId}
+                  restaurantId={item.restaurantId}
                 />
               );
             })}

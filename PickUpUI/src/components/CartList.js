@@ -101,10 +101,10 @@ function CartList(props) {
       .then((result) => {})
       .catch((err) => {
         console.log(err);
-        if (err.status === 404) {
+        if (err.response.status === 404) {
           setErrors("No comment found!");
         } else {
-          if (err.status === 400) {
+          if (err.response.status === 400) {
             setErrors("restaurantId is not valid!");
           } else {
             setErrors("Unknow error!");
