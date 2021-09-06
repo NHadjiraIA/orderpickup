@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CommentListItem from './CommentListItem.js'
+import { useHistory, useLocation } from "react-router-dom";
+import {
+  postComment,
+  getCommentByRestaurant,
+} from "../../services/commentService";
 // left this in here in case we want to do proper accounts with avatars
 // const imgLink =
 // "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
@@ -63,8 +68,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CommentList() {
+  const location = useLocation();
   const classes = useStyles();
-
+  const [commentsListData, setCommentsListData] = useState([])
+  const [errors, setErrors] = useState("");
+  const [commentText, setCommentText] = useState("");
+  let userId = location?.state?.userId;
+  let restaurantId = location?.state?.restaurantId;
+  restaurantId = 1;
   const testCommentData = [
     { 
       id: 1, 
@@ -77,17 +88,29 @@ function CommentList() {
       comment: "The API documentation of the Typography React component. Learn more about the props and the CSS customization points.", 
     },
   ];
-
-  const item = testCommentData.map((item) => {
+  useEffect(() => {
+    return new Promise((resolve, reject) => {
+      try {
+        getCommentByRestaurant(restaurantId).then((result) => {
+          console.log("inital loading of data", result);
+          setCommentsListData(result);
+          console.log(commentsListData);
+        });
+      } catch (error) {
+        console.error("signin error!==", error);
+        reject("signin error!");
+      }
+    });
+  }, [setCommentsListData]);
+  const item = commentsListData.map((item) => {
     return (
       <CommentListItem 
-        key={item.id} 
-        comment={item.comment} 
-        username={item.username}
+      key={item.id}
+      comment={item.Comment}
+      username={item.commenter.name}
       />
     );
   });
-
   return (
     <div className={classes.commentPage}>
       

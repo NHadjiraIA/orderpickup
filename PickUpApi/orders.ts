@@ -65,6 +65,19 @@ export class OrdersApi{
         let orders = await this._ordersRepository.getByFilter(filter);
         return res.status(200).json(orders)
     }
+    
+    async update(req: express.Request, res: express.Response){
+        let orderId = req.body.id;
+         let existingOrder = await this._ordersRepository.GetById(orderId);
+        if (existingOrder){
+            existingOrder.completed = req.body.completed;
+            existingOrder.updatedAt = new Date();
+            let updatedOrder = await this._ordersRepository.update(existingOrder)
+            return res.status(200).json(updatedOrder)
+        } else{
+            return res.status(404).send("The order does not exist.")
+        }
+    }
 
     getDtoFromRequest(req: express.Request): OrderDto{
         let orderDto = new OrderDto(req.body.id, new Date(), req.body.userId, 

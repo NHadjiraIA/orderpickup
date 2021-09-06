@@ -22,13 +22,15 @@ export const postComment = (comment) => {
   });
 };
 
-export const getCommentByRestaurant = (restarantId) => {
+export const getCommentByRestaurant = (restaurantId) => {
+  console.log("commmmmmmmmm", restaurantId);
     return new Promise((resolve, reject) => {
       try {
         axios       
-        .get(GET_COMMENT_BY_RESTAURANT(restarantId))
+        .get(GET_COMMENT_BY_RESTAURANT(restaurantId))
         .then(res => {
             resolve(res.data);
+            
         })
         .catch((err) => {
           console.log("getcommentbyrestaurant > axios err=", err);

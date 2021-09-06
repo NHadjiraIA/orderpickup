@@ -78,7 +78,7 @@
   color: #0c99c8;
   font-weight: 700;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow:clip;
   text-align: center;
   white-space: nowrap;
 }
@@ -89,12 +89,14 @@
 .info-box-text-wrap p.address {
   /* color:#B25B00;*/
   font-size: larger; 
+  font-weight: bolder;
 
   position: absolute;
 width: 219px;
 /* height: 70px; */
-left: 90px;
+left: 40px;
 top: 50px;
+;
 
 
 color: #000000;
