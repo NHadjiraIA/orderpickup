@@ -26,21 +26,21 @@ function Landing() {
         <br></br>
         <br></br>
 
-        <Typography variant="h5" align="center">
+        <Typography variant="h6" align="center">
           Hello there! We proudly present our humble app:
         </Typography>
         <br></br>
         <Typography variant="h4">NoshFeast</Typography>
         <br></br>
-        <Typography variant="h5" align="center">
+        <Typography variant="h6" align="center">
           Merriam Webster defines "Nosh" as to eat a snack.
         </Typography>
         <br></br>
-        <Typography variant="h5" align="center">
+        <Typography variant="h6" align="center">
           We call it a way of life.
         </Typography>
         <br></br>
-        <Typography variant="h5" align="center">
+        <Typography variant="h6" align="center">
           We are avid supporters of eating, snacking and general merri-ment. We
           hope you find what you're looking for, in our app, in life and in
           food.
