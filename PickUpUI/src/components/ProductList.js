@@ -22,6 +22,7 @@ function ProductList(props) {
   const userId = props.userId;
 
   const item = props.productDetails.map((item) => {
+    // console.log("itemmmmmmm", item);
     return (
       <ProductListItem
         key={item.id}
@@ -33,6 +34,7 @@ function ProductList(props) {
         calories={item.calories}
         userId={userId}
         restaurantId = {restaurantInfo.id}
+        dish= {item}
       />
     );
   });

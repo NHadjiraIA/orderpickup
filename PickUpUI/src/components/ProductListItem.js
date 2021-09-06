@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
@@ -11,20 +10,27 @@ import { CART } from "../navigation/CONSTANTS";
 import { useHistory } from "react-router-dom";
 import { useCart } from "../context/cart";
 import { makeStyles } from "@material-ui/core/styles";
+import cannabis from "./images/cannabis.png";
+import containsNuts from "./images/nutRed.png";
+import dairyFree from "./images/dairyFree.png";
+import glutenFree from "./images/glutenFree.png";
+import halal from "./images/halal.png";
+import vegan from "./images/vegan.png";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
 const useStyles = makeStyles((theme) => ({
   //for entire box that holds product info
   entireProduct: {
-    height: "18em",
-    width: "50em",
+    height: "19em",
+    width: "53em",
     backgroundColor: "#e9ebf0",
     marginBottom: "1em",
     display: "flex",
     // justifyContent: 'row',
     justifyContent: "center",
     margin: "1em",
+    cursor: "pointer",
 
     "& img": {
       width: "35%",
@@ -106,7 +112,41 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
 }));
+function DishSelection(dish) {
+  const testArray = [];
+  if (dish.vegan) {
+    testArray.push(
+      <img src={vegan} style={{ height: "45px", width: "45px" }} />
+    );
+  }
+  if (dish.gluten) {
+    testArray.push(
+      <img src={glutenFree} style={{ height: "45px", width: "45px" }} />
+    );
+  }
+  if (dish.halal) {
+    testArray.push(
+      <img src={halal} style={{ height: "45px", width: "45px" }} />
+    );
+  }
+  if (dish.dairy) {
+    testArray.push(
+      <img src={dairyFree} style={{ height: "45px", width: "45px" }} />
+    );
+  }
+  if (dish.nuts) {
+    testArray.push(
+      <img src={containsNuts} style={{ height: "45px", width: "45px" }} />
+    );
+  }
+  if (dish.marijuana) {
+    testArray.push(
+      <img src={cannabis} style={{ height: "45px", width: "45px" }} />
+    );
+  }
 
+  return testArray;
+}
 function ProductListItem(props) {
   let history = useHistory();
   const cart = useCart();
@@ -253,10 +293,12 @@ export default function ProductListItemDemo(props) {
         <Typography onClick={handleClickOpen} align="left">
           <h3>{props.name}</h3>
         </Typography>
-        <Typography align="left" onClick={handleClickOpen}>
+        <Typography align="left" onClick={handleClickOpen} variant="body">
           <p>{props.description} </p>
         </Typography>
-        <Typography align="left"> #halal #thebest</Typography>
+        <Typography align="left">
+          <div className={classes.tags}>{DishSelection(props.dish)}</div>
+        </Typography>
         <br></br>
         <div className={classes.priceAndCalories}>
           <Typography onClick={handleClickOpen}>${props.price}</Typography>

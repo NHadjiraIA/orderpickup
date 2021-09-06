@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "95px",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage:
+      "url(https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -64,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login(props) {
+  window.userId = -1;
   const history = useHistory();
   const classes = useStyles();
   const [phone, setPhone] = useState("");
@@ -115,6 +117,12 @@ export default function Login(props) {
           userInfo.email = result.data.email;
           userInfo.role = result.data.role;
           userInfo.phone = result.data.phone;
+
+          /***************Getting user.id for the user*********/
+          userInfo.id = result.data.id;
+          window.userId = result.data.id;
+          // console.log("IDDDDD", result.data.id);
+          /************************************************ */
           if (userInfo.role == true) {
             goToVendor();
           } else if (userInfo.role == false) {

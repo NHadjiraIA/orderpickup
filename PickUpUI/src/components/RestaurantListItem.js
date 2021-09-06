@@ -13,11 +13,15 @@ export default function RestaurantListItem(props) {
   const userId = props.userId;
   const history = useHistory();
   const restaurantInfo = props.restaurant;
+const userId = props.userId;
+
   function handleClick() {
+    console.log('RESTAURANTINFOOO', restaurantInfo);
     history.push(RESTAURANT, {
       userId: userId,
       restaurantInfo: restaurantInfo,
       duration: duration,
+      userId: userId,
     });
   }
 

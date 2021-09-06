@@ -71,8 +71,7 @@ const CardForm = (props) => {
               sendMessage().then(() => {
                 alert(`successful payment `);
               });
-              //done
-              console.log('payment successful!');
+              alert(`successful payment `);
               history.push({
                 pathname: ORDERS,
                 state:{

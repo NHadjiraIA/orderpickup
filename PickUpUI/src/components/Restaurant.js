@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
 
   menu: {
     marginLeft: "10%",
-    marginRight: "10%",
+    marginRight: "5%",
   },
 }));
 
@@ -100,14 +100,15 @@ function Restaurant(props) {
   const restaurantDetails = props.restaurantInfo;
   const classes = useStyles();
   const durationTime = location.state.duration;
-
-  const [value, setValue] = useState(2);
+  // console.log('RESTAUXUXU', restaurantDetails);
+  const userId = location.state.userId;
   const [activeState, setActiveState] = useState({
     menu: true,
     comments: false,
   });
 
   const [dishes, setDishes] = useState([]);
+  const [ratings, setRatings] = useState([]);
 
   useEffect(() => {
     axios
@@ -115,13 +116,27 @@ function Restaurant(props) {
         `http://localhost:3002/api/v1/restaurant/${restaurantDetails.id}/dishes`
       )
       .then((res) => {
-        console.log("Dishes", res.data);
+        // console.log("Dishes", res.data);
 
         setDishes(res.data);
       })
       .catch((err) => {});
   }, []);
 
+  // Get average ratings value for each restaurant
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3002/api/v1/ratings?restaurantId=${restaurantDetails.id}`
+      )
+      .then((res) => {
+        console.log("Ratingsss", res.data.Stats.Average);
+
+        setRatings(Math.floor(res.data.Stats.Average));
+      })
+      .catch((err) => {});
+  }, []);
+  // console.log('RESTIDIDIDIDIDID', restaurantDetails.id);
   const toggleActive = (currentState) => {
     // setActiveState({...activeState, currentState: true})
     if (currentState === "menu") {
@@ -187,7 +202,7 @@ function Restaurant(props) {
               {restaurantDetails.title}
             </Typography>
             <Box component="fieldset" mb={-2} borderColor="transparent">
-              <Rating name="read-only" value={4} readOnly />
+              <Rating name="read-only" value={ratings} readOnly />
             </Box>
             <div className={classes.tagsAndDistance}>
               {/* <div className={classes.tags}>
@@ -271,7 +286,7 @@ function Restaurant(props) {
       )}
       {activeState.comment && (
         <div style={{ paddingBottom: "1em" }}>
-          <CommentList />
+          <CommentList restaurantId={restaurantDetails.id} userId={userId} />
         </div>
       )}
     </div>

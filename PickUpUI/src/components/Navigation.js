@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/cart";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory, useLocation } from "react-router-dom";
+import FastfoodIcon from "@material-ui/icons/Fastfood";
 
 const useStyles = makeStyles((theme) => ({
   wholenav: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     overflowX: "hidden",
-    color: "red",
+    // color: "red",
   },
   title: { paddingLeft: "0.5em" },
   mapAndOrders: {
@@ -90,11 +91,22 @@ export const Navigation = (props) => {
   return (
     <AppBar position="static" className={classes.wholenav}>
       <Toolbar disableGutters={true} className={classes.toolbar}>
-        <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
-          <Typography className={classes.title} variant="h4" noWrap>
-            NoshFeast
-          </Typography>
-        </Link>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            fontWeight: "bold",
+            width: "200px",
+          }}
+        >
+          <FastfoodIcon style={{ fontSize: "50px" }}></FastfoodIcon>
+          <Link to={ROOT} style={{ textDecoration: "none", color: "white" }}>
+            <Typography className={classes.title} variant="h4" noWrap>
+              NoshFeast
+            </Typography>
+          </Link>
+        </div>
         <div className={classes.mapAndOrders}>
           <Link to={MAP} style={{ textDecoration: "none", color: "white" }}>
             <Typography variant="h6">Find Restaurants</Typography>
@@ -110,7 +122,7 @@ export const Navigation = (props) => {
                 to={CART}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <ShoppingCart />
+                <ShoppingCart size="large" />
               </Link>
             </Badge>
           </IconButton>
