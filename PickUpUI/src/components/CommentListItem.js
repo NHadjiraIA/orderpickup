@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -59,31 +61,52 @@ const useStyles = makeStyles((theme) => ({
 
 function CommentListItem(props) {
   const classes = useStyles();
+ const [rating, setRating] = useState(0);
 
-  return (
-    <Paper style={{ padding: "40px 20px", marginTop: 100 }}>
-      <Grid container wrap="nowrap" spacing={2}>
-        {/* <Grid item> */}
-        {/* <Avatar alt="Remy Sharp" src={imgLink} /> */}
-        {/* </Grid> */}
-        <Grid justifyContent="left" item xs zeroMinWidth>
-        <Box component="fieldset" mb={-2} borderColor="transparent">
-              <Rating name="read-only" value={props.rating} readOnly />
-            </Box>
-          <h4 style={{ margin: 0, textAlign: "left" }}>{props.username}</h4>
-          <br />
-          {/* <div className={classes.commentText}> */}
-          <Typography>{props.comment} </Typography>
-          {/* </div> */}
+useEffect(()=>
+{
+  async function getRating(){
+    axios.get(`http://localhost:3002/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
+    .then((res) => {
+      // console.log('fuck@!',res.data);
+      for (const iterator of res.data.Ratings) {
+        if(iterator.userId === props.userId && iterator.restaurantId===props.restaurantId)
+        // console.log('ITERATOR', iterator)
+        setRating(iterator.rating)
+      }
+  
+    })
+  
+  }
+  getRating();
+})
 
-          <br />
-          <p style={{ textAlign: "left", color: "gray" }}>
-            {/* posted 1 minute ago */}
-          </p>
-        </Grid>
+return (
+  
+  <Paper style={{ padding: "40px 20px", marginTop: 100 }}>
+    <Grid container wrap="nowrap" spacing={2}>
+      {/* <Grid item> */}
+      {/* <Avatar alt="Remy Sharp" src={imgLink} /> */}
+      {/* </Grid> */}
+      <Grid justifyContent="left" item xs zeroMinWidth>
+      <Box component="fieldset" mb={-2} borderColor="transparent">
+            <Rating name="read-only" value={rating} readOnly />
+          </Box>
+        <h4 style={{ margin: 0, textAlign: "left" }}>{props.username}</h4>
+        <br />
+        {/* <div className={classes.commentText}> */}
+        <Typography>{props.comment} </Typography>
+        {/* </div> */}
+
+        <br />
+        <p style={{ textAlign: "left", color: "gray" }}>
+          {/* posted 1 minute ago */}
+        </p>
       </Grid>
-    </Paper>
-  );
+    </Grid>
+  </Paper>
+);
+  
 }
 
 export default CommentListItem;
