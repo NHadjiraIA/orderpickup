@@ -61,25 +61,25 @@ const useStyles = makeStyles((theme) => ({
 
 function CommentListItem(props) {
   const classes = useStyles();
- const [rating, setRating] = useState(0);
+//  const [rating, setRating] = useState(0);
 
-useEffect(()=>
-{
-  async function getRating(){
-    axios.get(`http://localhost:3002/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
-    .then((res) => {
-      // console.log('fuck@!',res.data);
-      for (const iterator of res.data.Ratings) {
-        if(iterator.userId === props.userId && iterator.restaurantId===props.restaurantId)
-        // console.log('ITERATOR', iterator)
-        setRating(iterator.rating)
-      }
+// useEffect(()=>
+// {
+//   function getRating(){
+//     axios.get(`http://localhost:3002/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
+//     .then((res) => {
+//       // console.log('fuck@!',res.data);
+//       for (const iterator of res.data.Ratings) {
+//         if(iterator.userId === props.userId && iterator.restaurantId===props.restaurantId)
+//         // console.log('ITERATOR', iterator)
+//         setRating(iterator.rating)
+//       }
   
-    })
+//     })
   
-  }
-  getRating();
-})
+//   }
+//   getRating();
+// })
       
 
 return (
@@ -91,7 +91,7 @@ return (
       {/* </Grid> */}
       <Grid justifyContent="left" item xs zeroMinWidth>
       <Box component="fieldset" mb={-2} borderColor="transparent">
-            <Rating name="read-only" value={rating} readOnly />
+            <Rating name="read-only" value={4} readOnly />
           </Box>
         <h4 style={{ margin: 0, textAlign: "left" }}>{props.username}</h4>
         <br />

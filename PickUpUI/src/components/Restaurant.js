@@ -101,7 +101,7 @@ function Restaurant() {
 
   const restaurantDetails = location.state.restaurantInfo;
   const durationTime = location.state.duration;
-
+// console.log('RESTAUXUXU', restaurantDetails);
   const userId = location.state.userId;
   const [activeState, setActiveState] = useState({
     menu: true,
@@ -137,7 +137,7 @@ function Restaurant() {
       })
       .catch((err) => {});
   }, []);
-
+  // console.log('RESTIDIDIDIDIDID', restaurantDetails.id);
   const toggleActive = (currentState) => {
     // setActiveState({...activeState, currentState: true})
     if (currentState === "menu") {
@@ -254,7 +254,7 @@ function Restaurant() {
             <Typography align="left" variant="h6">
               {restaurantDetails.phone}
               </Typography>
-            </Typography>
+           
           </div>
           <div
             style={{
@@ -288,9 +288,10 @@ function Restaurant() {
       )}
       {activeState.comment && (
         <div style={{ paddingBottom: "1em" }}>
-          <CommentList />
+          <CommentList
           restaurantId = {restaurantDetails.id}
            userId= {userId}
+           />
         </div>
       )}
     </div>

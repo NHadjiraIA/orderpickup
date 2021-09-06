@@ -16,6 +16,7 @@ export default function RestaurantListItem(props) {
 const userId = props.userId;
 
   function handleClick() {
+    console.log('RESTAURANTINFOOO', restaurantInfo);
     history.push(RESTAURANT, {
       restaurantInfo: restaurantInfo,
       duration: duration,

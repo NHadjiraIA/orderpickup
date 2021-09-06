@@ -80,7 +80,7 @@ function Comment(props) {
   let userId = props.userId;
   let restaurantId = props.restaurantId;
 
-  console.log("restauranttttttidddddd", restaurantId);
+  // console.log("restauranttttttidddddd", restaurantId);
   const classes = useStyles();
 
   const [value, setValue] = useState(2);
@@ -88,20 +88,20 @@ function Comment(props) {
   const [errors, setErrors] = useState("");
   const [commentsListData, setCommentsListData] = useState([]);
 
-  const postRating = () => {
-    axios.post("http://localhost:3002/api/v1/ratings", {
-      userId: userId,
-      restaurantId: restaurantId,
-      rating: value,
-    });
-  };
+  // const postRating = () => {
+  //   axios.post("http://localhost:3002/api/v1/ratings", {
+  //     userId: userId,
+  //     restaurantId: restaurantId,
+  //     rating: value,
+  //   });
+  // };
 
   // const updateRating = () => {
   //   axios.put("http://localhost:3002/api/v1/ratings");
   // };
 
-  // const checkForRating = ()=>{
-  //   axios.get(`http://localhost:3002/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
+  // const checkForRating= ()=>{
+  //   axios.get----(`http://----/api/v1/ratings?userId=${props.userId}&restaurantId=${props.restaurantId}`)
   //   .then((res) => {
   //     // console.log('fuck@!',res.data);
   //     for (const iterator of res.data.Ratings) {
@@ -115,6 +115,8 @@ function Comment(props) {
   // userId = 1;
   // restaurantId = 1;
   //END TODO
+
+
   const commentTextHandleChange = (event) => {
     setCommentText(event.target.value);
   };
@@ -149,7 +151,7 @@ function Comment(props) {
           getCommentByRestaurant(restaurantId).then((result) => {
             setCommentsListData(result);
           });
-          postRating();
+          
         })
         .catch((err) => {
           console.log(err);
@@ -209,7 +211,7 @@ function Comment(props) {
         <section className={classes.postedComments}>
           {commentsListData &&
             commentsListData.map((item) => {
-              console.log("itemmmmmm", item);
+              // console.log("itemmmmmm", item);
               return (
                 <CommentListItem
                   key={item.id}
