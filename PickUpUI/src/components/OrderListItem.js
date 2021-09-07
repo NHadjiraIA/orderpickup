@@ -19,8 +19,8 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    paddingBottom: "0.5em",
-    height: "95vh",
+    paddingBottom: "1em",
+    // height: "95vh",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
