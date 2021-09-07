@@ -1,5 +1,5 @@
 import { ListItem, Typography } from "@material-ui/core";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -49,7 +49,6 @@ function createData(img, name, calories, desc, size, type, price) {
   return { img, name, calories, desc, size, type, price };
 }
 
-
 const useStyles = makeStyles({
   root: {
     marginLeft: "10rem",
@@ -73,17 +72,15 @@ const useStyles = makeStyles({
 });
 
 function Menu(props) {
-
   const classes = useStyles();
   const [age, setAge] = useState("");
   const [dishListData, setDishListData] = useState([]);
-  console.log("in orders list item - before useEffect")
+  console.log("in orders list item - before useEffect");
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
         let restaurantId = 1;
-        getDishByRestaurant(restaurantId)
-        .then((result) => {
+        getDishByRestaurant(restaurantId).then((result) => {
           console.log(result);
           setDishListData(result);
         });
@@ -102,7 +99,7 @@ function Menu(props) {
     {mainListItems}
     </List> */}
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ marginTop: "50px" }}>
         <Table className={classes.table} aria-label="customized table">
           <Grid columns={[{ field: "name", editable: true }]} />
           <TableHead>

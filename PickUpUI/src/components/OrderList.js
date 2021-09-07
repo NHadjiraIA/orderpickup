@@ -8,8 +8,9 @@ const useStyles = makeStyles((theme) => ({
   page: {
     marginLeft: "5em",
     marginRight: "5em",
-    minHeight: "900px",
+    // minHeight: "900px",
     paddingTop: "100px",
+    height: "100vh",
   },
 }));
 

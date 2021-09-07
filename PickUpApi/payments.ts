@@ -9,7 +9,7 @@ export class PaymentApi{
     }
  
     async createPayment(req: express.Request, res: express.Response){
-        const amount = Number(req.body.amount);
+        const amount = Math.round(req.body.amount);
         // Create a PaymentIntent with the order amount and currency
         const paymentIntent = await stripe.paymentIntents.create({
           amount: this.calculateOrderAmount(amount),

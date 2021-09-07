@@ -3,45 +3,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  commentPage: {
-    padding: "10%",
-    display: "flex",
-    flexDirection: "row",
-    marginLeft: "4em",
-    marginRight: "4em",
-  },
+  // commentPage: {
+  //   padding: "10%",
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   marginLeft: "4em",
+  //   marginRight: "4em",
+  // },
 
-  filters: {
-    width: "40%",
-    height: "30%",
-    backgroundColor: "#e9ebf0",
-    marginRight: "1.5em",
-  },
-
-  postAndPostedComments: {
-    flexDirection: "column",
-    width: "60%",
-  },
-
-  postComment: {
-    backgroundColor: "#e9ebf0",
-    padding: "1em",
-  },
-
-  commentForm: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  commentText: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-
-  postButton: {
-    marginTop: "1em",
-    backgroundColor: "black",
-    color: "white",
-    width: "20%",
+  eachComment: {
+    padding: "20px 20px",
+    backgroundColor: "rgb(141 215 216)",
+    marginTop: 80,
   },
 }));
 
@@ -49,7 +22,7 @@ function CommentListItem(props) {
   const classes = useStyles();
 
   return (
-    <Paper style={{ padding: "40px 20px", marginTop: 100 }}>
+    <Paper className={classes.eachComment}>
       <Grid container wrap="nowrap" spacing={2}>
         {/* <Grid item> */}
         {/* <Avatar alt="Remy Sharp" src={imgLink} /> */}

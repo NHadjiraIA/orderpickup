@@ -20,6 +20,9 @@ const reducer = (state, action) => {
       },
     };
   }
+  if (action.type === "EMPTY") {
+    return {};
+  }
   return state;
 };
 
@@ -37,10 +40,20 @@ const CartProvider = (props) => {
   const decreaseQuantity = (itemId) => {
     dispatch({ type: "CHANGE_QUANTITY", itemId, step: -1 });
   };
+  const emptyCart = () => {
+    dispatch({ type: "EMPTY" });
+  };
 
   return (
     <CartContext.Provider
-      value={{ cart, addItem, removeItem, increaseQuantity, decreaseQuantity }}
+      value={{
+        cart,
+        addItem,
+        removeItem,
+        increaseQuantity,
+        decreaseQuantity,
+        emptyCart,
+      }}
     >
       {props.children}
     </CartContext.Provider>
