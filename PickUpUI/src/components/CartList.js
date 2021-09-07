@@ -48,7 +48,7 @@ function CartList(props) {
   const cart = useCart();
   const userId = props.userId;
   const restaurantId = props.restaurantId;
-
+  console.log("CART", cart);
 
   const cartList = Object.values(cart.cart);
   const reducer = (accumulator, currentValue) => {
@@ -57,15 +57,15 @@ function CartList(props) {
   const history = useHistory();
   const total = cartList.reduce(reducer, 0);
   let details = [];
-  cartList.map((item)=> {
+  cartList.map((item) => {
     details.push({
       dishId: item.id,
       orderId: 0,
-      quantity: item.quantity
+      quantity: item.quantity,
     });
-  })
+  });
   const classes = useStyles();
-  
+
   const invoiceTaxes = TAX_RATE * total;
   const invoiceTotal = invoiceTaxes + total;
   const [errors, setErrors] = useState("");
@@ -79,7 +79,7 @@ function CartList(props) {
       userId: userId,
       restaurantId: restaurantId,
       done: true,
-      details: details
+      details: details,
     };
     postOrder(requestDto)
       .then((result) => {

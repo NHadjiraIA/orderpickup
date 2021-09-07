@@ -5,6 +5,8 @@ import { useHistory, useLocation } from "react-router-dom";
 // import useResponsiveFontSize from "../useResponsiveFontSize";
 import axios from "axios";
 import { postPayment } from "../../services/paymentService";
+import { useCart } from "../../context/cart";
+
 const useOptions = () => {
   // const fontSize = useResponsiveFontSize();
   const options = useMemo(
@@ -30,6 +32,7 @@ const useOptions = () => {
 };
 
 const CardForm = (props) => {
+  const cart = useCart();
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
@@ -52,35 +55,35 @@ const CardForm = (props) => {
 
     console.log("[PaymentMethod]", payload);
     let payment = {
-      amount: props.amount.toFixed(2)
+      amount: props.amount.toFixed(2),
     };
-    postPayment(payment)
-    .then((data) => {
-        stripe
-          .confirmCardPayment(data.clientSecret, {
-            payment_method: {
-              card: elements.getElement(CardElement),
-            },
-          })
-          .then(function (result) {
-            if (result.error) {
-              // Show error to your customer
-              alert(result.error);
-            } else {
-              // The payment succeeded!
-              sendMessage().then(() => {
-                alert(`successful payment `);
-              });
+    postPayment(payment).then((data) => {
+      stripe
+        .confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: elements.getElement(CardElement),
+          },
+        })
+        .then(function (result) {
+          if (result.error) {
+            // Show error to your customer
+            alert(result.error);
+          } else {
+            // The payment succeeded!
+            sendMessage().then(() => {
               alert(`successful payment `);
-              history.push({
-                pathname: ORDERS,
-                state:{
-                  userId: props.userId
-                }
-              });
-            }
-          });
-      });
+              cart.emptyCart();
+            });
+            alert(`successful payment `);
+            history.push({
+              pathname: ORDERS,
+              state: {
+                userId: props.userId,
+              },
+            });
+          }
+        });
+    });
   };
   const sendMessage = () => {
     return axios
