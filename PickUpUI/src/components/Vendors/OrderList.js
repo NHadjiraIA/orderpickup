@@ -1,7 +1,7 @@
 
 import OrderListItem from "./OrderListItem.js";
 import { makeStyles } from '@material-ui/core/styles';
-import { getOrdersNotCompletedByUserIdAndRestaurantId } from "../../services/orderService";
+import { getOrdersNotCompletedByRestaurantId } from "../../services/orderService";
 import React, { useState, useEffect } from "react";
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -10,16 +10,15 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '900px',
   }
 }));
-function OrderList() {
+function OrderList(props) {
   const classes = useStyles();
   const [orderListData, setOrderListData] = useState([]);
   console.log("in orders list item - before useEffect")
   useEffect(() => {
     return new Promise((resolve, reject) => {
       try {
-        let userId = 1;
         let restaurantId = 1;
-        getOrdersNotCompletedByUserIdAndRestaurantId(userId, restaurantId, false)
+        getOrdersNotCompletedByRestaurantId(restaurantId, false)
         .then((result) => {
           console.log(result);
           setOrderListData(result);

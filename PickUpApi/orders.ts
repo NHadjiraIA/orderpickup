@@ -40,10 +40,10 @@ export class OrdersApi{
         return res.status(200).json(userOrdersDone)
     }
 
-    async getNotCompletedOrdersByUserId(req: express.Request, res: express.Response){
-        let userId = req.query.userId;
+    async getNotCompletedOrdersByRestaurantId(req: express.Request, res: express.Response){
+        let restaurantId = req.query.restaurantId;
         let completed = req.query.completed;
-        let userOrdersNotCompleted = await this._ordersRepository.getNotCompletedOrdersByUserId(userId,completed);
+        let userOrdersNotCompleted = await this._ordersRepository.getNotCompletedOrdersByRestaurantId(restaurantId,completed);
         return res.status(200).json(userOrdersNotCompleted)
     }
 

@@ -1,6 +1,6 @@
 import { SYSTEM_ERROR } from "../config/CONSTANTS";
 import axios from 'axios'
-import { POST_ORDER, GET_ORDERS_BY_USER_ID, GET_ORDERS_DONE_BY_USER_ID, GET_ORDERS_NOT_COMPLETED_BY_USER_ID,PUT_ORDER} from "./CONSTANTS";
+import { POST_ORDER, GET_ORDERS_BY_USER_ID, GET_ORDERS_DONE_BY_USER_ID, GET_ORDERS_NOT_COMPLETED_BY_RESTAURANT_ID,PUT_ORDER} from "./CONSTANTS";
 
  
 export const postOrder = (order) => {
@@ -58,11 +58,11 @@ export const getOrdersByUserId = (userId) => {
       }
     });
   };
-  export const getOrdersNotCompletedByUserIdAndRestaurantId = (userId, restaurantId, completed) => {
+  export const getOrdersNotCompletedByRestaurantId = (restaurantId, completed) => {
     return new Promise((resolve, reject) => {
       try {
         axios       
-        .get(GET_ORDERS_NOT_COMPLETED_BY_USER_ID(userId,restaurantId,completed))
+        .get(GET_ORDERS_NOT_COMPLETED_BY_RESTAURANT_ID(restaurantId,completed))
         .then(res => {
             resolve(res.data);
         })

@@ -53,9 +53,9 @@ export class OrdersRepository{
         return orders;
     }
 
-    public async getNotCompletedOrdersByUserId(userId,completed): Promise<OrderEntity[]>{
+    public async getNotCompletedOrdersByRestaurantId(restaurantId,completed): Promise<OrderEntity[]>{
         let orders  = await OrderEntity.findAll({
-            where: {userId: `${userId}`, completed: completed},
+            where: {restaurantId: `${restaurantId}`, completed: completed},
             include: {all:true, nested: true}
         });
         return orders;
