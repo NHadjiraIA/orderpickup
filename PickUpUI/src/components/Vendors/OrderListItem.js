@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function OrderListItemRow({ row, toggleOrder, completed }) {
-  const classes = useStyles();  
+  const classes = useStyles();
   return (
     <TableRow>
       <TableCell align="left">
@@ -128,25 +128,25 @@ function OrderListItemRow({ row, toggleOrder, completed }) {
 }
 
 function OrderListItem(props) {
-
   const classes = useStyles();
   const [completedItems, setCompletedItems] = useState({});
   const [completed, setCompleted] = useState("Not completed");
 
   const updateOrderCompleted = (event) => {
     let updateOrderDto = {
-      "id": props.orderId,
-      "completed": true
-    }
-    
-    try{
+      id: props.orderId,
+      completed: true,
+    };
+
+    try {
       putOrder(updateOrderDto)
-      .then((res) =>{
-        setCompleted("Completed")
-      }).catch((err) => {
-        console.log("getNextQuestion > updateUserAnswer> err=", err);
-      });
-    }catch(error){
+        .then((res) => {
+          setCompleted("Completed");
+        })
+        .catch((err) => {
+          console.log("getNextQuestion > updateUserAnswer> err=", err);
+        });
+    } catch (error) {
       console.error("signin error!==", error);
     }
   };
@@ -160,7 +160,6 @@ function OrderListItem(props) {
           id="panel1a-header"
         >
           <div className={classes.accordion}>
-           
             <Typography className={classes.heading}>
               {props.img}
               Order: {props.orderId}
@@ -221,7 +220,13 @@ function OrderListItem(props) {
                       <h4>Pre-Tax</h4>
                     </TableCell>
                     <TableCell align="right">
-                      <h4>$ {(props.products.map(p=>p.quantity * p.dish.price).reduce((a, b) => a + b, 0)).toFixed(2)}</h4>
+                      <h4>
+                        ${" "}
+                        {props.products
+                          .map((p) => p.quantity * p.dish.price)
+                          .reduce((a, b) => a + b, 0)
+                          .toFixed(2)}
+                      </h4>
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -229,17 +234,24 @@ function OrderListItem(props) {
                       <h4>Total</h4>
                     </TableCell>
                     <TableCell align="right">
-                      <h4>$ {((props.products.map(p=>p.quantity * p.dish.price).reduce((a, b) => a + b, 0)) * 1.13).toFixed(2)}</h4>
+                      <h4>
+                        ${" "}
+                        {(
+                          props.products
+                            .map((p) => p.quantity * p.dish.price)
+                            .reduce((a, b) => a + b, 0) * 1.13
+                        ).toFixed(2)}
+                      </h4>
                     </TableCell>
                     <TableCell align="right">
-                    <Button
-                      variant="contained"
-                      onClick={updateOrderCompleted}
-                      color={completed ? "green" : "secondary"}
-                      className={completed ? classes.activeButton : ""}
-                    >
-                      {completed}
-                    </Button>
+                      <Button
+                        variant="contained"
+                        onClick={updateOrderCompleted}
+                        color={completed ? "green" : "secondary"}
+                        className={completed ? classes.activeButton : ""}
+                      >
+                        {completed}
+                      </Button>
                     </TableCell>
                   </TableRow>
                 </TableBody>

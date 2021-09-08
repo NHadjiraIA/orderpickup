@@ -16,9 +16,9 @@ module.exports = {
         title: "Bakery la joie",
         thumbnail_url:
           "https://images.unsplash.com/photo-1509482560494-4126f8225994?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        description: "sample restaurant for goood people",
-        address: "420 pineapple street",
-        email: "angelsjoie@heaven.com",
+        description: "Bakery & Bistro",
+        address: "420 Pineapple St",
+        email: "goodvibes@baked.com",
         phone: 4455009,
         city: "Markham",
         prov_state: "Ontario",
@@ -47,7 +47,7 @@ module.exports = {
         thumbnail_url:
           "https://images.unsplash.com/photo-1606502281004-f86cf1282af5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNoZWZ8ZW58MHwyfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         description: "Lunch & Dinner",
-        address: "13 Stephen street",
+        address: "13 Stephen St",
         email: "outback@outback.com",
         phone: 277669,
         city: "Markham",
@@ -68,7 +68,7 @@ module.exports = {
         thumbnail_url:
           "https://images.unsplash.com/photo-1625937712159-e305336cbf4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=844&q=80",
         description: "Breakfast",
-        address: "420 pineapple street",
+        address: "420 pineapple St",
         email: "Phellange@gmail.com",
         phone: 9455009,
         city: "Markham",
@@ -87,7 +87,7 @@ module.exports = {
       {
         title: "Tony Romas",
         thumbnail_url:
-          "https://images.unsplash.com/photo-1509482560494-4126f8225994?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
         description: "Lunch & Dinner",
         address: "191 Burgerville",
         email: "Tonys@hotmail.com",
