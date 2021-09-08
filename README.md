@@ -14,6 +14,7 @@ As a user:
 
 - View registered restaurants on google maps in app
 - Leave comments and ratings on the restaurants
+- Pay for the order through Stripe
 - Receive SMS notifications when their order is being prepared and ready for pick up
 
 As a vendor:
