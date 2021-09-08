@@ -4,6 +4,10 @@
 
 NodeFeast is a takeout app where users can order food from registered restaurants, and will pick up their food after they receive an SMS notification.
 
+## Final Product
+
+![ How the App Works](https://github.com/NHadjiraIA/orderpickup/blob/main/pics/noshfeast-useronly.gif)
+
 ## Functionalities
 
 As a user:
@@ -90,7 +94,3 @@ Run the API server:
 cd <project-directory>/PickUpApi
 npm run dev
 ```
-
-## Final Product
-
-![ How the App Works](https://github.com/NHadjiraIA/orderpickup/blob/main/pics/noshfeast-useronly.gif)
