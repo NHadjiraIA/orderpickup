@@ -90,3 +90,7 @@ Run the API server:
 cd <project-directory>/PickUpApi
 npm run dev
 ```
+
+## Final Product
+
+![ How the App Works](https://github.com/NHadjiraIA/orderpickup/blob/main/pics/noshfeast-useronly.gif)
