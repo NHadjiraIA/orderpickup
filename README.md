@@ -93,6 +93,14 @@ Run the API server:
 
 ```sh
 cd <project-directory>/PickUpApi
+npm install -g typescript 
+npm install -g express-typescript  
+npm install -g nodemon
+npm install -g @types/node
+npm install -g @type/express
+npm install -g ts-node  
+npm install -g express
+npm i twilio
 npm run dev
 ```
 
