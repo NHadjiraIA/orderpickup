@@ -95,3 +95,9 @@ Run the API server:
 cd <project-directory>/PickUpApi
 npm run dev
 ```
+
+## Set Up Twilio
+
+These are the documents we referenced for setting up [Twilio](https://www.twilio.com/docs/sms/quickstart/node?code-sample=code-send-an-sms-using-twilio-with-nodejs&code-language=Node.js&code-sdk-version=3.x).
+
+Make sure to sign up an account on Twilio and follow the guide to set up your Twilio functionalities in the back end.
