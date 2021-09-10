@@ -1,4 +1,5 @@
 # NoshFeast
+Final Project by Cathy Li, Hadjira Haya, and Shivani Konuguru
 
 ## Introduction
 
@@ -109,3 +110,14 @@ npm run dev
 These are the documents we referenced for setting up [Twilio](https://www.twilio.com/docs/sms/quickstart/node?code-sample=code-send-an-sms-using-twilio-with-nodejs&code-language=Node.js&code-sdk-version=3.x).
 
 Make sure to sign up an account on Twilio and follow the guide to set up your Twilio functionalities in the back end.
+
+## Set Up Google Maps Api Key
+
+- Make a file: mapAPIKey.js, in PickUpUI>src folder.
+And include the file in .gitignore
+
+- Make a variable for the google maps api
+
+e.g.
+  const API = "<google maps api key>"
+  export default API
